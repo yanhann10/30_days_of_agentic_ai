@@ -1,8 +1,6 @@
 # Day 02 Reading Notes: World Models
 
-World models underpin embodied agents, physical intelligence, and creative AI, especially in areas like video generation and game engines. By constructing a compressed, simulated environment, they allow agents to rehearse, plan, and self-improve, narrowing the gap between virtual and physical worlds. As real-world interaction data is often hard or costly to collect, world models offer a scalable way to generate synthetic trajectories. For Day 2, I focus on the main components and approaches
-
----
+World models underpin embodied agents, physical intelligence, and creative AI, especially in areas like video generation and game engines. By constructing a compressed, simulated environment, they allow agents to rehearse, plan, and self-improve, narrowing the gap between virtual and physical worlds. As real-world interaction data is often hard to collect, world models offer a scalable way to generate synthetic trajectories. For Day 2, I focus on the main components and approaches.
 
 ## World Models (Ha & Schmidhuber, 2018)
 
@@ -10,17 +8,13 @@ World models underpin embodied agents, physical intelligence, and creative AI, e
 
 This concept was formalized in the 2018 paper “World Models” by David Ha and Jürgen Schmidhuber. The system consists of three parts: a vision module for compressing observations into latent states, a memory module that models temporal transitions, and a controller that outputs actions using only these latent states. This demonstrated that an agent could learn an internal simulation and train a policy entirely inside that learned latent world.
 
----
-
-## DreamerV3 (Hafner et al., 2023)
+## DreamerV3/V4 (Hafner et al.)
 
 **Summary:** [https://vitalab.github.io/article/2023/01/19/DreamerV3.html](https://vitalab.github.io/article/2023/01/19/DreamerV3.html)
 
 ### Overview
 
-DreamerV3 is a recent model-based RL method developed by Danijar Hafner and colleagues at DeepMind. It uses a recurrent state-space world model paired with an actor-critic. The system maintains a posterior latent state computed from the previous state and real observation for training the world model, and a prior latent state predicted from the previous state and action for policy learning in “dreaming” mode.
-
----
+DreamerV3 is a recent model-based RL method developed by Danijar Hafner and colleagues at DeepMind in 2023. It uses a recurrent state-space world model (RSSM) paired with an actor-critic. The system maintains a posterior latent state computed from the previous state and real observation for training the world model, and a prior latent state predicted from the previous state and action for policy learning in “dreaming” mode. Also DreamerV4 [https://arxiv.org/pdf/2509.24527] (2025) upgraded RSSM to an efficient transformer and used Preference Optimization as Probabilistic Inference (PMPO), which focus on the sign of the advantage rather than the magnitude, in addition to KL as objective.
 
 ## WALL-E 2.0: Neurosymbolic World Models
 
