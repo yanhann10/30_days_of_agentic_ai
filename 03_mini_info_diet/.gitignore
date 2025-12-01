@@ -1,0 +1,4 @@
+.env
+venv/
+.picks_history.json
+picks_history.json
