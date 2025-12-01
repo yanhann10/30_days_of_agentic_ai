@@ -36,21 +36,23 @@ if not candidates:
 # If many candidates, sample 12 and ask the model to pick top 3
 sample = random.sample(candidates, min(len(candidates), 12))
 
-# Load feedback to refine picks
 feedback_context = ""
-if os.path.exists(FEEDBACK):
-    with open(FEEDBACK) as f:
-        feedback_data = json.load(f)
-        if feedback_data:
-            recent_feedback = feedback_data[-5:]  # Use last 5 feedback entries
-            prefs = []
-            for fb in recent_feedback:
-                if 'preferred_topics' in fb:
-                    prefs.extend(fb['preferred_topics'])
-                if 'comment' in fb:
-                    prefs.append(fb['comment'])
-            if prefs:
-                feedback_context = f"\n\nUser preferences from past feedback: {'; '.join(prefs)}\nConsider these preferences when ranking papers."
+try:
+    if os.path.exists(FEEDBACK):
+        with open(FEEDBACK) as f:
+            feedback_data = json.load(f)
+            if feedback_data:
+                recent_feedback = feedback_data[-5:]
+                prefs = []
+                for fb in recent_feedback:
+                    if 'preferred_topics' in fb:
+                        prefs.extend(fb['preferred_topics'])
+                    if 'comment' in fb:
+                        prefs.append(fb['comment'])
+                if prefs:
+                    feedback_context = f"\n\nUser preferences from past feedback: {'; '.join(prefs)}\nConsider these preferences when ranking papers."
+except Exception:
+    pass
 
 prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {{rank,title,justification}}. Titles:\n" + '\n'.join(sample) + feedback_context
 
