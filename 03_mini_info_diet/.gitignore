@@ -2,3 +2,4 @@
 venv/
 .picks_history.json
 picks_history.json
+\n.DS_Store\n.claude/\n.deepagents/skills/collect_feedback/\n
