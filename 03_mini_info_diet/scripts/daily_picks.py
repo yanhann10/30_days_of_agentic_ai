@@ -35,7 +35,7 @@ if not candidates:
 # If many candidates, sample 12 and ask the model to pick top 3
 sample = random.sample(candidates, min(len(candidates), 12))
 
-prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {rank,title,justification}. Titles:\n" + '\n'.join(sample)
+prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {{rank,title,justification}}. Titles:\n" + '\n'.join(sample)
 
 resp = requests.post(
     'https://openrouter.ai/api/v1/chat/completions',
