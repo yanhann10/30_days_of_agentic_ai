@@ -51,3 +51,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Addressing Multi-stakeholder Fairness Concerns in Recommender Systems
+   - Status: not started
+   - Summary: 
+
+2. CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures
+   - Status: not started
+   - Summary: 
+
+3. HyperMARL: Adaptive Hypernetworks for Multi-Agent RL
+   - Status: not started
+   - Summary: 
+
