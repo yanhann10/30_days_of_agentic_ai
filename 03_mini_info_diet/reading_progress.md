@@ -83,3 +83,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models
+   - Status: not started
+   - Summary: 
+
+2. Blindfolded Experts Generalize Better: Insights from Robotic Manipulation
+   - Status: not started
+   - Summary: 
+
+3. DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory
+   - Status: not started
+   - Summary: 
+
