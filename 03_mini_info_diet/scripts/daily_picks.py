@@ -106,10 +106,10 @@ if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAILJS_PR
         'user_id': EMAILJS_USER_ID,
         'accessToken': EMAILJS_PRIVATE_KEY,
         'template_params': {
-            'message_html': email_body,
-            'subject': 'Daily paper picks',
             'to_email': EMAIL_TO,
             'from_email': EMAIL_FROM,
+            'subject': 'Daily paper picks',
+            'message': email_body,
         }
     }
     try:
