@@ -95,8 +95,11 @@ hist.append(entry)
 with open(HISTORY,'w') as f:
     json.dump(hist,f,indent=2)
 
-email_body = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{i}. {t['title']}</h3><p>{t.get('summary','')}</p>" for i, t in enumerate(top3, 1)])
-email_body += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
+email_body_html = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{i}. {t['title']}</h3><p>{t.get('summary','')}</p>" for i, t in enumerate(top3, 1)])
+email_body_html += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
+
+email_body_text = 'Today\'s top 3 papers\n\n' + '\n\n'.join([f"{i}. {t['title']}\n{t.get('summary','')}" for i, t in enumerate(top3, 1)])
+email_body_text += '\n\n---\n📝 Share your feedback: Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!'
 
 if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAILJS_PRIVATE_KEY and EMAIL_FROM and EMAIL_TO:
     send_url = 'https://api.emailjs.com/api/v1.0/email/send'
@@ -109,7 +112,7 @@ if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAILJS_PR
             'to_email': EMAIL_TO,
             'from_email': EMAIL_FROM,
             'subject': 'Daily paper picks',
-            'message': email_body,
+            'message': email_body_text,
         }
     }
     try:
@@ -122,7 +125,7 @@ if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAILJS_PR
         print('EmailJS request error', e)
 elif SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
     send_url='https://api.sendgrid.com/v3/mail/send'
-    body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':email_body}]}
+    body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':email_body_html}]}
     try:
         r = requests.post(send_url,headers={'Authorization':f'Bearer {SENDGRID_API_KEY}','Content-Type':'application/json'},json=body)
         if r.status_code == 202:
