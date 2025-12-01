@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# Claude Code settings
+.claude/
+
+# DeepAgents skills
+.deepagents/skills/collect_feedback/
