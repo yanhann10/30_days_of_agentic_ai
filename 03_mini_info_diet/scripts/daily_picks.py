@@ -63,11 +63,9 @@ resp = requests.post(
     json={'model':'allenai/olmo-3-7b-instruct','messages':[{'role':'user','content':prompt}]}
 )
 
-obj = resp.json()
-# naive parse
-content = obj['choices'][0]['message']['content']
-
 try:
+    obj = resp.json()
+    content = obj['choices'][0]['message']['content']
     data = json.loads(content)
     top3 = data['top3']
 except Exception:
