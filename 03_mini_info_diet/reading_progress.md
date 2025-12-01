@@ -35,3 +35,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D
+   - Status: not started
+   - Summary: 
+
+2. RAG4GFM: Graph Retrieval Augmented Generation
+   - Status: not started
+   - Summary: 
+
+3. Tight analyses of first-order methods with error feedback
+   - Status: not started
+   - Summary: 
+
