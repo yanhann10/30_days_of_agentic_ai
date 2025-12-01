@@ -97,7 +97,28 @@ with open(HISTORY,'w') as f:
 email_body = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{i}. {t['title']}</h3><p>{t.get('summary','')}</p>" for i, t in enumerate(top3, 1)])
 email_body += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
 
-if SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
+if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAIL_FROM and EMAIL_TO:
+    send_url = 'https://api.emailjs.com/api/v1.0/email/send'
+    payload = {
+        'service_id': EMAILJS_SERVICE_ID,
+        'template_id': EMAILJS_TEMPLATE_ID,
+        'user_id': EMAILJS_USER_ID,
+        'template_params': {
+            'message_html': email_body,
+            'subject': 'Daily paper picks',
+            'to_email': EMAIL_TO,
+            'from_email': EMAIL_FROM,
+        }
+    }
+    try:
+        r = requests.post(send_url, json=payload, headers={'Content-Type':'application/json'})
+        if r.status_code == 200:
+            print('Email sent via EmailJS')
+        else:
+            print('EmailJS send failed', r.status_code, r.text)
+    except Exception as e:
+        print('EmailJS request error', e)
+elif SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
     send_url='https://api.sendgrid.com/v3/mail/send'
     body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':email_body}]}
     try:
