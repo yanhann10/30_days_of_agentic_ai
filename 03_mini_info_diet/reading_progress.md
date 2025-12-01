@@ -115,3 +115,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Dynamic Risk Assessments for Offensive Cybersecurity Agents
+   - Status: not started
+   - Summary: 
+
+2. LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys
+   - Status: not started
+   - Summary: 
+
+3. DISCOVER: Automated Curricula for Sparse-Reward RL
+   - Status: not started
+   - Summary: 
+
