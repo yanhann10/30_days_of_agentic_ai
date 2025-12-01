@@ -12,8 +12,6 @@ This concept was formalized in the 2018 paper “World Models” by David Ha and
 
 **Summary:** [https://vitalab.github.io/article/2023/01/19/DreamerV3.html](https://vitalab.github.io/article/2023/01/19/DreamerV3.html)
 
-### Overview
-
 DreamerV3 is a recent model-based RL method developed by Danijar Hafner and colleagues at DeepMind in 2023. It uses a recurrent state-space world model (RSSM) paired with an actor-critic. The system maintains a posterior latent state computed from the previous state and real observation for training the world model, and a prior latent state predicted from the previous state and action for policy learning in “dreaming” mode. Also DreamerV4 [https://arxiv.org/pdf/2509.24527] (2025) upgraded RSSM to an efficient transformer and used Preference Optimization as Probabilistic Inference (PMPO), which focus on the sign of the advantage rather than the magnitude, in addition to KL as objective.
 
 ## WALL-E 2.0: Neurosymbolic World Models
