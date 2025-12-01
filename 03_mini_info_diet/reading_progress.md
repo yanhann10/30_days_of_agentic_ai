@@ -99,3 +99,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. HyperMARL: Adaptive Hypernetworks for Multi-Agent RL
+   - Status: not started
+   - Summary: 
+
+2. ToolRL: Reward is All Tool Learning Needs
+   - Status: not started
+   - Summary: 
+
+3. From Euler to AI: Unifying Formulas for Mathematical Constants
+   - Status: not started
+   - Summary: 
+
