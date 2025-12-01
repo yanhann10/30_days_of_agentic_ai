@@ -20,3 +20,18 @@ Top 3 selected papers:
    - Scores: applicability=8, impact=10, innovation=10, inspiration=9, aggregate=9.25
 
 How to update: tell me which paper number and new status/notes; I will update this file accordingly.
+
+Today's top 3 picks:
+
+1. From Euler to AI: Unifying Formulas for Mathematical Constants
+   - Status: not started
+   - Summary: 
+
+2. MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning
+   - Status: not started
+   - Summary: 
+
+3. DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys
+   - Status: not started
+   - Summary: 
+
