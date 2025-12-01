@@ -67,3 +67,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image
+   - Status: not started
+   - Summary: 
+
+2. Agnostic Active Learning Is Always Better Than Passive Learning
+   - Status: not started
+   - Summary: 
+
+3. From Euler to AI: Unifying Formulas for Mathematical Constants
+   - Status: not started
+   - Summary: 
+
