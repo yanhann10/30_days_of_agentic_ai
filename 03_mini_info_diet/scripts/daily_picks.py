@@ -55,7 +55,7 @@ except Exception:
     pass
 
 titles_list = '\n'.join(sample)
-prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects with fields: rank (number), title (string), justification (string). Titles:\n{titles_list}{feedback_context}"
+prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects with fields: title (string), summary (short 1-sentence summary). Titles:\n{titles_list}{feedback_context}"
 
 resp = requests.post(
     'https://openrouter.ai/api/v1/chat/completions',
@@ -71,16 +71,15 @@ try:
     data = json.loads(content)
     top3 = data['top3']
 except Exception:
-    # fallback: pick first 3 sample titles
-    top3 = [{'rank':i+1,'title':sample[i],'justification':''} for i in range(min(3,len(sample)))]
+    top3 = [{'title':sample[i],'summary':''} for i in range(min(3,len(sample)))]
 
 # update reading_progress.md
 with open(READING) as f:
     readme=f.read()
 
 new_section='\n\nToday\'s top 3 picks:\n\n'
-for t in top3:
-    new_section += f"{t['rank']}. {t['title']}\n   - Status: not started\n   - Notes: {t.get('justification','')}\n\n"
+for i, t in enumerate(top3, 1):
+    new_section += f"{i}. {t['title']}\n   - Status: not started\n   - Summary: {t.get('summary','')}\n\n"
 
 readme += new_section
 with open(READING,'w') as f:
@@ -102,7 +101,7 @@ if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAIL_FROM
     send_url = 'https://api.emailjs.com/api/v1.0/email/send'
 
     # Build email content with feedback instructions
-    email_body = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{t['rank']}. {t['title']}</h3><p>{t.get('justification','')}</p>" for t in top3])
+    email_body = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{i}. {t['title']}</h3><p>{t.get('summary','')}</p>" for i, t in enumerate(top3, 1)])
     email_body += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
 
     payload = {
@@ -128,7 +127,7 @@ else:
     # fallback to SendGrid if configured
     if SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
         send_url='https://api.sendgrid.com/v3/mail/send'
-        body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':'<h2>Today\'s top 3 papers</h2>' + ''.join([f"<p><strong>{t['rank']}. {t['title']}</strong><br/>{t.get('justification','')}</p>" for t in top3])}]}
+        body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':'<h2>Today\'s top 3 papers</h2>' + ''.join([f"<p><strong>{i}. {t['title']}</strong><br/>{t.get('summary','')}</p>" for i, t in enumerate(top3, 1)])}]}
         requests.post(send_url,headers={'Authorization':f'Bearer {SENDGRID_API_KEY}','Content-Type':'application/json'},json=body)
     else:
         print('No email provider configured; skipping email')
