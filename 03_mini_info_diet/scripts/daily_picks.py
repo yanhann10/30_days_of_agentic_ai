@@ -1,0 +1,81 @@
+import os, json, requests, random
+from dotenv import load_dotenv
+load_dotenv()
+
+OLMO_API_KEY = os.environ.get('OLMO_API_KEY')
+EMAIL_TO = os.environ.get('EMAIL_TO')
+EMAIL_FROM = os.environ.get('EMAIL_FROM')
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
+ROOT = os.path.dirname(os.path.dirname(__file__))
+TO_READ = os.path.join(ROOT, 'to_read.csv')
+READING = os.path.join(ROOT, 'reading_progress.md')
+HISTORY = os.path.join(ROOT, 'picks_history.json')
+
+# Simple prefilter: read list and exclude already picked
+with open(TO_READ) as f:
+    titles=[l.strip().split('\t')[-1] for l in f if l.strip()]
+
+picked=set()
+if os.path.exists(HISTORY):
+    with open(HISTORY) as f:
+        hist=json.load(f)
+        for entry in hist:
+            picked.update(entry.get('titles', []))
+
+candidates=[t for t in titles if t not in picked]
+if not candidates:
+    candidates=titles
+
+# If many candidates, sample 12 and ask the model to pick top 3
+sample = random.sample(candidates, min(len(candidates), 12))
+
+prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {rank,title,justification}. Titles:\n" + '\n'.join(sample)
+
+resp = requests.post(
+    'https://openrouter.ai/api/v1/chat/completions',
+    headers={'Authorization': f'Bearer {OLMO_API_KEY}', 'Content-Type': 'application/json'},
+    json={'model':'allenai/olmo-3-7b-instruct','messages':[{'role':'user','content':prompt}]}
+)
+
+obj = resp.json()
+# naive parse
+content = obj['choices'][0]['message']['content']
+
+try:
+    data = json.loads(content)
+    top3 = data['top3']
+except Exception:
+    # fallback: pick first 3 sample titles
+    top3 = [{'rank':i+1,'title':sample[i],'justification':''} for i in range(min(3,len(sample)))]
+
+# update reading_progress.md
+with open(READING) as f:
+    readme=f.read()
+
+new_section='\n\nToday\'s top 3 picks:\n\n'
+for t in top3:
+    new_section += f"{t['rank']}. {t['title']}\n   - Status: not started\n   - Notes: {t.get('justification','')}\n\n"
+
+readme += new_section
+with open(READING,'w') as f:
+    f.write(readme)
+
+# append history
+entry={'date':__import__('datetime').datetime.utcnow().isoformat(),'titles':[t['title'] for t in top3]}
+if os.path.exists(HISTORY):
+    with open(HISTORY) as f:
+        hist=json.load(f)
+else:
+    hist=[]
+hist.append(entry)
+with open(HISTORY,'w') as f:
+    json.dump(hist,f,indent=2)
+
+# send email via SendGrid
+if SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
+    send_url='https://api.sendgrid.com/v3/mail/send'
+    body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':'<h2>Today\'s top 3 papers</h2>' + ''.join([f"<p><strong>{t['rank']}. {t['title']}</strong><br/>{t.get('justification','')}</p>" for t in top3])}]}
+    requests.post(send_url,headers={'Authorization':f'Bearer {SENDGRID_API_KEY}','Content-Type':'application/json'},json=body)
+else:
+    print('SendGrid not configured; skipping email')
