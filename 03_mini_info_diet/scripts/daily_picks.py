@@ -16,6 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(__file__))
 TO_READ = os.path.join(ROOT, 'to_read.csv')
 READING = os.path.join(ROOT, 'reading_progress.md')
 HISTORY = os.path.join(ROOT, 'picks_history.json')
+FEEDBACK = os.path.join(ROOT, 'feedback.json')
 
 # Simple prefilter: read list and exclude already picked
 with open(TO_READ) as f:
@@ -35,7 +36,23 @@ if not candidates:
 # If many candidates, sample 12 and ask the model to pick top 3
 sample = random.sample(candidates, min(len(candidates), 12))
 
-prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {{rank,title,justification}}. Titles:\n" + '\n'.join(sample)
+# Load feedback to refine picks
+feedback_context = ""
+if os.path.exists(FEEDBACK):
+    with open(FEEDBACK) as f:
+        feedback_data = json.load(f)
+        if feedback_data:
+            recent_feedback = feedback_data[-5:]  # Use last 5 feedback entries
+            prefs = []
+            for fb in recent_feedback:
+                if 'preferred_topics' in fb:
+                    prefs.extend(fb['preferred_topics'])
+                if 'comment' in fb:
+                    prefs.append(fb['comment'])
+            if prefs:
+                feedback_context = f"\n\nUser preferences from past feedback: {'; '.join(prefs)}\nConsider these preferences when ranking papers."
+
+prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {{rank,title,justification}}. Titles:\n" + '\n'.join(sample) + feedback_context
 
 resp = requests.post(
     'https://openrouter.ai/api/v1/chat/completions',
@@ -80,12 +97,17 @@ with open(HISTORY,'w') as f:
 # send email via EmailJS if configured
 if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAIL_FROM and EMAIL_TO:
     send_url = 'https://api.emailjs.com/api/v1.0/email/send'
+
+    # Build email content with feedback instructions
+    email_body = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{t['rank']}. {t['title']}</h3><p>{t.get('justification','')}</p>" for t in top3])
+    email_body += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
+
     payload = {
         'service_id': EMAILJS_SERVICE_ID,
         'template_id': EMAILJS_TEMPLATE_ID,
         'user_id': EMAILJS_USER_ID,
         'template_params': {
-            'message_html': '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{t['rank']}. {t['title']}</h3><p>{t.get('summary','')}</p>" for t in top3]),
+            'message_html': email_body,
             'subject': 'Daily paper picks',
             'to_email': EMAIL_TO,
             'from_email': EMAIL_FROM,
