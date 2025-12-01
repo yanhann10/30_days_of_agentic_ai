@@ -6,6 +6,11 @@ OLMO_API_KEY = os.environ.get('OLMO_API_KEY')
 EMAIL_TO = os.environ.get('EMAIL_TO')
 EMAIL_FROM = os.environ.get('EMAIL_FROM')
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+EMAILJS_SERVICE_ID = os.environ.get('EMAILJS_SERVICE_ID')
+EMAILJS_TEMPLATE_ID = os.environ.get('EMAILJS_TEMPLATE_ID')
+EMAILJS_USER_ID = os.environ.get('EMAILJS_USER_ID')
+EMAIL_FROM = os.environ.get('EMAIL_FROM')
+EMAIL_TO = os.environ.get('EMAIL_TO')
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
 TO_READ = os.path.join(ROOT, 'to_read.csv')
@@ -72,10 +77,33 @@ hist.append(entry)
 with open(HISTORY,'w') as f:
     json.dump(hist,f,indent=2)
 
-# send email via SendGrid
-if SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
-    send_url='https://api.sendgrid.com/v3/mail/send'
-    body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':'<h2>Today\'s top 3 papers</h2>' + ''.join([f"<p><strong>{t['rank']}. {t['title']}</strong><br/>{t.get('justification','')}</p>" for t in top3])}]}
-    requests.post(send_url,headers={'Authorization':f'Bearer {SENDGRID_API_KEY}','Content-Type':'application/json'},json=body)
+# send email via EmailJS if configured
+if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAIL_FROM and EMAIL_TO:
+    send_url = 'https://api.emailjs.com/api/v1.0/email/send'
+    payload = {
+        'service_id': EMAILJS_SERVICE_ID,
+        'template_id': EMAILJS_TEMPLATE_ID,
+        'user_id': EMAILJS_USER_ID,
+        'template_params': {
+            'message_html': '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{t['rank']}. {t['title']}</h3><p>{t.get('summary','')}</p>" for t in top3]),
+            'subject': 'Daily paper picks',
+            'to_email': EMAIL_TO,
+            'from_email': EMAIL_FROM,
+        }
+    }
+    try:
+        r = requests.post(send_url, json=payload, headers={'Content-Type':'application/json'})
+        if r.status_code == 200:
+            print('Email sent via EmailJS')
+        else:
+            print('EmailJS send failed', r.status_code, r.text)
+    except Exception as e:
+        print('EmailJS request error', e)
 else:
-    print('SendGrid not configured; skipping email')
+    # fallback to SendGrid if configured
+    if SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
+        send_url='https://api.sendgrid.com/v3/mail/send'
+        body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':'<h2>Today\'s top 3 papers</h2>' + ''.join([f"<p><strong>{t['rank']}. {t['title']}</strong><br/>{t.get('justification','')}</p>" for t in top3])}]}
+        requests.post(send_url,headers={'Authorization':f'Bearer {SENDGRID_API_KEY}','Content-Type':'application/json'},json=body)
+    else:
+        print('No email provider configured; skipping email')
