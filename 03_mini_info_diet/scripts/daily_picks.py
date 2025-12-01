@@ -54,7 +54,8 @@ try:
 except Exception:
     pass
 
-prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects {{rank,title,justification}}. Titles:\n" + '\n'.join(sample) + feedback_context
+titles_list = '\n'.join(sample)
+prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects with fields: rank (number), title (string), justification (string). Titles:\n{titles_list}{feedback_context}"
 
 resp = requests.post(
     'https://openrouter.ai/api/v1/chat/completions',
