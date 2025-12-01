@@ -9,6 +9,7 @@ SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 EMAILJS_SERVICE_ID = os.environ.get('EMAILJS_SERVICE_ID')
 EMAILJS_TEMPLATE_ID = os.environ.get('EMAILJS_TEMPLATE_ID')
 EMAILJS_USER_ID = os.environ.get('EMAILJS_USER_ID')
+EMAILJS_PRIVATE_KEY = os.environ.get('EMAILJS_PRIVATE_KEY')
 EMAIL_FROM = os.environ.get('EMAIL_FROM')
 EMAIL_TO = os.environ.get('EMAIL_TO')
 
@@ -97,12 +98,13 @@ with open(HISTORY,'w') as f:
 email_body = '<h2>Today\'s top 3 papers</h2>' + ''.join([f"<h3>{i}. {t['title']}</h3><p>{t.get('summary','')}</p>" for i, t in enumerate(top3, 1)])
 email_body += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
 
-if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAIL_FROM and EMAIL_TO:
+if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAILJS_PRIVATE_KEY and EMAIL_FROM and EMAIL_TO:
     send_url = 'https://api.emailjs.com/api/v1.0/email/send'
     payload = {
         'service_id': EMAILJS_SERVICE_ID,
         'template_id': EMAILJS_TEMPLATE_ID,
         'user_id': EMAILJS_USER_ID,
+        'accessToken': EMAILJS_PRIVATE_KEY,
         'template_params': {
             'message_html': email_body,
             'subject': 'Daily paper picks',
