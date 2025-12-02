@@ -131,3 +131,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Beyond Next Token Prediction: Patch-Level Training for Large Language Models
+   - Status: not started
+   - Summary: 
+
+2. Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization
+   - Status: not started
+   - Summary: 
+
+3. Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction
+   - Status: not started
+   - Summary: 
+
