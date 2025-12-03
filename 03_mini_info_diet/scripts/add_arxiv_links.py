@@ -1,10 +1,37 @@
 #!/usr/bin/env python3
-import os, requests, time
-from dotenv import load_dotenv
+import os, time, requests, xml.etree.ElementTree as ET
 
-load_dotenv()
+ARXIV_API_URL = "http://export.arxiv.org/api/query"
+NS = {"atom": "http://www.w3.org/2005/Atom"}
 
-SERPER_API_KEY = os.environ.get('SERPER_API_KEY')
+def fetch_arxiv_by_title(title):
+    try:
+        params = {
+            "search_query": f'all:"{title}"',
+            "start": 0,
+            "max_results": 1
+        }
+        headers = {"User-Agent": "arxiv-fetcher/0.1"}
+        r = requests.get(ARXIV_API_URL, params=params, headers=headers, timeout=15)
+        if r.status_code != 200:
+            return None, None
+
+        root = ET.fromstring(r.text)
+        entry = root.find("atom:entry", NS)
+        if entry is None:
+            return None, None
+
+        url_elem = entry.find("atom:id", NS)
+        abstract_elem = entry.find("atom:summary", NS)
+
+        url = url_elem.text.strip() if url_elem is not None else None
+        abstract = abstract_elem.text.strip() if abstract_elem is not None else None
+
+        return url, abstract
+    except Exception as e:
+        print(f"  Error fetching: {e}")
+        return None, None
+
 ROOT = os.path.dirname(os.path.dirname(__file__))
 TO_READ = os.path.join(ROOT, 'to_read.csv')
 
@@ -20,6 +47,8 @@ with open(TO_READ) as f:
         })
 
 missing_count = 0
+found_count = 0
+
 for i, paper in enumerate(papers):
     if paper['link']:
         continue
@@ -27,36 +56,19 @@ for i, paper in enumerate(papers):
     missing_count += 1
     print(f"Searching for: {paper['title']}")
 
-    query = f"{paper['title']} site:arxiv.org"
-    resp = requests.post(
-        'https://google.serper.dev/search',
-        headers={'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json'},
-        json={'q': query, 'num': 3}
-    )
+    url, abstract = fetch_arxiv_by_title(paper['title'])
 
-    if resp.status_code != 200:
-        print(f"  Search failed: {resp.status_code}")
-        continue
-
-    results = resp.json().get('organic', [])
-    arxiv_link = None
-
-    for result in results:
-        url = result.get('link', '')
-        if 'arxiv.org/abs/' in url:
-            arxiv_link = url
-            break
-
-    if arxiv_link:
-        papers[i]['link'] = arxiv_link
-        print(f"  Found: {arxiv_link}")
+    if url:
+        papers[i]['link'] = url
+        found_count += 1
+        print(f"  Found: {url}")
     else:
         print(f"  Not found")
 
-    time.sleep(1)
+    time.sleep(3)
 
 with open(TO_READ, 'w') as f:
     for paper in papers:
         f.write(f"{paper['title']}\t{paper['link']}\n")
 
-print(f"\nDone! Added {missing_count} arXiv links")
+print(f"\nDone! Found {found_count}/{missing_count} arXiv links")
