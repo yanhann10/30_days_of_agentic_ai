@@ -147,3 +147,19 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. http://arxiv.org/abs/2505.23620v1
+   - Status: not started
+   - Summary: 
+
+2. http://arxiv.org/abs/2505.19955v3
+   - Status: not started
+   - Summary: 
+
+3. http://arxiv.org/abs/2412.04233v4
+   - Status: not started
+   - Summary: 
+
