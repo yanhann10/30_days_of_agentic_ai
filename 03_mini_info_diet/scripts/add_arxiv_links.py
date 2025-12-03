@@ -1,95 +1,62 @@
-import os
-import requests
-import xml.etree.ElementTree as ET
+#!/usr/bin/env python3
+import os, requests, time
 from dotenv import load_dotenv
+
 load_dotenv()
-import xml.etree.ElementTree as ET
-import os
 
+SERPER_API_KEY = os.environ.get('SERPER_API_KEY')
 ROOT = os.path.dirname(os.path.dirname(__file__))
-SERPER_KEY = os.environ.get('SERPER_API_KEY')
-TEST_LIMIT = int(os.environ.get('TEST_LIMIT','0'))  # 0 means no limit
 TO_READ = os.path.join(ROOT, 'to_read.csv')
-TMP = os.path.join(ROOT, 'to_read_with_links.csv')
 
-with open(TO_READ, 'r') as f:
-    lines = [l.rstrip('\n') for l in f if l.strip()]
+papers = []
+with open(TO_READ) as f:
+    for line in f:
+        if not line.strip():
+            continue
+        parts = line.strip().split('\t')
+        papers.append({
+            'title': parts[0],
+            'link': parts[1] if len(parts) > 1 else ''
+        })
 
-out_lines = []
-count = 0
-
-for line in lines:
-    parts = line.split('\t')
-    title = parts[-1].strip()
-    existing = parts[1].strip() if len(parts) > 1 else ''
-    if existing.startswith('http'):
-        out_lines.append(f"{title}\t{existing}")
-        print(f"Already has link: {title}")
+missing_count = 0
+for i, paper in enumerate(papers):
+    if paper['link']:
         continue
 
-    
-    if TEST_LIMIT and count >= TEST_LIMIT:
-        out_lines.append(f"{title}\t")
-        count += 1
+    missing_count += 1
+    print(f"Searching for: {paper['title']}")
+
+    query = f"{paper['title']} site:arxiv.org"
+    resp = requests.post(
+        'https://google.serper.dev/search',
+        headers={'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json'},
+        json={'q': query, 'num': 3}
+    )
+
+    if resp.status_code != 200:
+        print(f"  Search failed: {resp.status_code}")
         continue
 
-    url = ''
-    # Try Serper first if available
-    if SERPER_KEY:
-        try:
-            headers = {'X-API-KEY': SERPER_KEY}
-            params = {'q': title, 'num': 5}
-            r = requests.get('https://google.serper.dev/search', headers=headers, params=params, timeout=10)
-            if r.status_code == 200:
-                j = r.json()
-                organic = j.get('organic', [])
-                for item in organic:
-                    link = item.get('link') or item.get('url')
-                    if link and 'arxiv.org' in link:
-                        url = link
-                        break
-                if not url:
-                    for k in ('top', 'knowledgeGraph'):
-                        sec = j.get(k, {})
-                        if isinstance(sec, dict):
-                            link = sec.get('url') or sec.get('link')
-                            if link and 'arxiv.org' in link:
-                                url = link
-                                break
-            else:
-                print(f"Serper returned {r.status_code} for '{title}'")
-        except Exception as e:
-            print(f"Serper error for '{title}': {e}")
+    results = resp.json().get('organic', [])
+    arxiv_link = None
 
-    # Fallback to arXiv API if no url found
-    if not url:
-        try:
-            query = f'all:"{title}"'
-            params = {'search_query': query, 'start': 0, 'max_results': 1}
-            r = requests.get('http://export.arxiv.org/api/query', params=params, timeout=10)
-            r.raise_for_status()
-            root = ET.fromstring(r.text)
-            ns = {'atom': 'http://www.w3.org/2005/Atom'}
-            entry = root.find('atom:entry', ns)
-            if entry is not None:
-                aid = entry.find('atom:id', ns)
-                if aid is not None and aid.text:
-                    url = aid.text.strip()
-        except Exception as e:
-            print(f"arXiv error for '{title}': {e}")
+    for result in results:
+        url = result.get('link', '')
+        if 'arxiv.org/abs/' in url:
+            arxiv_link = url
+            break
 
-    out_lines.append(f"{title}\t{url}")
-    if url:
-        print(f"Found: {title} -> {url}")
+    if arxiv_link:
+        papers[i]['link'] = arxiv_link
+        print(f"  Found: {arxiv_link}")
     else:
-        print(f"No link for: {title}")
+        print(f"  Not found")
 
-    count += 1
+    time.sleep(1)
 
+with open(TO_READ, 'w') as f:
+    for paper in papers:
+        f.write(f"{paper['title']}\t{paper['link']}\n")
 
-with open(TMP, 'w') as f:
-    f.write('\n'.join(out_lines) + '\n')
-
-# replace original file
-os.replace(TMP, TO_READ)
-print('Updated to_read.csv with arXiv links where found.')
+print(f"\nDone! Added {missing_count} arXiv links")
