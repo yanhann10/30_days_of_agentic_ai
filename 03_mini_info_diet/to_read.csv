@@ -1,77 +1,77 @@
-ToolRL: Reward is All Tool Learning Needs
-MAT-Agent: Adaptive Multi-Agent Training Optimization
-Zero-shot World Models via Search in Memory
-MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research
-CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D
-Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve
-Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents
-HyperMARL: Adaptive Hypernetworks for Multi-Agent RL
-MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning
-Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization
-Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations
-"Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration"
-RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning
-GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration
-Real-DRL: Teach and Learn in Reality
-HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving
-NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning
-DISCOVER: Automated Curricula for Sparse-Reward RL
-Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions
-Blindfolded Experts Generalize Better: Insights from Robotic Manipulation
-Info-Theoretic Reward Decomposition for Generalizable RLHF
-Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization
-Memory-Enhanced Neural Solvers for Routing Problems
-No-Regret Learning Under Adversarial Resource Constraints
-Neural Evolution Strategy for Black-box Pareto Set Learning
-Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training
-Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs
-AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys
-Simultaneous Preference and Metric Learning from Paired Comparisons
-DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys
-Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options
-Addressing Multi-stakeholder Fairness Concerns in Recommender Systems
-LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys
-A Dual-Key Attention Framework for Sequential Recommendation with Side Information
-Full-page layouts with multiple carousels in video streaming platforms
-Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns
-RESA Language Model-Based Playlist Generation Recommender System
-Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL
-Learning to Incentivize Other Learning Agents
-1000 Layer Networks for Self-Supervised RL
-Dynamic Risk Assessments for Offensive Cybersecurity Agents
-CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures
-MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents
-DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting
-Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction
-Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design
-Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge
-Evolutionary Graph Optimization for Prompting (EGO-Prompt)
-Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning
-Dynamic Feature Space Regularization for Generalization in RL
-Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples
-Open-Universe Assistance Games
-Discrete Codebook World Models for Continuous Control
-Beyond Next Token Prediction: Patch-Level Training for Large Language Models
-LLaDA: Large Language Diffusion Models
-Dyn-O: Building Structured World Models with Object-Centric Representations
-VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image
-"CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference"
-Generative Causal Explanations of Black-box Classifiers
-Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models
-Modeling and Analyzing Interventional Causal Effects under Network Interference
-Tight analyses of first-order methods with error feedback
-Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion
-Agnostic Active Learning Is Always Better Than Passive Learning
-From Euler to AI: Unifying Formulas for Mathematical Constants
-Instance-Optimality for Private KL Distribution Estimation
-PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors
-MoBA: Mixture of Block Attention for Long-Context LLMs
-PrefixKV: Optimizing KV Cache Allocation for Large Language Models
-"Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon"
-FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management
-RAG4GFM: Graph Retrieval Augmented Generation
-Bayesian Concept Bottleneck Models with LLM Priors
-Tiled Flash Linear Attention (TFLA)
-Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models
-DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory
-From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions
+ToolRL: Reward is All Tool Learning Needs	http://arxiv.org/abs/2504.13958v1
+MAT-Agent: Adaptive Multi-Agent Training Optimization	http://arxiv.org/abs/2510.17845v1
+Zero-shot World Models via Search in Memory	http://arxiv.org/abs/2510.16123v1
+MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research	http://arxiv.org/abs/2505.19955v3
+CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D	http://arxiv.org/abs/2511.09904v2
+Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve	http://arxiv.org/abs/2505.23946v2
+Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents	
+HyperMARL: Adaptive Hypernetworks for Multi-Agent RL	http://arxiv.org/abs/2412.04233v4
+MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning	http://arxiv.org/abs/2411.12977v5
+Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization	http://arxiv.org/abs/2508.20294v1
+Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations	
+"Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration"	http://arxiv.org/abs/2012.11449v1
+RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning	http://arxiv.org/abs/2505.15034v2
+GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration	http://arxiv.org/abs/2505.23399v1
+Real-DRL: Teach and Learn in Reality	http://arxiv.org/abs/2511.00112v1
+HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving	http://arxiv.org/abs/2505.15793v2
+NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning	http://arxiv.org/abs/2510.19429v1
+DISCOVER: Automated Curricula for Sparse-Reward RL	http://arxiv.org/abs/2505.19850v2
+Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions	http://arxiv.org/abs/2505.16311v1
+Blindfolded Experts Generalize Better: Insights from Robotic Manipulation	http://arxiv.org/abs/2510.24194v1
+Info-Theoretic Reward Decomposition for Generalizable RLHF	
+Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization	
+Memory-Enhanced Neural Solvers for Routing Problems	http://arxiv.org/abs/2406.16424v3
+No-Regret Learning Under Adversarial Resource Constraints	http://arxiv.org/abs/2506.13244v3
+Neural Evolution Strategy for Black-box Pareto Set Learning	
+Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training	http://arxiv.org/abs/2502.03604v2
+Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs	
+AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys	
+Simultaneous Preference and Metric Learning from Paired Comparisons	http://arxiv.org/abs/2009.02302v2
+DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys	
+Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options	http://arxiv.org/abs/2507.20035v1
+Addressing Multi-stakeholder Fairness Concerns in Recommender Systems	http://arxiv.org/abs/2309.02052v1
+LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys	
+A Dual-Key Attention Framework for Sequential Recommendation with Side Information	
+Full-page layouts with multiple carousels in video streaming platforms	
+Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns	http://arxiv.org/abs/2508.14786v1
+RESA Language Model-Based Playlist Generation Recommender System	
+Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL	http://arxiv.org/abs/2506.09033v3
+Learning to Incentivize Other Learning Agents	http://arxiv.org/abs/2006.06051v2
+1000 Layer Networks for Self-Supervised RL	http://arxiv.org/abs/2503.14858v3
+Dynamic Risk Assessments for Offensive Cybersecurity Agents	http://arxiv.org/abs/2505.18384v5
+CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures	http://arxiv.org/abs/2508.11915v1
+MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents	http://arxiv.org/abs/2506.15841v2
+DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting	
+Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction	http://arxiv.org/abs/2506.07976v2
+Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design	http://arxiv.org/abs/2505.11821v2
+Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge	http://arxiv.org/abs/2506.21506v2
+Evolutionary Graph Optimization for Prompting (EGO-Prompt)	http://arxiv.org/abs/2510.21148v1
+Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning	http://arxiv.org/abs/2506.15544v1
+Dynamic Feature Space Regularization for Generalization in RL	http://arxiv.org/abs/2510.09705v1
+Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples	http://arxiv.org/abs/2510.20800v1
+Open-Universe Assistance Games	http://arxiv.org/abs/2508.15119v1
+Discrete Codebook World Models for Continuous Control	http://arxiv.org/abs/2503.00653v1
+Beyond Next Token Prediction: Patch-Level Training for Large Language Models	http://arxiv.org/abs/2407.12665v3
+LLaDA: Large Language Diffusion Models	http://arxiv.org/abs/2505.16933v2
+Dyn-O: Building Structured World Models with Object-Centric Representations	http://arxiv.org/abs/2507.03298v1
+VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image	
+"CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference"	http://arxiv.org/abs/2012.11449v1
+Generative Causal Explanations of Black-box Classifiers	http://arxiv.org/abs/2006.13913v2
+Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models	http://arxiv.org/abs/2510.18526v1
+Modeling and Analyzing Interventional Causal Effects under Network Interference	http://arxiv.org/abs/2003.10525v3
+Tight analyses of first-order methods with error feedback	http://arxiv.org/abs/2506.05271v2
+Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion	
+Agnostic Active Learning Is Always Better Than Passive Learning	
+From Euler to AI: Unifying Formulas for Mathematical Constants	http://arxiv.org/abs/2502.17533v3
+Instance-Optimality for Private KL Distribution Estimation	http://arxiv.org/abs/2505.23620v1
+PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors	http://arxiv.org/abs/2503.11897v2
+MoBA: Mixture of Block Attention for Long-Context LLMs	http://arxiv.org/abs/2502.13189v1
+PrefixKV: Optimizing KV Cache Allocation for Large Language Models	
+"Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon"	http://arxiv.org/abs/2012.11449v1
+FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management	http://arxiv.org/abs/2505.15347v2
+RAG4GFM: Graph Retrieval Augmented Generation	
+Bayesian Concept Bottleneck Models with LLM Priors	http://arxiv.org/abs/2410.15555v2
+Tiled Flash Linear Attention (TFLA)	http://arxiv.org/abs/2503.14376v2
+Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models	
+DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory	http://arxiv.org/abs/2410.08143v2
+From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions	http://arxiv.org/abs/2412.12839v2
