@@ -163,3 +163,25 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns
+   - Status: not started
+   - Summary: 
+   - Digest: We consider the task of learning from both positive and negative feedback in a sequential recommendation scenario, as both types of feedback are often present in user interactions. Meanwhile, conventional sequential learning models usually focus on considering and predicting positive interactions, i
+   - ArXiv: http://arxiv.org/abs/2508.14786v1
+
+2. Memory-Enhanced Neural Solvers for Routing Problems
+   - Status: not started
+   - Summary: 
+   - Digest: Routing Problems are central to many real-world applications, yet remain challenging due to their (NP-)hard nature. Amongst existing approaches, heuristics often offer the best trade-off between quality and scalability, making them suitable for industrial use. While Reinforcement Learning (RL) offer
+   - ArXiv: http://arxiv.org/abs/2406.16424v3
+
+3. Instance-Optimality for Private KL Distribution Estimation
+   - Status: not started
+   - Summary: 
+   - Digest: We study the fundamental problem of estimating an unknown discrete distribution $p$ over $d$ symbols, given $n$ i.i.d. samples from the distribution. We are interested in minimizing the KL divergence between the true distribution and the algorithm's estimate. We first construct minimax optimal priva
+   - ArXiv: http://arxiv.org/abs/2505.23620v1
+
