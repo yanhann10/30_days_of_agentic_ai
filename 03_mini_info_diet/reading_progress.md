@@ -185,3 +185,21 @@ Today's top 3 picks:
    - Digest: We study the fundamental problem of estimating an unknown discrete distribution $p$ over $d$ symbols, given $n$ i.i.d. samples from the distribution. We are interested in minimizing the KL divergence between the true distribution and the algorithm's estimate. We first construct minimax optimal priva
    - ArXiv: http://arxiv.org/abs/2505.23620v1
 
+
+
+Today's top 3 picks:
+
+1. A Dual-Key Attention Framework for Sequential Recommendation with Side Information
+   - Status: not started
+   - Summary: 
+
+2. PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors
+   - Status: not started
+   - Summary: 
+   - Digest: We revisit the problem of secure aggregation of high-dimensional vectors in a two-server system such as Prio. These systems are typically used to aggregate vectors such as gradients in private federated learning, where the aggregate itself is protected via noise addition to ensure differential priva
+   - ArXiv: http://arxiv.org/abs/2503.11897v2
+
+3. Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs
+   - Status: not started
+   - Summary: 
+
