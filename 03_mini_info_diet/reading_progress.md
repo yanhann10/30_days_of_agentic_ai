@@ -203,3 +203,23 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Info-Theoretic Reward Decomposition for Generalizable RLHF
+   - Status: not started
+   - Summary: 
+
+2. Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning
+   - Status: not started
+   - Summary: 
+   - Digest: Scaling deep reinforcement learning networks is challenging and often results in degraded performance, yet the root causes of this failure mode remain poorly understood. Several recent works have proposed mechanisms to address this, but they are often complex and fail to highlight the causes underly
+   - ArXiv: http://arxiv.org/abs/2506.15544v1
+
+3. PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors
+   - Status: not started
+   - Summary: 
+   - Digest: We revisit the problem of secure aggregation of high-dimensional vectors in a two-server system such as Prio. These systems are typically used to aggregate vectors such as gradients in private federated learning, where the aggregate itself is protected via noise addition to ensure differential priva
+   - ArXiv: http://arxiv.org/abs/2503.11897v2
+
