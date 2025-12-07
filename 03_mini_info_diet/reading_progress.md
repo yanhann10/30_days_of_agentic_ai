@@ -223,3 +223,25 @@ Today's top 3 picks:
    - Digest: We revisit the problem of secure aggregation of high-dimensional vectors in a two-server system such as Prio. These systems are typically used to aggregate vectors such as gradients in private federated learning, where the aggregate itself is protected via noise addition to ensure differential priva
    - ArXiv: http://arxiv.org/abs/2503.11897v2
 
+
+
+Today's top 3 picks:
+
+1. Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training
+   - Status: not started
+   - Summary: 
+   - Digest: Fine-tuning pre-trained Large Language Models (LLMs) for downstream tasks using First-Order (FO) optimizers presents significant computational challenges. Parameter-Efficient Fine-Tuning (PEFT) methods address these by freezing most model parameters and training only a small subset. However, PEFT of
+   - ArXiv: http://arxiv.org/abs/2502.03604v2
+
+2. HyperMARL: Adaptive Hypernetworks for Multi-Agent RL
+   - Status: not started
+   - Summary: 
+   - Digest: Adaptive cooperation in multi-agent reinforcement learning (MARL) requires policies to express homogeneous, specialised, or mixed behaviours, yet achieving this adaptivity remains a critical challenge. While parameter sharing (PS) is standard for efficient learning, it notoriously suppresses the beh
+   - ArXiv: http://arxiv.org/abs/2412.04233v4
+
+3. Bayesian Concept Bottleneck Models with LLM Priors
+   - Status: not started
+   - Summary: 
+   - Digest: Concept Bottleneck Models (CBMs) have been proposed as a compromise between white-box and black-box models, aiming to achieve interpretability without sacrificing accuracy. The standard training procedure for CBMs is to predefine a candidate set of human-interpretable concepts, extract their values 
+   - ArXiv: http://arxiv.org/abs/2410.15555v2
+
