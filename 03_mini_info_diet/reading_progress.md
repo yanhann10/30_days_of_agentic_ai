@@ -245,3 +245,25 @@ Today's top 3 picks:
    - Digest: Concept Bottleneck Models (CBMs) have been proposed as a compromise between white-box and black-box models, aiming to achieve interpretability without sacrificing accuracy. The standard training procedure for CBMs is to predefine a candidate set of human-interpretable concepts, extract their values 
    - ArXiv: http://arxiv.org/abs/2410.15555v2
 
+
+
+Today's top 3 picks:
+
+1. GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration
+   - Status: not started
+   - Summary: 
+   - Digest: We propose GAM-Agent, a game-theoretic multi-agent framework for enhancing vision-language reasoning. Unlike prior single-agent or monolithic models, GAM-Agent formulates the reasoning process as a non-zero-sum game between base agents--each specializing in visual perception subtasks--and a critical
+   - ArXiv: http://arxiv.org/abs/2505.23399v1
+
+2. Simultaneous Preference and Metric Learning from Paired Comparisons
+   - Status: not started
+   - Summary: 
+   - Digest: A popular model of preference in the context of recommendation systems is the so-called \emph{ideal point} model. In this model, a user is represented as a vector $\mathbf{u}$ together with a collection of items $\mathbf{x_1}, \ldots, \mathbf{x_N}$ in a common low-dimensional space. The vector $\mat
+   - ArXiv: http://arxiv.org/abs/2009.02302v2
+
+3. Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design
+   - Status: not started
+   - Summary: 
+   - Digest: This paper investigates Reinforcement Learning (RL) approaches to enhance the reasoning capabilities of Large Language Model (LLM) agents in long-horizon, multi-turn scenarios. Although RL algorithms such as Group Relative Policy Optimization (GRPO) and Proximal Policy Optimization (PPO) have been w
+   - ArXiv: http://arxiv.org/abs/2505.11821v2
+
