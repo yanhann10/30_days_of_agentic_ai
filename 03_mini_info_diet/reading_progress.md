@@ -267,3 +267,23 @@ Today's top 3 picks:
    - Digest: This paper investigates Reinforcement Learning (RL) approaches to enhance the reasoning capabilities of Large Language Model (LLM) agents in long-horizon, multi-turn scenarios. Although RL algorithms such as Group Relative Policy Optimization (GRPO) and Proximal Policy Optimization (PPO) have been w
    - ArXiv: http://arxiv.org/abs/2505.11821v2
 
+
+
+Today's top 3 picks:
+
+1. "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon"
+   - Status: not started
+   - Summary: 
+   - Digest: The recently discovered $d^*(2380)$ hexaquark is expected to be the lightest member of an extended SU(3) antidecuplet of hexaquark states. The experimental search for the other heavier and strange partners of the $d^*(2380)$ in the antidecuplet is a challenging task. Evaluating the most appropriate 
+   - ArXiv: http://arxiv.org/abs/2012.11449v1
+
+2. RAG4GFM: Graph Retrieval Augmented Generation
+   - Status: not started
+   - Summary: 
+
+3. MoBA: Mixture of Block Attention for Long-Context LLMs
+   - Status: not started
+   - Summary: 
+   - Digest: Scaling the effective context length is essential for advancing large language models (LLMs) toward artificial general intelligence (AGI). However, the quadratic increase in computational complexity inherent in traditional attention mechanisms presents a prohibitive overhead. Existing approaches eit
+   - ArXiv: http://arxiv.org/abs/2502.13189v1
+
