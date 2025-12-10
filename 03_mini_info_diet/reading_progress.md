@@ -287,3 +287,21 @@ Today's top 3 picks:
    - Digest: Scaling the effective context length is essential for advancing large language models (LLMs) toward artificial general intelligence (AGI). However, the quadratic increase in computational complexity inherent in traditional attention mechanisms presents a prohibitive overhead. Existing approaches eit
    - ArXiv: http://arxiv.org/abs/2502.13189v1
 
+
+
+Today's top 3 picks:
+
+1. Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options
+   - Status: not started
+   - Summary: 
+   - Digest: Choice models predict which items users choose from presented options. In recommendation settings, they can infer user preferences while countering exposure bias. In contrast with traditional univariate recommendation models, choice models consider which competitors appeared with the chosen item. Th
+   - ArXiv: http://arxiv.org/abs/2507.20035v1
+
+2. DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting
+   - Status: not started
+   - Summary: 
+
+3. VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image
+   - Status: not started
+   - Summary: 
+
