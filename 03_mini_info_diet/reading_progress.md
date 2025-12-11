@@ -305,3 +305,23 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning
+   - Status: not started
+   - Summary: 
+   - Digest: Embodied agents powered by large language models (LLMs), such as Voyager, promise open-ended competence in worlds such as Minecraft. However, when powered by open-weight LLMs they still falter on elementary tasks after domain-specific fine-tuning. We propose MindForge, a generative-agent framework f
+   - ArXiv: http://arxiv.org/abs/2411.12977v5
+
+2. FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management
+   - Status: not started
+   - Summary: 
+   - Digest: Large Language Models (LLMs) are increasingly deployed in multi-turn conversational applications, where the management of the Key-Value (KV) Cache presents a significant bottleneck. The linear growth of the KV Cache with dialogue history imposes substantial computational costs, and existing eviction
+   - ArXiv: http://arxiv.org/abs/2505.15347v2
+
+3. LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys
+   - Status: not started
+   - Summary: 
+
