@@ -325,3 +325,21 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image
+   - Status: not started
+   - Summary: 
+
+2. PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors
+   - Status: not started
+   - Summary: 
+   - Digest: We revisit the problem of secure aggregation of high-dimensional vectors in a two-server system such as Prio. These systems are typically used to aggregate vectors such as gradients in private federated learning, where the aggregate itself is protected via noise addition to ensure differential priva
+   - ArXiv: http://arxiv.org/abs/2503.11897v2
+
+3. Full-page layouts with multiple carousels in video streaming platforms
+   - Status: not started
+   - Summary: 
+
