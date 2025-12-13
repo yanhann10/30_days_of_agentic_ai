@@ -1,24 +1,27 @@
 # Day 05 Reading Notes: Cognition for Agents
 
-Drawing on psychological frameworks such as Theory of Mind and metacognition, recent work explores how incorporating cognitive architectures into multi-agent systems can improve social reasoning, introspection, and goal-directed behavior. Below are my notes on papers applying these concepts to enhance agent capabilities.
+Drawing on psychological frameworks such as Theory of Mind and metacognition, recent agentic systems applies these framework to improve social reasoning and human interaction. Below are my notes.
 
 ## Theory of Mind
-Part of human social intelligence is to infer about others' beliefs, intents, desires, emotions, knowledge, etc. and some multi-agent systems are leveraging this Theory of Mind approach to enhance the social reasoning capability of LLM
 
 **Paper:** MetaMind: Modeling Human Social Thoughts with Metacognitive Multi-Agent Systems
 https://arxiv.org/abs/2505.18943
-the paper designed agentic systems to emulate human-like social reasoning through a Theory-of-mind agent that hypoethsis about other users' mental state, a moral agent that use social norm and ethics as constraint, and a response agent to generate contextually appropriate output while maintaining alignment with the other users' intent. they found significant gain compared to Chain-of-thought and other earlier theory-of-mind multi-agent methods, in Sandbox Simulation benchmark which test goal-oriented social interaction, as well as open-ended interaction/social reasoning. The limitation is that real-world social interaction hare multi-modal , group dynamics are more complex and it require long-term relationship building.
+
+Part of human social intelligence is to infer about others' beliefs, intents, desires, emotions, knowledge, etc. The paper designs a system to emulate human-like social reasoning through multiple components: a Theory-of-Mind agent that hypothesizes about other users’ mental states, a moral agent that uses social norms and ethics as constraints, and a response agent that generates contextually appropriate outputs while maintaining alignment with the other user’s intent. The authors report significant gains compared to Chain-of-Thought and earlier Theory-of-Mind multi-agent methods on the Sandbox Simulation benchmark, which tests goal-oriented social interaction as well as open-ended interaction and social reasoning. A limitation is that real-world social interactions are multimodal, group dynamics are more complex, and they require long-term relationship building.
 
 ## Metacognition
 
 **Paper:** Metacognition is all you need? Using Introspection in Generative Agents to Improve Goal-directed Behavior
 https://arxiv.org/abs/2401.10910
-This 2024 paper introduces metacognition module for agents. unlike reflection which is looking back at past experience and derive singiths, metacognition go down the path of introspection and strategizing by considering if they are making progress or if a new strategy is needed. This is akin to the system 2 thinking Dan Kahneman's thinking fast and slow. One of the tasks the authors asks the agents do is to surviving zombie apolycypse where goal-less agents through encountering zombies started to figure out they need to hide in zombie-free zone to survive. given a baseline of 27% survival rate , they found 33% improvement in general overall score. limitation includes agents starting from a blank state with relative simple memory, and using lm rather than vlm,treating metacognition as a separate module instead of directly using it directly in a llm.
+
+This 2024 paper introduces a metacognition module for agents. Unlike reflection, which looks back at past experiences to derive insights, metacognition focuses on introspection and strategizing by considering whether progress is being made or if a new strategy is needed. This is akin to System 2 thinking in Daniel Kahneman’s Thinking, Fast and Slow. One task studied in the paper is surviving a zombie apocalypse, where initially goal-less agents, through encounters with zombies, begin to infer that they need to hide in zombie-free zones to survive. Given a baseline survival rate of 27%, the authors find a 33% improvement in the overall score. Limitations include agents starting from a blank state with relatively simple memory, using LMs rather than VLMs, and treating metacognition as a separate module instead of integrating it directly into the LLM.
 
 **Paper:** Truly Self-Improving Agents Require Intrinsic Metacognitive Learning
 https://arxiv.org/abs/2506.05109
-This 2025 paper tackles how to generalize and scale self-improving agents. by definiing the learning process as leveraging goals, strategies and capabilities to plan and continuously evaluate progress, the authors considered 3 metacognitive components:
-knowledge: self-assessment and learning strategy developpment
-planning: decide what and how to learn
+
+This 2025 paper tackles how to generalize and scale self-improving agents. By defining the learning process as leveraging goals, strategies, and capabilities to plan and continuously evaluate progress, the authors identify three metacognitive components:
+knowledge: self-assessment and learning strategy development
+planning: deciding what and how to learn
 evaluation: reflecting on learning experiences to improve future learning
-Beside finding open-world deployment a challenge, they suggested shared metacognitive responsibility might be needed between human and agents.
+
+Beyond identifying open-world deployment as a challenge, the authors suggest that shared metacognitive responsibility between humans and agents may be necessary.
