@@ -343,3 +343,21 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents
+   - Status: not started
+   - Summary: 
+
+2. Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations
+   - Status: not started
+   - Summary: 
+
+3. Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options
+   - Status: not started
+   - Summary: 
+   - Digest: Choice models predict which items users choose from presented options. In recommendation settings, they can infer user preferences while countering exposure bias. In contrast with traditional univariate recommendation models, choice models consider which competitors appeared with the chosen item. Th
+   - ArXiv: http://arxiv.org/abs/2507.20035v1
+
