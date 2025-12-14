@@ -361,3 +361,25 @@ Today's top 3 picks:
    - Digest: Choice models predict which items users choose from presented options. In recommendation settings, they can infer user preferences while countering exposure bias. In contrast with traditional univariate recommendation models, choice models consider which competitors appeared with the chosen item. Th
    - ArXiv: http://arxiv.org/abs/2507.20035v1
 
+
+
+Today's top 3 picks:
+
+1. Addressing Multi-stakeholder Fairness Concerns in Recommender Systems
+   - Status: not started
+   - Summary: 
+   - Digest: This position paper summarizes our published review on individual and multistakeholder fairness in Tourism Recommender Systems (TRS). Recently, there has been growing attention to fairness considerations in recommender systems (RS). It has been acknowledged in research that fairness in RS is often c
+   - ArXiv: http://arxiv.org/abs/2309.02052v1
+
+2. Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning
+   - Status: not started
+   - Summary: 
+   - Digest: Scaling deep reinforcement learning networks is challenging and often results in degraded performance, yet the root causes of this failure mode remain poorly understood. Several recent works have proposed mechanisms to address this, but they are often complex and fail to highlight the causes underly
+   - ArXiv: http://arxiv.org/abs/2506.15544v1
+
+3. MAT-Agent: Adaptive Multi-Agent Training Optimization
+   - Status: not started
+   - Summary: 
+   - Digest: Multi-label image classification demands adaptive training strategies to navigate complex, evolving visual-semantic landscapes, yet conventional methods rely on static configurations that falter in dynamic settings. We propose MAT-Agent, a novel multi-agent framework that reimagines training as a co
+   - ArXiv: http://arxiv.org/abs/2510.17845v1
+
