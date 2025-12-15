@@ -383,3 +383,23 @@ Today's top 3 picks:
    - Digest: Multi-label image classification demands adaptive training strategies to navigate complex, evolving visual-semantic landscapes, yet conventional methods rely on static configurations that falter in dynamic settings. We propose MAT-Agent, a novel multi-agent framework that reimagines training as a co
    - ArXiv: http://arxiv.org/abs/2510.17845v1
 
+
+
+Today's top 3 picks:
+
+1. GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration
+   - Status: not started
+   - Summary: 
+   - Digest: We propose GAM-Agent, a game-theoretic multi-agent framework for enhancing vision-language reasoning. Unlike prior single-agent or monolithic models, GAM-Agent formulates the reasoning process as a non-zero-sum game between base agents--each specializing in visual perception subtasks--and a critical
+   - ArXiv: http://arxiv.org/abs/2505.23399v1
+
+2. AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys
+   - Status: not started
+   - Summary: 
+
+3. Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns
+   - Status: not started
+   - Summary: 
+   - Digest: We consider the task of learning from both positive and negative feedback in a sequential recommendation scenario, as both types of feedback are often present in user interactions. Meanwhile, conventional sequential learning models usually focus on considering and predicting positive interactions, i
+   - ArXiv: http://arxiv.org/abs/2508.14786v1
+
