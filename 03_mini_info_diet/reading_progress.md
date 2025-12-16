@@ -403,3 +403,21 @@ Today's top 3 picks:
    - Digest: We consider the task of learning from both positive and negative feedback in a sequential recommendation scenario, as both types of feedback are often present in user interactions. Meanwhile, conventional sequential learning models usually focus on considering and predicting positive interactions, i
    - ArXiv: http://arxiv.org/abs/2508.14786v1
 
+
+
+Today's top 3 picks:
+
+1. Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents
+   - Status: not started
+   - Summary: 
+
+2. Info-Theoretic Reward Decomposition for Generalizable RLHF
+   - Status: not started
+   - Summary: 
+
+3. NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning
+   - Status: not started
+   - Summary: 
+   - Digest: We address the challenge of adopting language models (LMs) for embodied tasks in dynamic environments, where online access to large-scale inference engines or symbolic planners is constrained due to latency, connectivity, and resource limitations. To this end, we present NeSyPr, a novel embodied rea
+   - ArXiv: http://arxiv.org/abs/2510.19429v1
+
