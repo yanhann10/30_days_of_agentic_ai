@@ -421,3 +421,23 @@ Today's top 3 picks:
    - Digest: We address the challenge of adopting language models (LMs) for embodied tasks in dynamic environments, where online access to large-scale inference engines or symbolic planners is constrained due to latency, connectivity, and resource limitations. To this end, we present NeSyPr, a novel embodied rea
    - ArXiv: http://arxiv.org/abs/2510.19429v1
 
+
+
+Today's top 3 picks:
+
+1. FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management
+   - Status: not started
+   - Summary: 
+   - Digest: Large Language Models (LLMs) are increasingly deployed in multi-turn conversational applications, where the management of the Key-Value (KV) Cache presents a significant bottleneck. The linear growth of the KV Cache with dialogue history imposes substantial computational costs, and existing eviction
+   - ArXiv: http://arxiv.org/abs/2505.15347v2
+
+2. MoBA: Mixture of Block Attention for Long-Context LLMs
+   - Status: not started
+   - Summary: 
+   - Digest: Scaling the effective context length is essential for advancing large language models (LLMs) toward artificial general intelligence (AGI). However, the quadratic increase in computational complexity inherent in traditional attention mechanisms presents a prohibitive overhead. Existing approaches eit
+   - ArXiv: http://arxiv.org/abs/2502.13189v1
+
+3. RAG4GFM: Graph Retrieval Augmented Generation
+   - Status: not started
+   - Summary: 
+
