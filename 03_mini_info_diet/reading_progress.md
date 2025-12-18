@@ -441,3 +441,25 @@ Today's top 3 picks:
    - Status: not started
    - Summary: 
 
+
+
+Today's top 3 picks:
+
+1. Bayesian Concept Bottleneck Models with LLM Priors
+   - Status: not started
+   - Summary: 
+   - Digest: Concept Bottleneck Models (CBMs) have been proposed as a compromise between white-box and black-box models, aiming to achieve interpretability without sacrificing accuracy. The standard training procedure for CBMs is to predefine a candidate set of human-interpretable concepts, extract their values 
+   - ArXiv: http://arxiv.org/abs/2410.15555v2
+
+2. NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning
+   - Status: not started
+   - Summary: 
+   - Digest: We address the challenge of adopting language models (LMs) for embodied tasks in dynamic environments, where online access to large-scale inference engines or symbolic planners is constrained due to latency, connectivity, and resource limitations. To this end, we present NeSyPr, a novel embodied rea
+   - ArXiv: http://arxiv.org/abs/2510.19429v1
+
+3. LLaDA: Large Language Diffusion Models
+   - Status: not started
+   - Summary: 
+   - Digest: In this work, we introduce LLaDA-V, a purely diffusion-based Multimodal Large Language Model (MLLM) that integrates visual instruction tuning with masked diffusion models, representing a departure from the autoregressive paradigms dominant in current multimodal approaches. Built upon LLaDA, a repres
+   - ArXiv: http://arxiv.org/abs/2505.16933v2
+
