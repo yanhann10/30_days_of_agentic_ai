@@ -463,3 +463,23 @@ Today's top 3 picks:
    - Digest: In this work, we introduce LLaDA-V, a purely diffusion-based Multimodal Large Language Model (MLLM) that integrates visual instruction tuning with masked diffusion models, representing a departure from the autoregressive paradigms dominant in current multimodal approaches. Built upon LLaDA, a repres
    - ArXiv: http://arxiv.org/abs/2505.16933v2
 
+
+
+Today's top 3 picks:
+
+1. Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization
+   - Status: not started
+   - Summary: 
+
+2. Dynamic Feature Space Regularization for Generalization in RL
+   - Status: not started
+   - Summary: 
+   - Digest: Static feature exclusion strategies often fail to prevent bias when hidden dependencies influence the model predictions. To address this issue, we explore a reinforcement learning (RL) framework that integrates bias mitigation and automated feature selection within a single learning process. Unlike 
+   - ArXiv: http://arxiv.org/abs/2510.09705v1
+
+3. From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions
+   - Status: not started
+   - Summary: 
+   - Digest: In response to the call for agent-based solutions that leverage the ever-increasing capabilities of the deep models' ecosystem, we introduce Hive -- a comprehensive solution for knowledge-aware planning of a set of atomic actions to address input queries and subsequently selecting appropriate models
+   - ArXiv: http://arxiv.org/abs/2412.12839v2
+
