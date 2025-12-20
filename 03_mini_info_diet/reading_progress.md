@@ -483,3 +483,23 @@ Today's top 3 picks:
    - Digest: In response to the call for agent-based solutions that leverage the ever-increasing capabilities of the deep models' ecosystem, we introduce Hive -- a comprehensive solution for knowledge-aware planning of a set of atomic actions to address input queries and subsequently selecting appropriate models
    - ArXiv: http://arxiv.org/abs/2412.12839v2
 
+
+
+Today's top 3 picks:
+
+1. RESA Language Model-Based Playlist Generation Recommender System
+   - Status: not started
+   - Summary: 
+
+2. MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning
+   - Status: not started
+   - Summary: 
+   - Digest: Embodied agents powered by large language models (LLMs), such as Voyager, promise open-ended competence in worlds such as Minecraft. However, when powered by open-weight LLMs they still falter on elementary tasks after domain-specific fine-tuning. We propose MindForge, a generative-agent framework f
+   - ArXiv: http://arxiv.org/abs/2411.12977v5
+
+3. Discrete Codebook World Models for Continuous Control
+   - Status: not started
+   - Summary: 
+   - Digest: In reinforcement learning (RL), world models serve as internal simulators, enabling agents to predict environment dynamics and future outcomes in order to make informed decisions. While previous approaches leveraging discrete latent spaces, such as DreamerV3, have demonstrated strong performance in 
+   - ArXiv: http://arxiv.org/abs/2503.00653v1
+
