@@ -503,3 +503,25 @@ Today's top 3 picks:
    - Digest: In reinforcement learning (RL), world models serve as internal simulators, enabling agents to predict environment dynamics and future outcomes in order to make informed decisions. While previous approaches leveraging discrete latent spaces, such as DreamerV3, have demonstrated strong performance in 
    - ArXiv: http://arxiv.org/abs/2503.00653v1
 
+
+
+Today's top 3 picks:
+
+1. MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents
+   - Status: not started
+   - Summary: 
+   - Digest: Modern language agents must operate over long-horizon, multi-turn interactions, where they retrieve external information, adapt to observations, and answer interdependent queries. Yet, most LLM systems rely on full-context prompting, appending all past turns regardless of their relevance. This leads
+   - ArXiv: http://arxiv.org/abs/2506.15841v2
+
+2. 1000 Layer Networks for Self-Supervised RL
+   - Status: not started
+   - Summary: 
+   - Digest: Scaling up self-supervised learning has driven breakthroughs in language and vision, yet comparable progress has remained elusive in reinforcement learning (RL). In this paper, we study building blocks for self-supervised RL that unlock substantial improvements in scalability, with network depth ser
+   - ArXiv: http://arxiv.org/abs/2503.14858v3
+
+3. CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures
+   - Status: not started
+   - Summary: 
+   - Digest: Game-theoretic interactions between agents with Large Language Models (LLMs) have revealed many emergent capabilities, yet the linguistic diversity of these interactions has not been sufficiently quantified. In this paper, we present the Conversational Robustness Evaluation Score: CORE, a metric to 
+   - ArXiv: http://arxiv.org/abs/2508.11915v1
+
