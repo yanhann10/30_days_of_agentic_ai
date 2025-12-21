@@ -49,6 +49,7 @@ TO_READ = os.path.join(ROOT, 'to_read.csv')
 READING = os.path.join(ROOT, 'reading_progress.md')
 HISTORY = os.path.join(ROOT, 'picks_history.json')
 FEEDBACK = os.path.join(ROOT, 'feedback.json')
+PREFS_JSONL = os.path.join(ROOT, 'prefs.jsonl')
 
 papers = []
 with open(TO_READ) as f:
@@ -76,11 +77,47 @@ candidates=[p for p in papers if p['title'] not in picked]
 if not candidates:
     candidates=papers
 
-# If many candidates, sample 12 and ask the model to pick top 3
 sample = random.sample(candidates, min(len(candidates), 12))
 sample_titles = [p['title'] for p in sample]
 
 feedback_context = ""
+try:
+    prefs_avoid = []
+    prefs_more = []
+    if os.path.exists(PREFS_JSONL) and os.path.getsize(PREFS_JSONL) > 0:
+        with open(PREFS_JSONL, "r", encoding="utf-8") as f:
+            lines = [ln.strip() for ln in f if ln.strip()]
+        for ln in lines[-50:]:
+            try:
+                ev = json.loads(ln)
+            except Exception:
+                continue
+            prefs_avoid.extend(ev.get("topics_to_avoid") or [])
+            prefs_more.extend(ev.get("topics_to_increase") or [])
+    def _uniq(xs):
+        out, seen = [], set()
+        for x in xs:
+            x = str(x).strip()
+            if not x:
+                continue
+            k = x.lower()
+            if k in seen:
+                continue
+            seen.add(k)
+            out.append(x)
+        return out
+    prefs_avoid = _uniq(prefs_avoid)[:12]
+    prefs_more = _uniq(prefs_more)[:12]
+    if prefs_more or prefs_avoid:
+        chunks = []
+        if prefs_more:
+            chunks.append("Read more of: " + "; ".join(prefs_more))
+        if prefs_avoid:
+            chunks.append("Read less of: " + "; ".join(prefs_avoid))
+        feedback_context = "\n\nUser preferences from email feedback:\n" + "\n".join(chunks) + "\nConsider these preferences when ranking papers."
+except Exception:
+    feedback_context = ""
+
 try:
     if os.path.exists(FEEDBACK):
         with open(FEEDBACK) as f:
@@ -94,7 +131,7 @@ try:
                     if 'comment' in fb:
                         prefs.append(fb['comment'])
                 if prefs:
-                    feedback_context = f"\n\nUser preferences from past feedback: {'; '.join(prefs)}\nConsider these preferences when ranking papers."
+                    feedback_context = feedback_context + f"\n\nUser preferences from past feedback: {'; '.join(prefs)}\nConsider these preferences when ranking papers."
 except Exception:
     pass
 
@@ -110,10 +147,23 @@ resp = requests.post(
 try:
     obj = resp.json()
     content = obj['choices'][0]['message']['content']
+    if "```" in content:
+        content = content.split("```", 2)[1].strip()
+        if content.startswith("json"):
+            content = content[4:].strip()
     data = json.loads(content)
     top3 = data['top3']
 except Exception:
     top3 = [{'title':sample[i]['title'],'summary':''} for i in range(min(3,len(sample)))]
+
+if len(top3) < 3:
+    fallback = [p for p in sample if p['title'] not in {t.get('title') for t in top3}]
+    while len(top3) < 3 and fallback:
+        p = fallback.pop(0)
+        top3.append({'title': p['title'], 'summary': ''})
+    if len(top3) < 3:
+        while len(top3) < 3 and len(papers) > len(top3):
+            top3.append({'title': papers[len(top3)]['title'], 'summary': ''})
 
 papers_dict = {p['title']: p for p in papers}
 for item in top3:
@@ -124,7 +174,6 @@ for item in top3:
         item['digest'] = ''
         item['arxiv_link'] = ''
 
-# update reading_progress.md
 with open(READING) as f:
     readme=f.read()
 
@@ -141,7 +190,6 @@ readme += new_section
 with open(READING,'w') as f:
     f.write(readme)
 
-# append history
 entry={'date':__import__('datetime').datetime.utcnow().isoformat(),'titles':[t['title'] for t in top3]}
 if os.path.exists(HISTORY):
     with open(HISTORY) as f:
