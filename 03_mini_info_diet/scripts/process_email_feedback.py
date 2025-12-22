@@ -4,6 +4,8 @@ import re
 import json
 import base64
 import pickle
+import tempfile
+import stat
 from datetime import datetime, timezone, timedelta
 
 import requests
@@ -16,7 +18,13 @@ load_dotenv()
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
 TOKEN_FILE = os.path.join(ROOT, "gmail_token.pickle")
+# CREDENTIALS_FILE only used for local dev; GitHub Actions uses GCP_OAUTH_CREDENTIALS_JSON env var
 CREDENTIALS_FILE = os.path.join(ROOT, "gcp_cred.json")
+READING = os.path.join(ROOT, "reading_progress.md")
+
+# Get credentials from env var (required for GitHub Actions, optional for local dev)
+gcp_cred_json = os.environ.get("GCP_OAUTH_CREDENTIALS_JSON")
+
 
 PREFS_FILE = os.path.join(ROOT, "prefs.jsonl")
 PENDING_REPLIES_FILE = os.path.join(ROOT, "pending_replies.jsonl")
@@ -34,16 +42,73 @@ SCOPES = [
 
 def gmail_service():
     creds = None
+    
+    # Support GitHub Actions: restore token from env var if provided and file doesn't exist
+    if not os.path.exists(TOKEN_FILE):
+        gmail_token_b64 = os.environ.get("GMAIL_TOKEN_PICKLE_B64")
+        if gmail_token_b64:
+            with open(TOKEN_FILE, "wb") as f:
+                f.write(base64.b64decode(gmail_token_b64))
+        else:
+            gmail_token_json = os.environ.get("GMAIL_TOKEN_JSON")
+            if gmail_token_json:
+                # Convert JSON token to pickle format for compatibility
+                from google.oauth2.credentials import Credentials
+                creds_from_json = Credentials.from_authorized_user_info(json.loads(gmail_token_json), SCOPES)
+                with open(TOKEN_FILE, "wb") as f:
+                    pickle.dump(creds_from_json, f)
+    
     if os.path.exists(TOKEN_FILE):
         with open(TOKEN_FILE, "rb") as f:
             creds = pickle.load(f)
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
+            # Token exists but expired - refresh it (works in both local and CI)
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
-            creds = flow.run_local_server(port=0)
+            # No valid token - need to do OAuth flow (only works locally, not in CI)
+            is_ci = os.environ.get("CI") or os.environ.get("GITHUB_ACTIONS")
+            if is_ci:
+                # In CI/GitHub Actions: run_local_server() cannot work (no browser)
+                # Token must be provided via GMAIL_TOKEN_PICKLE_B64 or GMAIL_TOKEN_JSON secret
+                raise SystemExit(
+                    "No valid Gmail token found in CI. "
+                    "Please run locally first to generate gmail_token.pickle, "
+                    "then store it as GMAIL_TOKEN_PICKLE_B64 secret for CI use."
+                )
+            
+            # Local development only: interactive OAuth flow with browser
+            # This code path is NEVER executed in CI/GitHub Actions
+            temp_cred_file = None
+            try:
+                if gcp_cred_json:
+                    # Create secure temporary file for credentials
+                    temp_fd, temp_cred_file = tempfile.mkstemp(suffix='.json', dir=os.path.dirname(CREDENTIALS_FILE) or None)
+                    # Write credentials with restricted permissions (owner read/write only)
+                    with os.fdopen(temp_fd, 'w') as f:
+                        f.write(gcp_cred_json)
+                    os.chmod(temp_cred_file, stat.S_IRUSR | stat.S_IWUSR)  # 0600 - owner read/write only
+                    flow = InstalledAppFlow.from_client_secrets_file(temp_cred_file, SCOPES)
+                elif os.path.exists(CREDENTIALS_FILE):
+                    flow = InstalledAppFlow.from_client_secrets_file(CREDENTIALS_FILE, SCOPES)
+                else:
+                    raise SystemExit(
+                        "Credentials not found. Set GCP_OAUTH_CREDENTIALS_JSON environment variable "
+                        f"or create {CREDENTIALS_FILE} for local development."
+                    )
+                
+                # run_local_server() opens a browser - only works locally, never in CI
+                creds = flow.run_local_server(port=0)
+            finally:
+                # Securely delete temp file after OAuth flow completes (or fails)
+                # This ensures credentials are never left on disk
+                if temp_cred_file and os.path.exists(temp_cred_file):
+                    try:
+                        os.chmod(temp_cred_file, stat.S_IWUSR)  # Make writable for deletion
+                        os.remove(temp_cred_file)
+                    except Exception:
+                        pass  # Best effort cleanup
 
         with open(TOKEN_FILE, "wb") as f:
             pickle.dump(creds, f)
@@ -222,6 +287,165 @@ def _union_extend(dst: dict, src: dict):
             dst[k].extend(src[k])
 
 
+def extract_paper_analysis_from_feedback(feedback: str, titles: list) -> dict | None:
+    """Extract paper-specific analysis from user feedback using LLM"""
+    if not titles or not feedback:
+        return None
+    
+    prompt = f"""
+You analyze user feedback about specific research papers and extract structured analysis.
+
+The user provided feedback about these papers:
+{chr(10).join(f"{i+1}. {title}" for i, title in enumerate(titles))}
+
+User feedback:
+{feedback}
+
+Extract paper-specific insights and return ONLY valid JSON matching this schema:
+{{
+  "papers": [
+    {{
+      "title": "exact paper title from list above",
+      "key_challenge": "main problem addressed (if mentioned)",
+      "methods": "key techniques/approaches (if mentioned)",
+      "evaluation": "evaluation approach/results (if mentioned)",
+      "contribution": "main contribution (if mentioned)",
+      "innovation": "novel aspects (if mentioned)",
+      "limitation": "limitations or concerns (if mentioned)"
+    }}
+  ]
+}}
+
+Rules:
+- Only include papers that have specific feedback
+- Leave fields empty string if not mentioned
+- Use exact paper titles from the list above
+- Be concise (1-2 sentences per field)
+
+Return ONLY the JSON, no other text.
+""".strip()
+
+    try:
+        r = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                "Content-Type": "application/json",
+                "HTTP-Referer": "https://example.com",
+                "X-Title": "paper-analysis-extractor",
+            },
+            json={
+                "model": "meta-llama/llama-3.1-8b-instruct",
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0,
+            },
+            timeout=30,
+        )
+
+        if r.status_code != 200:
+            print("LLM error extracting paper analysis:", r.status_code, r.text[:200])
+            return None
+
+        content = r.json()["choices"][0]["message"]["content"].strip()
+        if content.startswith("```"):
+            content = content.split("```", 2)[1].strip()
+            if content.startswith("json"):
+                content = content[4:].strip()
+
+        parsed = json.loads(content)
+        return parsed
+    except Exception as e:
+        print(f"Error extracting paper analysis: {e}")
+        return None
+
+
+def update_reading_progress_with_analysis(reading_file: str, analysis_data: dict):
+    """Update reading_progress.md with paper analysis from feedback"""
+    if not analysis_data or "papers" not in analysis_data:
+        return False
+    
+    try:
+        with open(reading_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Find the latest "Today's top 3 picks:" section
+        sections = content.rsplit("Today's top 3 picks:", 1)
+        if len(sections) < 2:
+            print("Could not find 'Today's top 3 picks' section")
+            return False
+        
+        latest_section = sections[1]
+        updated_section = latest_section
+        
+        for paper_analysis in analysis_data["papers"]:
+            title = paper_analysis.get("title", "").strip()
+            if not title:
+                continue
+            
+            # Build analysis text
+            analysis_lines = []
+            if paper_analysis.get("key_challenge"):
+                analysis_lines.append(f"• Key Challenge: {paper_analysis['key_challenge']}")
+            if paper_analysis.get("methods"):
+                analysis_lines.append(f"• Methods: {paper_analysis['methods']}")
+            if paper_analysis.get("evaluation"):
+                analysis_lines.append(f"• Evaluation: {paper_analysis['evaluation']}")
+            if paper_analysis.get("contribution"):
+                analysis_lines.append(f"• Contribution: {paper_analysis['contribution']}")
+            if paper_analysis.get("innovation"):
+                analysis_lines.append(f"• Innovation: {paper_analysis['innovation']}")
+            if paper_analysis.get("limitation"):
+                analysis_lines.append(f"• Limitation: {paper_analysis['limitation']}")
+            
+            if not analysis_lines:
+                continue
+            
+            # Find the paper by title (fuzzy match)
+            title_escaped = re.escape(title)
+            # Match from paper number to end of paper section (before next paper or end)
+            # Try exact match first
+            pattern = rf'(\d+\.\s+{title_escaped}.*?)(\n\n|\n\d+\.\s+|$)'
+            match = re.search(pattern, updated_section, re.DOTALL | re.IGNORECASE)
+            
+            if not match:
+                # Try partial match (title might be slightly different)
+                title_words = title.split()
+                if len(title_words) > 3:
+                    partial_title = ' '.join(title_words[:3])
+                    partial_escaped = re.escape(partial_title)
+                    pattern = rf'(\d+\.\s+.*?{partial_escaped}.*?)(\n\n|\n\d+\.\s+|$)'
+                    match = re.search(pattern, updated_section, re.DOTALL | re.IGNORECASE)
+            
+            if match:
+                paper_section = match.group(1)
+                # Check if Paper Analysis already exists
+                if 'Paper Analysis:' in paper_section or '• Key Challenge:' in paper_section:
+                    print(f"Paper Analysis already exists for {title}, skipping")
+                    continue
+                
+                # Add Paper Analysis section
+                analysis_text = '\n   - Paper Analysis:\n'
+                for line in analysis_lines:
+                    analysis_text += f'     {line}\n'
+                
+                # Insert before the closing newlines
+                replacement = paper_section.rstrip() + analysis_text + '\n'
+                updated_section = updated_section.replace(match.group(0), replacement + match.group(2))
+            else:
+                print(f"Could not find paper '{title}' in reading_progress.md")
+        
+        # Reconstruct content
+        updated_content = sections[0] + "Today's top 3 picks:" + updated_section
+        
+        with open(reading_file, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
+        
+        return True
+    except Exception as e:
+        print(f"Error updating reading_progress.md: {e}")
+        return False
+
+
 def main():
     if not OPENROUTER_API_KEY:
         raise SystemExit("Missing OPENROUTER_API_KEY")
@@ -262,6 +486,12 @@ def main():
         if not body:
             continue
 
+        try:
+            from update_read_status import update_read_status
+            update_read_status(body)
+        except Exception as e:
+            print(f"Error updating read status: {e}")
+
         feedback, original = split_feedback_and_original(body)
         if not feedback:
             continue
@@ -281,6 +511,14 @@ def main():
 
         append_event(event)
         _union_extend(run_update, parsed)
+        
+        # Extract and add paper-specific analysis if titles are found
+        if titles:
+            paper_analysis = extract_paper_analysis_from_feedback(feedback, titles)
+            if paper_analysis:
+                update_reading_progress_with_analysis(READING, paper_analysis)
+                print(f"Added paper analysis for {len(paper_analysis.get('papers', []))} paper(s)")
+        
         mark_read(service, msg_id)
 
         processed += 1

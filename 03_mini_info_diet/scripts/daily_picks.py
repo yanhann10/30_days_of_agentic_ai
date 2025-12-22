@@ -1,48 +1,52 @@
-import os, json, requests, random, xml.etree.ElementTree as ET
+import os, json, requests, random, re, datetime
 from dotenv import load_dotenv
+
 load_dotenv()
 
-def fetch_arxiv_abstract(arxiv_url):
-    if not arxiv_url:
-        return ''
-    try:
-        arxiv_id = arxiv_url.split('/abs/')[-1]
-        api_url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
-        r = requests.get(api_url, timeout=10)
-        if r.status_code != 200:
-            return ''
-        root = ET.fromstring(r.text)
-        ns = {"atom": "http://www.w3.org/2005/Atom"}
-        entry = root.find("atom:entry", ns)
-        if entry is None:
-            return ''
-        abstract_elem = entry.find("atom:summary", ns)
-        if abstract_elem is None:
-            return ''
-        abstract = abstract_elem.text.strip()
-        digest_resp = requests.post(
-            'https://openrouter.ai/api/v1/chat/completions',
-            headers={'Authorization': f'Bearer {os.environ.get("OLMO_API_KEY")}', 'Content-Type': 'application/json'},
-            json={'model':'allenai/olmo-3-7b-instruct','messages':[{'role':'user','content':f'Summarize this abstract in 1-2 sentences focusing on problem, method, and key result:\n\n{abstract}'}]},
-            timeout=15
-        )
-        if digest_resp.status_code == 200:
-            digest_obj = digest_resp.json()
-            return digest_obj['choices'][0]['message']['content'].strip()
-        return abstract[:300]
-    except Exception:
-        return ''
+from search_paper_info import enrich_paper_info
+from process_paper_digest import download_arxiv_pdf, extract_pdf_text, extract_paper_insights
+from llm_utils import call_llm_json
+from send_email import send_email, build_paper_email
 
-OLMO_API_KEY = os.environ.get('OLMO_API_KEY')
-EMAIL_TO = os.environ.get('EMAIL_TO')
-EMAIL_FROM = os.environ.get('EMAIL_FROM')
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-EMAILJS_SERVICE_ID = os.environ.get('EMAILJS_SERVICE_ID')
-EMAILJS_TEMPLATE_ID = os.environ.get('EMAILJS_TEMPLATE_ID')
-EMAILJS_USER_ID = os.environ.get('EMAILJS_USER_ID')
-EMAILJS_PRIVATE_KEY = os.environ.get('EMAILJS_PRIVATE_KEY')
-EMAIL_FROM = os.environ.get('EMAIL_FROM')
-EMAIL_TO = os.environ.get('EMAIL_TO')
+def extract_paper_analysis(reading_file, title):
+    try:
+        with open(reading_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        sections = content.rsplit("Today's top 3 picks:", 1)
+        if len(sections) < 2:
+            return None
+
+        latest_section = sections[1]
+
+        title_escaped = re.escape(title)
+        pattern = rf'\d+\.\s+{title_escaped}.*?(\n\s+- Paper Analysis:\n(?:\s+[^\n]+\n)+)'
+        match = re.search(pattern, latest_section, re.DOTALL | re.IGNORECASE)
+
+        if not match:
+            title_words = title.split()
+            if len(title_words) > 3:
+                partial_title = ' '.join(title_words[:3])
+                partial_escaped = re.escape(partial_title)
+                pattern = rf'\d+\.\s+.*?{partial_escaped}.*?(\n\s+- Paper Analysis:\n(?:\s+[^\n]+\n)+)'
+                match = re.search(pattern, latest_section, re.DOTALL | re.IGNORECASE)
+
+        if match:
+            analysis_text = match.group(1).strip()
+            lines = analysis_text.split('\n')
+            cleaned_lines = []
+            for line in lines:
+                line = line.strip()
+                if line and not line.startswith('- Paper Analysis:'):
+                    line = re.sub(r'^\s*[-•]\s*', '', line)
+                    if line:
+                        cleaned_lines.append(line)
+            return '\n'.join(cleaned_lines) if cleaned_lines else None
+
+        return None
+    except Exception as e:
+        print(f"Error extracting paper analysis: {e}")
+        return None
 
 ROOT = os.path.dirname(os.path.dirname(__file__))
 TO_READ = os.path.join(ROOT, 'to_read.csv')
@@ -138,22 +142,13 @@ except Exception:
 titles_list = '\n'.join(sample_titles)
 prompt = f"You are an expert research assistant. From the following list of paper titles (about agentic and multi-agent AI), pick the top 3 most applicable/impactful/innovative/inspiring. Return a JSON object with key 'top3' containing an array of 3 objects with fields: title (string), summary (short 1-sentence summary). Titles:\n{titles_list}{feedback_context}"
 
-resp = requests.post(
-    'https://openrouter.ai/api/v1/chat/completions',
-    headers={'Authorization': f'Bearer {OLMO_API_KEY}', 'Content-Type': 'application/json'},
-    json={'model':'allenai/olmo-3-7b-instruct','messages':[{'role':'user','content':prompt}]}
-)
+print("Selecting top 3 papers using LLM...")
+data = call_llm_json(prompt)
 
-try:
-    obj = resp.json()
-    content = obj['choices'][0]['message']['content']
-    if "```" in content:
-        content = content.split("```", 2)[1].strip()
-        if content.startswith("json"):
-            content = content[4:].strip()
-    data = json.loads(content)
+if data and 'top3' in data:
     top3 = data['top3']
-except Exception:
+else:
+    print("LLM failed to pick papers, using random selection")
     top3 = [{'title':sample[i]['title'],'summary':''} for i in range(min(3,len(sample)))]
 
 if len(top3) < 3:
@@ -166,25 +161,71 @@ if len(top3) < 3:
             top3.append({'title': papers[len(top3)]['title'], 'summary': ''})
 
 papers_dict = {p['title']: p for p in papers}
+papers_dict_normalized = {p['title'].lower().strip(): p for p in papers}
+
 for item in top3:
-    if item['title'] in papers_dict:
-        item['arxiv_link'] = papers_dict[item['title']]['arxiv_link']
-        item['digest'] = fetch_arxiv_abstract(item['arxiv_link'])
+    title = item['title']
+    item['paper_insights'] = None
+
+    arxiv_link_from_csv = ''
+    if title in papers_dict:
+        arxiv_link_from_csv = papers_dict[title]['arxiv_link']
     else:
-        item['digest'] = ''
-        item['arxiv_link'] = ''
+        title_normalized = title.lower().strip()
+        if title_normalized in papers_dict_normalized:
+            arxiv_link_from_csv = papers_dict_normalized[title_normalized]['arxiv_link']
+
+    print(f"\nEnriching info for: {title}")
+    paper_info = enrich_paper_info(title, arxiv_link_from_csv)
+
+    item['arxiv_link'] = paper_info['arxiv_link']
+    item['digest'] = paper_info['digest']
+    if paper_info['serper_found']:
+        item['serper_found'] = True
+    OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY") or os.getenv("OLMO_API_KEY")
+
+    if item.get('arxiv_link') and 'arxiv.org' in item['arxiv_link'] and OPENROUTER_API_KEY:
+        print(f"Downloading PDF and extracting insights for: {title}")
+        pdf_path = download_arxiv_pdf(item['arxiv_link'])
+        if pdf_path:
+            try:
+                text = extract_pdf_text(pdf_path)
+                if text:
+                    insights = extract_paper_insights(text, title)
+                    if insights:
+                        item['paper_insights'] = insights
+                        print(f"  Insights extracted successfully")
+                try:
+                    if os.path.exists(pdf_path):
+                        os.remove(pdf_path)
+                except:
+                    pass
+            except Exception as e:
+                print(f"  Error extracting insights: {e}")
+
+total_papers = len(papers)
+papers_sent = len(picked)
+progress_pct = (papers_sent / total_papers * 100) if total_papers > 0 else 0
 
 with open(READING) as f:
     readme=f.read()
 
-new_section='\n\nToday\'s top 3 picks:\n\n'
+if readme.startswith('# Reading progress'):
+    lines = readme.split('\n')
+    if len(lines) > 2 and lines[1].strip() == '' and lines[2].startswith('Progress:'):
+        lines[2] = f'Progress: {papers_sent}/{total_papers} papers sent ({progress_pct:.1f}%)'
+        readme = '\n'.join(lines)
+    else:
+        lines.insert(2, f'Progress: {papers_sent}/{total_papers} papers sent ({progress_pct:.1f}%)')
+        readme = '\n'.join(lines)
+else:
+    readme = f'# Reading progress\n\nProgress: {papers_sent}/{total_papers} papers sent ({progress_pct:.1f}%)\n\n' + readme
+
+today_date = datetime.datetime.now().strftime('%Y-%m-%d')
+
+new_section=f'\n\n{today_date}\n'
 for i, t in enumerate(top3, 1):
-    new_section += f"{i}. {t['title']}\n   - Status: not started\n   - Summary: {t.get('summary','')}\n"
-    if t.get('digest'):
-        new_section += f"   - Digest: {t['digest']}\n"
-    if t.get('arxiv_link'):
-        new_section += f"   - ArXiv: {t['arxiv_link']}\n"
-    new_section += '\n'
+    new_section += f"{i} | {t['title']} | 0\n"
 
 readme += new_section
 with open(READING,'w') as f:
@@ -200,59 +241,6 @@ hist.append(entry)
 with open(HISTORY,'w') as f:
     json.dump(hist,f,indent=2)
 
-email_body_html = '<h2>Today\'s top 3 papers</h2>'
-for i, t in enumerate(top3, 1):
-    email_body_html += f"<h3>{i}. {t['title']}</h3>"
-    email_body_html += f"<p><strong>Summary:</strong> {t.get('summary','')}</p>"
-    if t.get('digest'):
-        email_body_html += f"<p><strong>Digest:</strong> {t['digest']}</p>"
-    if t.get('arxiv_link'):
-        email_body_html += f"<p><strong>ArXiv:</strong> <a href=\"{t['arxiv_link']}\">{t['arxiv_link']}</a></p>"
-email_body_html += '<hr><p><strong>📝 Share your feedback:</strong> Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!</p>'
-
-email_body_text = 'Today\'s top 3 papers\n\n'
-for i, t in enumerate(top3, 1):
-    email_body_text += f"{i}. {t['title']}\n"
-    email_body_text += f"Summary: {t.get('summary','')}\n"
-    if t.get('digest'):
-        email_body_text += f"Digest: {t['digest']}\n"
-    if t.get('arxiv_link'):
-        email_body_text += f"ArXiv: {t['arxiv_link']}\n"
-    email_body_text += '\n'
-email_body_text += '---\n📝 Share your feedback: Reply to this email with your preferences (e.g., "prefer more papers on X", "less interested in Y") to help refine future picks!'
-
-if EMAILJS_SERVICE_ID and EMAILJS_TEMPLATE_ID and EMAILJS_USER_ID and EMAILJS_PRIVATE_KEY and EMAIL_FROM and EMAIL_TO:
-    send_url = 'https://api.emailjs.com/api/v1.0/email/send'
-    payload = {
-        'service_id': EMAILJS_SERVICE_ID,
-        'template_id': EMAILJS_TEMPLATE_ID,
-        'user_id': EMAILJS_USER_ID,
-        'accessToken': EMAILJS_PRIVATE_KEY,
-        'template_params': {
-            'to_email': EMAIL_TO,
-            'from_email': EMAIL_FROM,
-            'subject': 'Daily paper picks',
-            'message': email_body_text,
-        }
-    }
-    try:
-        r = requests.post(send_url, json=payload, headers={'Content-Type':'application/json'})
-        if r.status_code == 200:
-            print('Email sent via EmailJS')
-        else:
-            print('EmailJS send failed', r.status_code, r.text)
-    except Exception as e:
-        print('EmailJS request error', e)
-elif SENDGRID_API_KEY and EMAIL_TO and EMAIL_FROM:
-    send_url='https://api.sendgrid.com/v3/mail/send'
-    body={'personalizations':[{'to':[{'email':EMAIL_TO}]}],'from':{'email':EMAIL_FROM},'subject':'Daily paper picks','content':[{'type':'text/html','value':email_body_html}]}
-    try:
-        r = requests.post(send_url,headers={'Authorization':f'Bearer {SENDGRID_API_KEY}','Content-Type':'application/json'},json=body)
-        if r.status_code == 202:
-            print('Email sent via SendGrid')
-        else:
-            print('SendGrid send failed', r.status_code, r.text)
-    except Exception as e:
-        print('SendGrid request error', e)
-else:
-    print('No email provider configured; skipping email')
+print("\nPreparing email...")
+subject, email_body_html, email_body_text = build_paper_email(top3)
+send_email(subject, email_body_html, email_body_text)
