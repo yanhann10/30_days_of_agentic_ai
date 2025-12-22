@@ -1,0 +1,8 @@
+READ RATE DIP DETECTED
+Alert created: 2025-12-21
+Expires: 2025-12-28
+
+Previous 3-week read rate: 77.8%
+Current 3-week read rate: 66.7%
+
+Action needed: Improve selection quality.
