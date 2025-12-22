@@ -1,25 +1,24 @@
-Ingest a curated list of readings into NotebookLM (or similar) via an agent that:
+A personalized research paper recommendation system that delivers daily curated picks and learns from email feedback.
 
-Creates an audio summary, slide deck, and exportable downloads for each item.
+**Core Functionality:**
 
-Compile these outputs into a unified “reader” experience (web or app) that the agent keeps up to date.
+**Daily Paper Selection** :
 
-Maintain a live reading-progress board where I can:
+- Samples 12 papers from a curated CSV list (`to_read.csv`), excluding previously selected papers
+- Uses LLM (OLMO-3-7B) to rank and select the top 3 most applicable/impactful papers based on:
+  - Paper titles and abstracts
+  - User preferences extracted from past email feedback
+- Fetches ArXiv abstracts and generates AI-powered 1-2 sentence digests
+- Updates `reading_progress.md` with daily picks (title, summary, digest, ArXiv link)
+- Sends formatted email with top 3 recommendations via EmailJS or SendGrid
+- Maintains selection history to prevent duplicate picks
 
-Mark items as read / unread
+**Email Feedback Processing** :
 
-Express preferences with simple interactions, such as:
-
-Thumbs up on the right
-
-Thumbs down on the left
-
-Swipe to skip or archive
-
-Train a lightweight preference model that distills my likes and dislikes and:
-
-Re-ranks the remaining reading list
-
-(todo) Curates new items that match my inferred taste using semantic scholar after i finish the current list
-
-Continuously updates future recommendations based on my ongoing feedback.
+- Monitors Gmail inbox for replies to daily pick emails
+- Extracts user feedback from email reply text
+- Uses LLM (Llama-3.1-8B-instruct) to parse natural language feedback into structured preferences:
+  - `topics_to_avoid`: Topics user explicitly wants less of
+  - `topics_to_increase`: Topics user explicitly wants more of
+  - `prereq_concepts`: Background concepts user needs explained
+- Preferences in `prefs.jsonl` are incorporated into future paper rankings
