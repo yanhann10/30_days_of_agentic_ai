@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests python-dotenv
+          pip install -r 03_mini_info_diet/requirements.txt
 
       - name: Run daily picker
         env:
