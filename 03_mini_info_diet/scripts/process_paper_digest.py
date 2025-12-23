@@ -98,10 +98,14 @@ def extract_paper_insights(text, title):
         print("OLMO_API_KEY not found, skipping LLM extraction")
         return None
 
+    # Truncate to ~20k chars to fit within 8k token context limit (accounting for prompt overhead)
+    # Most important content is usually in first part of paper (abstract, intro, methods)
+    truncated_text = text[:20000]
+
     prompt = f"""Extract key insights from this research paper titled "{title}".
 
 Paper text (excerpt):
-{text[:50000]}
+{truncated_text}
 
 Provide EXACTLY 4 bullet points in this format (one bullet per line, start each with "• "):
 
@@ -113,6 +117,19 @@ Provide EXACTLY 4 bullet points in this format (one bullet per line, start each 
 Be specific and technical. Each bullet must start with "• " followed by the category name."""
 
     result = call_llm(prompt)
+
+    if result:
+        # Clean up the result by removing any intro lines before the bullets
+        lines = result.split('\n')
+        bullet_lines = []
+        for line in lines:
+            line = line.strip()
+            if line.startswith('•') or line.startswith('**'):
+                bullet_lines.append(line)
+
+        if bullet_lines:
+            return '\n'.join(bullet_lines)
+
     return result
 
 

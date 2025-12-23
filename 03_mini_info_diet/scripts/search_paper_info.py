@@ -10,34 +10,43 @@ load_dotenv()
 SERPER_API_KEY = os.environ.get('SERPER_API_KEY')
 OLMO_API_KEY = os.getenv("OPENROUTER_API_KEY") or os.getenv("OLMO_API_KEY")
 
-def search_arxiv_by_title(title):
-    try:
-        params = {
-            "search_query": f'all:"{title}"',
-            "start": 0,
-            "max_results": 1
-        }
-        headers = {"User-Agent": "arxiv-fetcher/0.1"}
-        r = requests.get("http://export.arxiv.org/api/query", params=params, headers=headers, timeout=15)
-        if r.status_code != 200:
+def search_arxiv_by_title(title, max_retries=2):
+    for attempt in range(max_retries):
+        try:
+            params = {
+                "search_query": f'all:"{title}"',
+                "start": 0,
+                "max_results": 1
+            }
+            headers = {"User-Agent": "arxiv-fetcher/0.1"}
+            r = requests.get("https://export.arxiv.org/api/query", params=params, headers=headers, timeout=30)
+            if r.status_code != 200:
+                return None, None
+
+            root = ET.fromstring(r.text)
+            ns = {"atom": "http://www.w3.org/2005/Atom"}
+            entry = root.find("atom:entry", ns)
+            if entry is None:
+                return None, None
+
+            url_elem = entry.find("atom:id", ns)
+            abstract_elem = entry.find("atom:summary", ns)
+
+            url = url_elem.text.strip() if url_elem is not None else None
+            abstract = abstract_elem.text.strip() if abstract_elem is not None else None
+
+            return url, abstract
+        except requests.exceptions.Timeout:
+            if attempt < max_retries - 1:
+                print(f"ArXiv timeout (attempt {attempt + 1}/{max_retries}), retrying...")
+                continue
+            print(f"ArXiv timeout after {max_retries} attempts")
+            return None, None
+        except Exception as e:
+            print(f"Error searching ArXiv: {e}")
             return None, None
 
-        root = ET.fromstring(r.text)
-        ns = {"atom": "http://www.w3.org/2005/Atom"}
-        entry = root.find("atom:entry", ns)
-        if entry is None:
-            return None, None
-
-        url_elem = entry.find("atom:id", ns)
-        abstract_elem = entry.find("atom:summary", ns)
-
-        url = url_elem.text.strip() if url_elem is not None else None
-        abstract = abstract_elem.text.strip() if abstract_elem is not None else None
-
-        return url, abstract
-    except Exception as e:
-        print(f"Error searching ArXiv: {e}")
-        return None, None
+    return None, None
 
 
 def search_serper(title):
@@ -81,42 +90,69 @@ def search_serper(title):
         return None, None
 
 
-def fetch_arxiv_abstract(arxiv_url):
+def fetch_arxiv_abstract(arxiv_url, max_retries=2):
     if not arxiv_url or 'arxiv.org' not in arxiv_url:
         return ''
 
-    try:
-        arxiv_id = arxiv_url.split('/abs/')[-1].split('v')[0]
-        api_url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}"
-        r = requests.get(api_url, timeout=10)
-        if r.status_code != 200:
+    for attempt in range(max_retries):
+        try:
+            arxiv_id = arxiv_url.split('/abs/')[-1].split('v')[0]
+            api_url = f"https://export.arxiv.org/api/query?id_list={arxiv_id}"
+            r = requests.get(api_url, timeout=30)
+            if r.status_code != 200:
+                return ''
+
+            root = ET.fromstring(r.text)
+            ns = {"atom": "http://www.w3.org/2005/Atom"}
+            entry = root.find("atom:entry", ns)
+            if entry is None:
+                return ''
+
+            abstract_elem = entry.find("atom:summary", ns)
+            if abstract_elem is None:
+                return ''
+
+            abstract = abstract_elem.text.strip()
+
+            if not OLMO_API_KEY:
+                return abstract[:300]
+
+            prompt = f'''Summarize this abstract in 1-2 sentences focusing on problem, method, and key result.
+
+Abstract:
+{abstract}
+
+Requirements:
+- Write 1-2 clear sentences only (no intro text like "Here is a summary")
+- Highlight key ML/AI concepts in **bold** (e.g., **Reinforcement Learning**, **LLM**, **attention mechanism**)
+- Focus on: what problem, what method, what result'''
+
+            summary = call_llm(prompt, max_retries=2)
+
+            if summary:
+                # Remove any intro text
+                summary = summary.strip()
+                for prefix in ["Here is a", "Here's a", "This is a", "Summary:", "The summary is:"]:
+                    if summary.lower().startswith(prefix.lower()):
+                        # Find the first sentence after the intro
+                        sentences = summary.split('.')
+                        if len(sentences) > 1:
+                            summary = '.'.join(sentences[1:]).strip()
+                        break
+                return summary
+            else:
+                return abstract[:300] if abstract else ''
+        except requests.exceptions.Timeout:
+            if attempt < max_retries - 1:
+                print(f"ArXiv abstract timeout (attempt {attempt + 1}/{max_retries}), retrying...")
+                continue
+            print(f"Error fetching ArXiv abstract: Timeout after {max_retries} attempts")
+            return ''
+        except Exception as e:
+            print(f"Error fetching ArXiv abstract: {e}")
             return ''
 
-        root = ET.fromstring(r.text)
-        ns = {"atom": "http://www.w3.org/2005/Atom"}
-        entry = root.find("atom:entry", ns)
-        if entry is None:
-            return ''
-
-        abstract_elem = entry.find("atom:summary", ns)
-        if abstract_elem is None:
-            return ''
-
-        abstract = abstract_elem.text.strip()
-
-        if not OLMO_API_KEY:
-            return abstract[:300]
-
-        prompt = f'Summarize this abstract in 1-2 sentences focusing on problem, method, and key result:\n\n{abstract}'
-        summary = call_llm(prompt, max_retries=2)
-
-        if summary:
-            return summary
-        else:
-            return abstract[:300] if abstract else ''
-    except Exception as e:
-        print(f"Error fetching ArXiv abstract: {e}")
-        return ''
+    return ''
 
 
 def enrich_paper_info(title, arxiv_link_from_csv=''):

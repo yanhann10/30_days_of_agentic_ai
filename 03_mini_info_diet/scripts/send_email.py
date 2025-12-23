@@ -95,18 +95,43 @@ def _send_via_sendgrid(subject, body_html):
 def build_paper_email(top3_papers):
     subject = "📚 Daily AI Paper Picks"
 
+    def clean_text(text):
+        """Remove intro phrases and convert markdown bold to HTML"""
+        if not text:
+            return text
+
+        # Remove intro text
+        text = text.strip()
+        for prefix in ["Here is a", "Here's a", "This is a", "Here are", "Summary:", "The summary is:"]:
+            if text.lower().startswith(prefix.lower()):
+                # Find the first sentence after the colon or newline
+                if ':' in text:
+                    text = text.split(':', 1)[1].strip()
+                elif '\n' in text:
+                    text = text.split('\n', 1)[1].strip()
+                break
+
+        # Convert markdown **bold** to HTML <strong>
+        import re
+        text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
+
+        return text
+
     email_body_html = '<h2>Today\'s top 3 papers</h2>'
     for i, t in enumerate(top3_papers, 1):
         email_body_html += f"<h3>{i}. {t['title']}</h3>"
-        email_body_html += f"<p><strong>Summary:</strong> {t.get('summary', '')}</p>"
+        email_body_html += f"<p><strong>Summary:</strong> {clean_text(t.get('summary', ''))}</p>"
         if t.get('digest'):
-            email_body_html += f"<p><strong>Digest:</strong> {t['digest']}</p>"
+            email_body_html += f"<p><strong>Digest:</strong> {clean_text(t['digest'])}</p>"
         if t.get('paper_insights'):
             insights_lines = [line.strip() for line in t['paper_insights'].split('\n') if line.strip()]
             insights_html = '<ul style="margin-top: 5px;">'
             for line in insights_lines:
                 if line.startswith('•'):
                     line = line[1:].strip()
+                # Convert markdown bold to HTML in insights too
+                import re
+                line = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', line)
                 insights_html += f'<li>{line}</li>'
             insights_html += '</ul>'
             email_body_html += f"<p><strong>Paper Analysis:</strong></p>{insights_html}"

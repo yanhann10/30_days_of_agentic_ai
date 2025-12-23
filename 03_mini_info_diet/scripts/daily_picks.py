@@ -242,5 +242,28 @@ with open(HISTORY,'w') as f:
     json.dump(hist,f,indent=2)
 
 print("\nPreparing email...")
+print("\nDEBUG: Top 3 papers data:")
+for i, paper in enumerate(top3, 1):
+    print(f"\nPaper {i}: {paper.get('title', 'N/A')}")
+    print(f"  - Has digest: {bool(paper.get('digest'))}")
+    print(f"  - Digest length: {len(paper.get('digest', ''))} chars")
+    print(f"  - Has paper_insights: {bool(paper.get('paper_insights'))}")
+    if paper.get('paper_insights'):
+        print(f"  - Insights length: {len(paper['paper_insights'])} chars")
+        print(f"  - Insights preview: {paper['paper_insights'][:200]}...")
+
 subject, email_body_html, email_body_text = build_paper_email(top3)
-send_email(subject, email_body_html, email_body_text)
+
+# Print email content for debugging
+print("\n" + "="*80)
+print("EMAIL SUBJECT:", subject)
+print("="*80)
+print("\nEMAIL TEXT BODY:")
+print(email_body_text)
+print("\n" + "="*80)
+print("\nEMAIL HTML BODY (full):")
+print(email_body_html)
+print("="*80)
+
+# Uncomment to send email
+# send_email(subject, email_body_html, email_body_text)
