@@ -20,3 +20,9 @@ Progress:  papers read (%)
 1 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
 2 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
 3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+
+
+2025-12-24
+1 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
+2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
