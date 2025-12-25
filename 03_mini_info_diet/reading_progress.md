@@ -26,3 +26,9 @@ Progress:  papers read (%)
 1 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
 2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+
+
+2025-12-25
+1 | No-Regret Learning Under Adversarial Resource Constraints | 0
+2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
