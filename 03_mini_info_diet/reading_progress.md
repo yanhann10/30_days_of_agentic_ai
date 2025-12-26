@@ -32,3 +32,9 @@ Progress:  papers read (%)
 1 | No-Regret Learning Under Adversarial Resource Constraints | 0
 2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
 3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
+
+
+2025-12-26
+1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+2 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
+3 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
