@@ -38,3 +38,9 @@ Progress:  papers read (%)
 1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
 2 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
 3 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
+
+
+2025-12-27
+1 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
+2 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
+3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
