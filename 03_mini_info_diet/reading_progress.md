@@ -44,3 +44,9 @@ Progress:  papers read (%)
 1 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
 2 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
 3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+
+
+2025-12-28
+1 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
+2 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+3 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
