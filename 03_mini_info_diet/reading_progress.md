@@ -50,3 +50,9 @@ Progress:  papers read (%)
 1 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
 2 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
 3 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+
+
+2025-12-29
+1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
