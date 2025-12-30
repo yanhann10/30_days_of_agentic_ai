@@ -56,3 +56,9 @@ Progress:  papers read (%)
 1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
 2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
+
+
+2025-12-30
+1 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
