@@ -62,3 +62,9 @@ Progress:  papers read (%)
 1 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
 2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 3 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+
+
+2025-12-31
+1 | Bayesian Concept Bottleneck Models with LLM Priors | 0
+2 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+3 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
