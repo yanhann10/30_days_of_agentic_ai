@@ -68,3 +68,9 @@ Progress:  papers read (%)
 1 | Bayesian Concept Bottleneck Models with LLM Priors | 0
 2 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
 3 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
+
+
+2026-01-01
+1 | No-Regret Learning Under Adversarial Resource Constraints | 0
+2 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
+3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
