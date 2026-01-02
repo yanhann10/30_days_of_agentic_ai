@@ -74,3 +74,9 @@ Progress:  papers read (%)
 1 | No-Regret Learning Under Adversarial Resource Constraints | 0
 2 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
 3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+
+
+2026-01-02
+1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+2 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+3 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
