@@ -80,3 +80,9 @@ Progress:  papers read (%)
 1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 2 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
 3 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+
+
+2026-01-03
+1 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+3 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
