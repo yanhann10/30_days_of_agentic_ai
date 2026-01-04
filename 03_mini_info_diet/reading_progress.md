@@ -86,3 +86,9 @@ Progress:  papers read (%)
 1 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
 2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
 3 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+
+
+2026-01-04
+1 | LLaDA: Large Language Diffusion Models | 0
+2 | Tight analyses of first-order methods with error feedback | 0
+3 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
