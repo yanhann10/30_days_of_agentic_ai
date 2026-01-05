@@ -92,3 +92,9 @@ Progress:  papers read (%)
 1 | LLaDA: Large Language Diffusion Models | 0
 2 | Tight analyses of first-order methods with error feedback | 0
 3 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
+
+
+2026-01-05
+1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+2 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+3 | Tight analyses of first-order methods with error feedback | 0
