@@ -98,3 +98,9 @@ Progress:  papers read (%)
 1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
 2 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
 3 | Tight analyses of first-order methods with error feedback | 0
+
+
+2026-01-06
+1 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+2 | Zero-shot World Models via Search in Memory | 0
+3 | Discrete Codebook World Models for Continuous Control | 0
