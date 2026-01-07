@@ -104,3 +104,9 @@ Progress:  papers read (%)
 1 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
 2 | Zero-shot World Models via Search in Memory | 0
 3 | Discrete Codebook World Models for Continuous Control | 0
+
+
+2026-01-07
+1 | Bayesian Concept Bottleneck Models with LLM Priors | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
