@@ -110,3 +110,9 @@ Progress:  papers read (%)
 1 | Bayesian Concept Bottleneck Models with LLM Priors | 0
 2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 3 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+
+
+2026-01-08
+1 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
+2 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
