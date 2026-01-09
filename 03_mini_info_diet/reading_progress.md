@@ -116,3 +116,9 @@ Progress:  papers read (%)
 1 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
 2 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
 3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+
+
+2026-01-09
+1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+2 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+3 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
