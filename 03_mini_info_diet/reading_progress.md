@@ -122,3 +122,9 @@ Progress:  papers read (%)
 1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 2 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
 3 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+
+
+2026-01-10
+1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+2 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+3 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
