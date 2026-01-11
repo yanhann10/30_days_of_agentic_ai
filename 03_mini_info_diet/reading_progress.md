@@ -128,3 +128,9 @@ Progress:  papers read (%)
 1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
 2 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
 3 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
+
+
+2026-01-11
+1 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
+2 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
