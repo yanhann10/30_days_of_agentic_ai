@@ -134,3 +134,9 @@ Progress:  papers read (%)
 1 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
 2 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-01-12
+1 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
+2 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+3 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
