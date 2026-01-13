@@ -140,3 +140,9 @@ Progress:  papers read (%)
 1 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
 2 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
 3 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+
+
+2026-01-13
+1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
