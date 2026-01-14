@@ -146,3 +146,9 @@ Progress:  papers read (%)
 1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
+
+
+2026-01-14
+1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+2 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
+3 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
