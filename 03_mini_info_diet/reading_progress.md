@@ -152,3 +152,9 @@ Progress:  papers read (%)
 1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
 2 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
 3 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+
+
+2026-01-15
+1 | Generative Causal Explanations of Black-box Classifiers | 0
+2 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
