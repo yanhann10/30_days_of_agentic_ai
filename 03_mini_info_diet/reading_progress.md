@@ -158,3 +158,9 @@ Progress:  papers read (%)
 1 | Generative Causal Explanations of Black-box Classifiers | 0
 2 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
 3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+
+
+2026-01-16
+1 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
