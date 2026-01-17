@@ -164,3 +164,9 @@ Progress:  papers read (%)
 1 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
 2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 3 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+
+
+2026-01-17
+1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+3 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
