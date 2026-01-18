@@ -170,3 +170,9 @@ Progress:  papers read (%)
 1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 3 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+
+
+2026-01-18
+1 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+2 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
+3 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
