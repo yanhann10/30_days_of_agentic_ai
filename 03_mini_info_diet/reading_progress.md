@@ -176,3 +176,9 @@ Progress:  papers read (%)
 1 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
 2 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
 3 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+
+
+2026-01-19
+1 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+2 | Learning to Incentivize Other Learning Agents | 0
+3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
