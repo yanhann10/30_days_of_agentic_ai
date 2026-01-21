@@ -1,0 +1,50 @@
+name: Monthly Document Refresh
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 1st of every month
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no commit)'
+        type: boolean
+        default: false
+
+env:
+  DOCUMENT_PATH: agentic_eval.md
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install google-generativeai
+
+      - name: Refresh document
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python .github/scripts/refresh.py "${{ env.DOCUMENT_PATH }}"
+
+      - name: Update timestamp
+        run: |
+          DATE=$(date +"%B %d, %Y")
+          sed -i "s/\*\*Last updated:.*/\*\*Last updated: $DATE\*\*/" "${{ env.DOCUMENT_PATH }}" || true
+
+      - name: Commit changes
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git diff --quiet "${{ env.DOCUMENT_PATH }}" && exit 0
+          git config user.email "actions@github.com"
+          git config user.name "github-actions"
+          git add "${{ env.DOCUMENT_PATH }}"
+          git commit -m "docs: monthly refresh $(date +%Y-%m)"
+          git push
