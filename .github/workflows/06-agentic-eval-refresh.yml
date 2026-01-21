@@ -1,4 +1,4 @@
-name: Monthly Document Refresh
+name: 06 Agentic Eval Monthly Refresh
 
 on:
   schedule:
@@ -11,7 +11,7 @@ on:
         default: false
 
 env:
-  DOCUMENT_PATH: agentic_eval.md
+  DOCUMENT_PATH: 06_agentic_eval/agentic_eval.md
 
 jobs:
   refresh:
@@ -32,7 +32,7 @@ jobs:
       - name: Refresh document
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python .github/scripts/refresh.py "${{ env.DOCUMENT_PATH }}"
+        run: python .github/scripts/06_refresh.py "${{ env.DOCUMENT_PATH }}"
 
       - name: Update timestamp
         run: |
@@ -46,5 +46,5 @@ jobs:
           git config user.email "actions@github.com"
           git config user.name "github-actions"
           git add "${{ env.DOCUMENT_PATH }}"
-          git commit -m "docs: monthly refresh $(date +%Y-%m)"
+          git commit -m "docs(06): monthly refresh $(date +%Y-%m)"
           git push
