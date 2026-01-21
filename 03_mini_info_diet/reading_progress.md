@@ -188,3 +188,9 @@ Progress:  papers read (%)
 1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 2 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
 3 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+
+
+2026-01-21
+1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+2 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
