@@ -194,3 +194,9 @@ Progress:  papers read (%)
 1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 2 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
 3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+
+
+2026-01-22
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
