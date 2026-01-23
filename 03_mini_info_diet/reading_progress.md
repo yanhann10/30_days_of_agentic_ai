@@ -200,3 +200,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+
+
+2026-01-23
+1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+2 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+3 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
