@@ -206,3 +206,9 @@ Progress:  papers read (%)
 1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 2 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 3 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
+
+
+2026-01-24
+1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+3 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
