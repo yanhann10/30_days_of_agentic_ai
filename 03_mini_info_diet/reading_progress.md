@@ -212,3 +212,9 @@ Progress:  papers read (%)
 1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
 3 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+
+
+2026-01-25
+1 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
+2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
