@@ -3,6 +3,8 @@ from typing import Annotated, TypedDict
 from langgraph.graph import StateGraph, END
 from langsmith import traceable
 
+from document_enricher import generate_improved_document
+
 from agents import (
     create_academia_agent,
     create_industry_agent,
@@ -170,7 +172,11 @@ DEBATE_TOPICS = [
 
 
 @traceable(name="run_full_debate")
-def run_debate(document_content: str, topic: str) -> dict:
+def run_debate(
+    document_content: str,
+    topic: str,
+    output_path: str | None = None
+) -> dict:
     graph = build_debate_graph()
 
     initial_state = {
@@ -189,6 +195,9 @@ def run_debate(document_content: str, topic: str) -> dict:
     }
 
     result = graph.invoke(initial_state)
+    if output_path:
+        recommendation = f"Topic: {topic}\n{result['moderator_decision']}"
+        generate_improved_document(document_content, [recommendation], output_path)
     return result
 
 

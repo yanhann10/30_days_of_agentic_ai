@@ -278,9 +278,24 @@
             pointer-events: none;
             font-weight: 500;
         }
+        .category-node circle {
+            fill-opacity: 0.18;
+            stroke-width: 2.5px;
+        }
+        .category-node text {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            fill: rgba(255,255,255,0.7);
+        }
         .link {
             stroke: rgba(255,255,255,0.08);
             stroke-width: 1px;
+        }
+        .link.category-link {
+            stroke: rgba(255,255,255,0.18);
+            stroke-dasharray: 2 3;
         }
         .link.dimmed { opacity: 0.03; }
         .link.highlighted {
@@ -330,6 +345,24 @@
         };
         const years = [2022, 2023, 2024, 2025];
         const categoryColors = {"RL-Based": "#E74C3C", "Feedback-Based": "#3498DB", "Search-Based": "#9B59B6", "Evolutionary Prompt": "#2ECC71", "Text Gradient": "#1ABC9C", "Bootstrapping": "#F39C12", "Tool Evolution": "#E91E63", "Memory Evolution": "#00BCD4", "Multi-Agent": "#FF9800"};
+        const categories = Object.keys(categoryColors);
+        const categoryNodes = categories.map(cat => ({
+            id: cat,
+            category: cat,
+            isCategory: true,
+            frequency: 10,
+            years: years,
+            color: categoryColors[cat]
+        }));
+        const categoryLinks = data.nodes.map(n => ({
+            source: n.id,
+            target: n.category,
+            strength: 0.9,
+            type: "category"
+        }));
+        const allNodes = [...categoryNodes, ...data.nodes];
+        const allLinks = [...data.links, ...categoryLinks];
+        const nodeById = new Map(allNodes.map(n => [n.id, n]));
 
         let isPlaying = false;
         let playInterval = null;
@@ -359,10 +392,11 @@
                 activeCategory = cat;
                 document.querySelectorAll('.legend-item').forEach(e => e.classList.remove('active'));
                 el.classList.add('active');
-                node.classed("dimmed", d => d.category !== cat);
+                node.classed("dimmed", d => !d.isCategory && d.category !== cat);
                 link.classed("dimmed", l => {
-                    const s = data.nodes.find(n => n.id === (l.source.id || l.source));
-                    const t = data.nodes.find(n => n.id === (l.target.id || l.target));
+                    const s = nodeById.get(l.source.id || l.source);
+                    const t = nodeById.get(l.target.id || l.target);
+                    if (!s || !t) return true;
                     return s.category !== cat && t.category !== cat;
                 });
             }
@@ -377,19 +411,34 @@
         const zoom = d3.zoom().scaleExtent([0.3, 4]).on("zoom", e => g.attr("transform", e.transform));
         svg.call(zoom);
 
-        // V3-style force simulation: coherent clusters
-        const simulation = d3.forceSimulation(data.nodes)
-            .force("link", d3.forceLink(data.links).id(d => d.id).distance(80).strength(0.5))
-            .force("charge", d3.forceManyBody().strength(-200))
+        // Category centers to keep related methods clustered (reduce scattering)
+        const centerRadius = Math.min(width, height) * 0.28;
+        const categoryCenters = {};
+        categories.forEach((cat, i) => {
+            const angle = (i / categories.length) * Math.PI * 2;
+            categoryCenters[cat] = {
+                x: width / 2 + Math.cos(angle) * centerRadius,
+                y: height / 2 + Math.sin(angle) * centerRadius
+            };
+        });
+
+        // V3-style force simulation: coherent clusters with stronger local ties
+        const simulation = d3.forceSimulation(allNodes)
+            .force("link", d3.forceLink(allLinks).id(d => d.id)
+                .distance(d => 120 - Math.min(1, d.strength ?? 0.5) * 70)
+                .strength(d => 0.3 + (d.strength ?? 0.5) * 0.7))
+            .force("charge", d3.forceManyBody().strength(-160))
             .force("center", d3.forceCenter(width/2, height/2))
-            .force("collision", d3.forceCollide().radius(d => Math.sqrt(d.frequency)*4 + 15))
-            .force("x", d3.forceX(width/2).strength(0.05))
-            .force("y", d3.forceY(height/2).strength(0.05));
+            .force("collision", d3.forceCollide().radius(d => Math.sqrt(d.frequency)*4 + 14))
+            .force("categoryX", d3.forceX(d => (categoryCenters[d.category]?.x ?? width/2)).strength(0.18))
+            .force("categoryY", d3.forceY(d => (categoryCenters[d.category]?.y ?? height/2)).strength(0.18));
 
-        const link = g.append("g").selectAll("line").data(data.links).join("line")
-            .attr("class", "link").attr("stroke-opacity", d => 0.15 + d.strength*0.3);
+        const link = g.append("g").selectAll("line").data(allLinks).join("line")
+            .attr("class", d => d.type === "category" ? "link category-link" : "link")
+            .attr("stroke-opacity", d => 0.12 + (d.strength ?? 0.4)*0.3);
 
-        const node = g.append("g").selectAll("g").data(data.nodes).join("g").attr("class", "node")
+        const node = g.append("g").selectAll("g").data(allNodes).join("g")
+            .attr("class", d => d.isCategory ? "node category-node" : "node")
             .call(d3.drag()
                 .on("start", (e,d) => { if(!e.active) simulation.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
                 .on("drag", (e,d) => { d.fx=e.x; d.fy=e.y; })
@@ -397,18 +446,20 @@
 
         // Sized nodes based on frequency
         node.append("circle")
-            .attr("r", d => Math.sqrt(d.frequency)*4 + 5)
+            .attr("r", d => d.isCategory ? 22 : Math.sqrt(d.frequency)*4 + 5)
             .attr("fill", d => d.color)
             .attr("stroke", d => d.color);
 
         node.append("text")
             .text(d => d.id)
-            .attr("x", d => Math.sqrt(d.frequency)*4 + 8)
-            .attr("y", 3);
+            .attr("x", d => d.isCategory ? 0 : Math.sqrt(d.frequency)*4 + 8)
+            .attr("y", d => d.isCategory ? 4 : 3)
+            .attr("text-anchor", d => d.isCategory ? "middle" : "start");
 
         const tooltip = d3.select("#tooltip");
 
         node.on("mouseover", (e, d) => {
+            if (d.isCategory) return;
             tooltip.classed("visible", true)
                 .html(`<h5>${d.id}</h5><div class="cat">${d.category}</div><div class="how">${d.how}</div><div class="freq">${d.frequency} papers | ${d.yearRange}</div>`)
                 .style("left", (e.pageX+12)+"px").style("top", (e.pageY-8)+"px");
@@ -417,6 +468,7 @@
             tooltip.classed("visible", false);
             link.classed("highlighted", false);
         }).on("click", (e, d) => {
+            if (d.isCategory) return;
             node.classed("selected", false);
             d3.select(e.currentTarget).classed("selected", true);
             showDetail(d);
@@ -469,11 +521,13 @@
                 link.classed("dimmed", false);
             } else {
                 yearDisplay.textContent = year;
-                node.classed("dimmed", d => !d.years.includes(year));
-                node.classed("highlighted", d => d.years.includes(year));
+                node.classed("dimmed", d => !d.isCategory && !d.years.includes(year));
+                node.classed("highlighted", d => !d.isCategory && d.years.includes(year));
                 link.classed("dimmed", l => {
-                    const s = data.nodes.find(n => n.id === (l.source.id || l.source));
-                    const t = data.nodes.find(n => n.id === (l.target.id || l.target));
+                    const s = nodeById.get(l.source.id || l.source);
+                    const t = nodeById.get(l.target.id || l.target);
+                    if (!s || !t) return true;
+                    if (s.isCategory || t.isCategory) return false;
                     return !s.years.includes(year) || !t.years.includes(year);
                 });
             }

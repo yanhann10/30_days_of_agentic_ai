@@ -27,6 +27,7 @@ os.environ["LANGSMITH_TRACING"] = "true"
 os.environ["LANGSMITH_PROJECT"] = os.getenv("LANGSMITH_PROJECT", "agent-eval-debate")
 
 from debate_graph import run_all_debates, DEBATE_TOPICS
+from document_enricher import generate_improved_document
 from evaluator import (
     evaluate_all_debates,
     generate_evaluation_report,
@@ -85,54 +86,6 @@ def save_results(results: dict, output_dir: str = "outputs"):
     print(f"Transcript saved to: {transcript_file}")
 
     return results_file
-
-
-def generate_improved_document(
-    original_doc: str,
-    debate_results: list[dict],
-    output_path: str
-) -> str:
-    from langchain_anthropic import ChatAnthropic
-    from langchain_core.messages import HumanMessage, SystemMessage
-
-    agent = ChatAnthropic(model="claude-sonnet-4-20250514", max_tokens=8192)
-
-    all_recommendations = []
-    for debate in debate_results:
-        all_recommendations.append(f"Topic: {debate['topic']}\n{debate['result']['moderator_decision']}")
-
-    prompt = f"""You are tasked with improving a research document based on expert debate recommendations.
-
-=== ORIGINAL DOCUMENT ===
-{original_doc}
-
-=== MODERATOR RECOMMENDATIONS FROM DEBATES ===
-{chr(10).join(all_recommendations)}
-
-=== YOUR TASK ===
-1. Integrate the accepted recommendations into the document
-2. Add new sections as recommended
-3. Enhance existing sections with the proposed content
-4. Maintain the document's structure and style
-5. Update the "Last updated" date to today
-
-Output the complete improved document in markdown format.
-Preserve all existing valuable content while adding the improvements.
-"""
-
-    messages = [
-        SystemMessage(content="You are an expert technical writer specializing in AI/ML research documentation."),
-        HumanMessage(content=prompt)
-    ]
-
-    response = agent.invoke(messages)
-    improved_doc = response.content
-
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(improved_doc)
-
-    print(f"Improved document saved to: {output_path}")
-    return improved_doc
 
 
 @traceable(name="main_pipeline")
@@ -223,8 +176,13 @@ def main(args):
         print("PHASE 3: GENERATING IMPROVED DOCUMENT")
         print("=" * 70)
 
-        improved_path = os.path.join(output_dir, "llm_agentic_evaluation_improved.md")
-        generate_improved_document(original_doc, results["debate_results"], improved_path)
+        input_stem = Path(doc_path).stem
+        improved_path = os.path.join(output_dir, f"{input_stem}_enriched.md")
+        recommendations = [
+            f"Topic: {d['topic']}\n{d['result']['moderator_decision']}"
+            for d in results["debate_results"]
+        ]
+        generate_improved_document(original_doc, recommendations, improved_path)
 
     print("\n" + "=" * 70)
     print("PIPELINE COMPLETE")

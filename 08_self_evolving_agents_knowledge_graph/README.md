@@ -13,7 +13,7 @@ The knowledge graph visualization allows you to:
 - **Track temporal trends** - use play button to see when methods emerged
 
 <p align="center">
-  <a href="viz/index.html">
+  <a href="https://selfevolvekg.vercel.app/">
     <img src="https://img.shields.io/badge/Launch-Interactive_Graph-4ECDC4?style=for-the-badge" alt="Launch Graph">
   </a>
 </p>
@@ -119,5 +119,4 @@ PyMuPDF, D3.js
 - [Awesome-Self-Evolving-Agents](https://github.com/EvoAgentX/Awesome-Self-Evolving-Agents) - Source paper repository
 - [Self-Evolving AI Agents Survey](https://arxiv.org/abs/2508.07407) - Comprehensive survey paper
 - [EvoAgentX](https://github.com/EvoAgentX/EvoAgentX) - Open-source evolution framework
-
 
