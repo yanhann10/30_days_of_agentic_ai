@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Evolving Agents - Evolution Methods Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .header {
+            padding: 16px 28px;
+            background: rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+        }
+        .header h1 span {
+            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .year-display {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4ECDC4;
+            min-width: 80px;
+            text-align: center;
+            font-family: 'SF Mono', Monaco, monospace;
+        }
+        .play-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(78,205,196,0.15);
+            border: 2px solid rgba(78,205,196,0.4);
+            color: #4ECDC4;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .play-btn:hover {
+            background: rgba(78,205,196,0.25);
+            border-color: #4ECDC4;
+        }
+        .play-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.75rem;
+        }
+        .stat-value { color: #4ECDC4; font-weight: 600; }
+        .container {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+        .graph-container {
+            flex: 1;
+            position: relative;
+        }
+        #graph { width: 100%; height: 100%; }
+        .sidebar {
+            width: 380px;
+            background: rgba(0,0,0,0.25);
+            border-left: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+        .legend-section {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .legend-group {
+            margin-bottom: 12px;
+        }
+        .legend-group-title {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 6px;
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.65rem;
+            background: rgba(255,255,255,0.04);
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+        .legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .detail-panel {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .detail-empty {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.25);
+            text-align: center;
+            padding: 40px;
+        }
+        .method-card { animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .method-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4ECDC4;
+            margin-bottom: 4px;
+        }
+        .method-category {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .info-box {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        .info-box h4 {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 6px;
+        }
+        .info-box p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.85);
+        }
+        .info-box.how p { color: #96CEB4; }
+        .info-box.what p { color: #45B7D1; }
+        .stats-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .stat-box {
+            flex: 1;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-box .num {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #4ECDC4;
+        }
+        .stat-box .lbl {
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+        }
+        .papers-title {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255,255,255,0.35);
+            margin: 16px 0 10px;
+        }
+        .paper-item {
+            background: rgba(255,255,255,0.02);
+            border-left: 2px solid #4ECDC4;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 0 6px 6px 0;
+        }
+        .paper-title {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.4;
+        }
+        .paper-year {
+            font-size: 0.65rem;
+            color: #4ECDC4;
+            margin-top: 4px;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.95);
+            border: 1px solid rgba(78,205,196,0.3);
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            opacity: 0;
+            max-width: 300px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .tooltip.visible { opacity: 1; }
+        .tooltip h5 { color: #4ECDC4; margin-bottom: 6px; font-size: 0.9rem; }
+        .tooltip .cat { color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-bottom: 6px; }
+        .tooltip p { color: rgba(255,255,255,0.7); margin-bottom: 4px; font-size: 0.75rem; }
+        .tooltip .how { color: #96CEB4; font-style: italic; }
+        .controls {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+        }
+        .controls button {
+            padding: 8px 14px;
+            background: rgba(78,205,196,0.1);
+            border: 1px solid rgba(78,205,196,0.3);
+            border-radius: 6px;
+            color: #4ECDC4;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        .node { cursor: pointer; }
+        .node circle {
+            stroke-width: 1.5px;
+            transition: all 0.3s;
+        }
+        .node.dimmed circle { opacity: 0.15; }
+        .node.dimmed text { opacity: 0.15; }
+        .node:hover circle, .node.selected circle {
+            stroke: #fff;
+            stroke-width: 2.5px;
+            filter: drop-shadow(0 0 10px rgba(78,205,196,0.5));
+        }
+        .node.highlighted circle {
+            stroke: #fff;
+            stroke-width: 3px;
+            filter: drop-shadow(0 0 15px rgba(78,205,196,0.7));
+        }
+        .node text {
+            font-size: 8px;
+            fill: rgba(255,255,255,0.75);
+            pointer-events: none;
+        }
+        .link {
+            stroke: rgba(255,255,255,0.06);
+            stroke-width: 1px;
+        }
+        .link.dimmed { opacity: 0.05; }
+        .link.highlighted {
+            stroke: rgba(78,205,196,0.35);
+            stroke-width: 1.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><span>Evolution Methods</span> for Self-Evolving Agents</h1>
+        <div class="header-controls">
+            <div class="stats">
+                <span><span class="stat-value">38</span> methods</span>
+                <span><span class="stat-value">19</span> connections</span>
+            </div>
+            <button class="play-btn" id="playBtn" title="Play timeline">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <div class="year-display" id="yearDisplay">ALL</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="graph-container">
+            <svg id="graph"></svg>
+            <div class="tooltip" id="tooltip"></div>
+            <div class="controls">
+                <button onclick="resetZoom()">Reset View</button>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="legend-section">
+                <div class="legend-group">
+                    <div class="legend-group-title">Single-Agent Optimisation</div>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-color" style="background:#4ECDC4"></div>LLM Behaviour</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#FFEAA7"></div>Prompt</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#96CEB4"></div>Memory</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#DDA0DD"></div>Tool</div>
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-group-title">Multi-Agent</div>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-color" style="background:#98D8C8"></div>MAS Optimisation</div>
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-group-title">Domain-Specific</div>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-color" style="background:#FF6B6B"></div>Medical</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#FF8C94"></div>Molecular</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#74B9FF"></div>Code Refine</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#5F9EA0"></div>Debugging</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#A29BFE"></div>Science</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#FD79A8"></div>Finance</div>
+                        <div class="legend-item"><div class="legend-color" style="background:#E17055"></div>Legal</div>
+                    </div>
+                </div>
+                <div class="legend-group">
+                    <div class="legend-group-title">Evaluation</div>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-color" style="background:#45B7D1"></div>Benchmarks</div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-panel" id="detailPanel">
+                <div class="detail-empty">
+                    <p>Click a method to see<br>HOW it enables evolution</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const data = {
+            nodes: [{"id": "Tool Instruction Fine-Tuning", "category": "Tool Optimization", "how": "Fine-tune on tool-use demonstrations -> Generalize to new tools", "what": "Learns tool selection and invocation from examples", "frequency": 6, "years": [2023, 2024, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2305.18752", "title": "GPT4Tools: Teaching Large Language Model to Use Tools via Self-instruction", "year": 2023, "context": ""}, {"arxiv_id": "2307.16789", "title": "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs", "year": 2023, "context": ""}, {"arxiv_id": "2403.04746", "title": "LLMs in the Imaginarium: Tool Learning through Simulated Trial and Error", "year": 2024, "context": ""}, {"arxiv_id": "2308.14034", "title": "Confucius: Iterative tool learning from introspection feedback by easy-to-difficult curriculum", "year": 2023, "context": ""}, {"arxiv_id": "2504.13958", "title": "ToolRL: Reward is All Tool Learning Needs", "year": 2025, "context": ""}, {"arxiv_id": "2307.16789", "title": "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs", "year": 2023, "context": ""}], "color": "#DDA0DD"}, {"id": "Workflow Optimization", "category": "Multi-Agent Optimisation", "how": "Search/evolve agent communication patterns and task routing", "what": "Optimizes how agents coordinate and share information", "frequency": 5, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": "2410.10762", "title": "AFlow: Automating Agentic Workflow Generation", "year": 2024, "context": ""}, {"arxiv_id": null, "title": "WorkflowLLM: Enhancing Workflow Orchestration Capability of Large Language Models", "year": 0, "context": ""}, {"arxiv_id": "2502.04306", "title": "ScoreFlow: Mastering LLM Agent Workflows via Score-Based Preference Optimization", "year": 2025, "context": ""}, {"arxiv_id": null, "title": "MetaGPT: Meta Programming for a Multi-Agent Collaborative Framework", "year": 0, "context": ""}, {"arxiv_id": null, "title": "AutoGen: Enabling next-Gen LLM Applications via Multi-Agent Conversations", "year": 0, "context": ""}], "color": "#98D8C8"}, {"id": "Multi-Agent Code Generation", "category": "Domain: Code Refinement", "how": "Specialized agents for writing, reviewing, testing code", "what": "Division of labor for complex software development", "frequency": 5, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": null, "title": "Self-Evolving Multi-Agent Collaboration Networks for Software Development", "year": 0, "context": ""}, {"arxiv_id": "2503.22678", "title": "MedAgentSim: Self-Evolving Multi-Agent Simulations for Realistic Clinical Interactions", "year": 2025, "context": ""}, {"arxiv_id": "2407.16741", "title": "OpenHands: An Open Platform for AI Software Developers as Generalist Agents", "year": 2024, "context": ""}, {"arxiv_id": null, "title": "Self-Evolving Multi-Agent Collaboration Networks for Software Development", "year": 0, "context": ""}, {"arxiv_id": null, "title": "Self-Evolving Multi-Agent Collaboration Networks for Software Development", "year": 0, "context": ""}], "color": "#74B9FF"}, {"id": "Benchmark-Based Evaluation", "category": "Evaluation", "how": "Standardized benchmarks measure agent capabilities", "what": "Quantitative assessment of agent performance on real tasks", "frequency": 5, "years": [2023, 2024, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2307.13854", "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents", "year": 2023, "context": ""}, {"arxiv_id": "2310.06770", "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?", "year": 2023, "context": ""}, {"arxiv_id": "2308.03688", "title": "AgentBench: Evaluating LLMs as Agents", "year": 2023, "context": ""}, {"arxiv_id": "2503.01935", "title": "MultiAgentBench: Evaluating the Collaboration and Competition of LLM agents", "year": 2025, "context": ""}, {"arxiv_id": "2404.07972", "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments", "year": 2024, "context": ""}], "color": "#45B7D1"}, {"id": "Self-Play Learning", "category": "LLM Behaviour Optimisation", "how": "Agent plays both sides of interaction, learns from game outcomes", "what": "Improves through competitive self-interaction without external data", "frequency": 4, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2505.03335", "title": "Absolute Zero: Reinforced Self-play Reasoning with Zero Data", "year": 2025, "context": ""}, {"arxiv_id": "2506.24119", "title": "SPIRAL: Self-Play on Zero-Sum Games Incentivizes Reasoning via Multi-Agent Multi-Turn Reinforcement Learning", "year": 2025, "context": ""}, {"arxiv_id": "2509.25541", "title": "Vision-Zero: Scalable VLM Self-Improvement via Strategic Gamified Self-Play", "year": 2025, "context": ""}, {"arxiv_id": "2505.20347", "title": "SeRL: Self-Play Reinforcement Learning for Large Language Models with Limited Data", "year": 2025, "context": ""}], "color": "#4ECDC4"}, {"id": "Symbolic Learning for Agents", "category": "Multi-Agent Optimisation", "how": "Agents learn symbolic rules from interactions, update behavior", "what": "Enables agents to evolve beyond training distribution", "frequency": 4, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": "2508.19005", "title": "Building Self-Evolving Agents via Experience-Driven Lifelong Learning: A Framework and Benchmark", "year": 2025, "context": ""}, {"arxiv_id": null, "title": "AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors", "year": 0, "context": ""}, {"arxiv_id": "2406.18532", "title": "Symbolic Learning Enables Self-Evolving Agents", "year": 2024, "context": ""}, {"arxiv_id": "2508.19005", "title": "Building Self-Evolving Agents via Experience-Driven Lifelong Learning: A Framework and Benchmark", "year": 2025, "context": ""}], "color": "#98D8C8"}, {"id": "Medical Multi-Agent Systems", "category": "Domain: Medical Diagnosis", "how": "Multiple specialized medical agents collaborate on diagnosis", "what": "Adaptive agent teams for complex medical decision-making", "frequency": 4, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": "2407.02483", "title": "MMedAgent: Learning to Use Medical Tools with Multi-modal Agent", "year": 2024, "context": ""}, {"arxiv_id": "2404.15155", "title": "MDAgents: An Adaptive Collaboration of LLMs for Medical Decision-Making", "year": 2024, "context": ""}, {"arxiv_id": "2503.22678", "title": "MedAgentSim: Self-Evolving Multi-Agent Simulations for Realistic Clinical Interactions", "year": 2025, "context": ""}, {"arxiv_id": "2503.13856", "title": "MDTeamGPT: A Self-Evolving LLM-based Multi-Agent Framework for Multi-Disciplinary Team Medical Consultation <br>", "year": 2025, "context": ""}], "color": "#FF6B6B"}, {"id": "Iterative Code Refinement", "category": "Domain: Code Refinement", "how": "Generate code -> Test -> Refine based on results", "what": "Iterative improvement of code through self-feedback", "frequency": 4, "years": [2023, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2312.13010", "title": "AgentCoder: Multi-Agent-based Code Generation with Iterative Testing and Optimisation", "year": 2023, "context": ""}, {"arxiv_id": "2303.17651", "title": "Self-Refine: Iterative Refinement with Self-Feedback", "year": 2023, "context": ""}, {"arxiv_id": null, "title": "CodeAgent: Autonomous Communicative Agents for Code Review", "year": 0, "context": ""}, {"arxiv_id": "2501.07811", "title": "CodeCoR: An LLM-Based Self-Reflective Multi-Agent Framework for Code Generation", "year": 2025, "context": ""}], "color": "#74B9FF"}, {"id": "Scientific Discovery Agents", "category": "Domain: Scientific Research", "how": "Multi-agent collaboration guided by scientific principles", "what": "Automates hypothesis generation and experimental design", "frequency": 4, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2507.21035", "title": "GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis <br>", "year": 2025, "context": ""}, {"arxiv_id": "2505.15047", "title": "PiFlow: Principle\u2011aware Scientific Discovery with Multi\u2011Agent Collaboration", "year": 2025, "context": ""}, {"arxiv_id": "2507.17311", "title": "EarthLink: A Self-Evolving AI Agent for Climate Science", "year": 2025, "context": ""}, {"arxiv_id": "2502.14499", "title": "MLGym: A New Framework and Benchmark for Advancing AI Research Agents", "year": 2025, "context": ""}], "color": "#A29BFE"}, {"id": "Agent Safety Benchmarks", "category": "Evaluation", "how": "Test agents for harmful behaviors and safety violations", "what": "Measures alignment and robustness of self-evolving agents", "frequency": 4, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": "2410.09024", "title": "AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents", "year": 2024, "context": ""}, {"arxiv_id": "2411.07781", "title": "RedCode: Risky Code Execution and Generation", "year": 2024, "context": ""}, {"arxiv_id": "2410.17520", "title": "MobileSafetyBench: Evaluating Safety of Autonomous Agents in Mobile Device Control", "year": 2024, "context": ""}, {"arxiv_id": "2506.06636", "title": "SafeLawBench: Towards Safe Alignment of Large Language Models", "year": 2025, "context": ""}], "color": "#45B7D1"}, {"id": "Bootstrapping from Rationales", "category": "LLM Behaviour Optimisation", "how": "Generate rationales -> Filter correct ones -> Fine-tune on them", "what": "STaR: Uses correctly-solved examples as training data for next iteration", "frequency": 3, "years": [2022, 2025], "yearRange": "2022-2025", "papers": [{"arxiv_id": "2203.14465", "title": "STaR : Bootstrapping reasoning with reasoning", "year": 2022, "context": ""}, {"arxiv_id": "2503.04625", "title": "START: Self\u2011taught Reasoner with Tools", "year": 2025, "context": ""}, {"arxiv_id": "2505.16410", "title": "Tool-Star: Empowering LLM-Brained Multi-Tool Reasoner via Reinforcement Learning", "year": 2025, "context": ""}], "color": "#4ECDC4"}, {"id": "Process Reward Models", "category": "LLM Behaviour Optimisation", "how": "Reward each reasoning step, not just final answer", "what": "Provides dense feedback for better credit assignment", "frequency": 3, "years": [2023, 2024], "yearRange": "2023-2024", "papers": [{"arxiv_id": "2402.00658", "title": "Learning Planning-based Reasoning by Trajectories Collection and Process Reward Synthesizing", "year": 2024, "context": ""}, {"arxiv_id": "2312.08935", "title": "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations", "year": 2023, "context": ""}, {"arxiv_id": "2402.00658", "title": "Learning Planning-based Reasoning by Trajectories Collection and Process Reward Synthesizing", "year": 2024, "context": ""}], "color": "#4ECDC4"}, {"id": "Evolutionary Prompt Optimization", "category": "Prompt Optimisation", "how": "Population of prompts -> Mutation/Crossover -> Selection by fitness", "what": "Evolves prompts using genetic algorithm operators", "frequency": 3, "years": [2022, 2023], "yearRange": "2022-2023", "papers": [{"arxiv_id": "2210.17041", "title": "GPS: Genetic Prompt Search for Efficient Few-shot Learning", "year": 2022, "context": ""}, {"arxiv_id": "2309.08532", "title": "EvoPrompt: Connecting LLMs with Evolutionary Algorithms Yields Powerful Prompt Optimizers", "year": 2023, "context": ""}, {"arxiv_id": "2309.16797", "title": "Promptbreeder: Self-Referential Self-Improvement Via Prompt Evolution", "year": 2023, "context": ""}], "color": "#FFEAA7"}, {"id": "Generative Prompt Engineering", "category": "Prompt Optimisation", "how": "LLM proposes prompt candidates, evaluates on examples, selects best", "what": "Removes human from prompt engineering loop", "frequency": 3, "years": [2023], "yearRange": "2023-2023", "papers": [{"arxiv_id": "2309.08532", "title": "EvoPrompt: Connecting LLMs with Evolutionary Algorithms Yields Powerful Prompt Optimizers", "year": 2023, "context": ""}, {"arxiv_id": "2310.16427", "title": "PromptAgent: Strategic Planning with Language Models Enables Expert-level Prompt Optimization", "year": 2023, "context": ""}, {"arxiv_id": "2309.03409", "title": "Large Language Models as Optimizers", "year": 2023, "context": ""}], "color": "#FFEAA7"}, {"id": "Text Gradient Optimization", "category": "Prompt Optimisation", "how": "Natural language feedback serves as gradient signal for updates", "what": "Propagates textual critiques backward to improve prompts", "frequency": 3, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2406.07496", "title": "TextGrad: Automatic \"Differentiation\" via Text", "year": 2024, "context": ""}, {"arxiv_id": "2412.03624", "title": "How to Correctly do Semantic Backpropagation on Language-based Agentic Systems", "year": 2024, "context": ""}, {"arxiv_id": "2407.12865", "title": "GRAD-SUM: Leveraging Gradient Summarization for Optimal Prompt Engineering", "year": 2024, "context": ""}], "color": "#FFEAA7"}, {"id": "Long-Term Memory Systems", "category": "Memory Optimization", "how": "Store task episodes with outcomes -> Query relevant episodes -> Apply lessons", "what": "Persistent storage of experiences for future reference", "frequency": 3, "years": [2023, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2305.10250", "title": "MemoryBank: Enhancing Large Language Models with Long-Term Memory", "year": 2023, "context": ""}, {"arxiv_id": "2504.19413", "title": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory", "year": 2025, "context": ""}, {"arxiv_id": "2508.09736", "title": "Seeing, Listening, Remembering, and Reasoning: A Multimodal Agent with Long-Term Memory", "year": 2025, "context": ""}], "color": "#96CEB4"}, {"id": "RL for Tool Selection", "category": "Tool Optimization", "how": "Reward signal for successful tool use -> Policy learns when/how to use tools", "what": "Optimizes tool selection through trial and error", "frequency": 3, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2504.11536", "title": "ReTool: Reinforcement Learning for Strategic Tool Use in LLMs", "year": 2025, "context": ""}, {"arxiv_id": "2504.13958", "title": "ToolRL: Reward is All Tool Learning Needs", "year": 2025, "context": ""}, {"arxiv_id": "2505.16410", "title": "Tool-Star: Empowering LLM-Brained Multi-Tool Reasoner via Reinforcement Learning", "year": 2025, "context": ""}], "color": "#DDA0DD"}, {"id": "Tool Discovery and Retrieval", "category": "Tool Optimization", "how": "Search available tools -> Plan sequence -> Execute and verify", "what": "Dynamically finds and chains tools for complex tasks", "frequency": 3, "years": [2023, 2024, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2310.13227", "title": "ToolChain*: Efficient Action Space Navigation in Large Language Models with A* Search", "year": 2023, "context": ""}, {"arxiv_id": "2406.03807", "title": "Tool-Planner: Task Planning with Clusters across Multiple Tools", "year": 2024, "context": ""}, {"arxiv_id": "2506.01056", "title": "MCP-Zero: Active Tool Discovery for Autonomous LLM Agents", "year": 2025, "context": ""}], "color": "#DDA0DD"}, {"id": "Chemistry Tool Agents", "category": "Domain: Molecular Discovery", "how": "Augment LLM with chemistry-specific tools for molecule manipulation", "what": "Enables molecular reasoning through specialized tool use", "frequency": 3, "years": [2023, 2024, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2405.00972", "title": "CACTUS: Chemistry Agent Connecting Tool-Usage to Science", "year": 2024, "context": ""}, {"arxiv_id": "2304.05376", "title": "ChemCrow: Augmenting large language models with chemistry tools", "year": 2023, "context": ""}, {"arxiv_id": "2501.06590", "title": "ChemAgent: Self-updating Library in Large Language Models Improves Chemical Reasoning", "year": 2025, "context": ""}], "color": "#FF8C94"}, {"id": "LLM-as-a-Judge", "category": "Evaluation", "how": "LLM evaluates agent outputs for quality/correctness", "what": "Scalable evaluation without human annotation", "frequency": 3, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": "2405.20267", "title": "Auto-Arena: Automating LLM Evaluations with Agent Peer Debate and Committee Voting", "year": 2024, "context": ""}, {"arxiv_id": "2502.12468", "title": "MCTS-Judge: Test-Time Scaling in LLM-as-a-Judge for Code Correctness Evaluation", "year": 2025, "context": ""}, {"arxiv_id": "2401.10019", "title": "R-Judge: Benchmarking Safety Risk Awareness for LLM Judges", "year": 2024, "context": ""}], "color": "#45B7D1"}, {"id": "Tree-of-Thought Search", "category": "LLM Behaviour Optimisation", "how": "Branch into multiple reasoning paths -> Evaluate -> Prune bad branches", "what": "Explores reasoning space as a tree with backtracking", "frequency": 2, "years": [2023, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2305.10601", "title": "Tree of thoughts: Deliberate problem solving with large language models", "year": 2023, "context": ""}, {"arxiv_id": "2507.21836", "title": "AutoTIR: Autonomous Tools Integrated Reasoning via Reinforcement Learning", "year": 2025, "context": ""}], "color": "#4ECDC4"}, {"id": "Edit-Based Prompt Search", "category": "Prompt Optimisation", "how": "Iteratively edit prompts based on task performance feedback", "what": "Optimizes prompts via discrete edits without gradient access", "frequency": 2, "years": [2022], "yearRange": "2022-2022", "papers": [{"arxiv_id": "2203.07281", "title": "GrIPS: Gradient-free, Edit-based Instruction Search for Prompting Large Language Models", "year": 2022, "context": ""}, {"arxiv_id": "2211.11890", "title": "TEMPERA: Test-Time Prompting via Reinforcement Learning", "year": 2022, "context": ""}], "color": "#FFEAA7"}, {"id": "Agent Workflow Memory", "category": "Memory Optimization", "how": "Store successful action sequences -> Retrieve for similar tasks", "what": "Remembers proven procedures for task types", "frequency": 2, "years": [2024, 2025], "yearRange": "2024-2025", "papers": [{"arxiv_id": "2409.07429", "title": "Agent Workflow Memory", "year": 2024, "context": ""}, {"arxiv_id": "2502.04306", "title": "ScoreFlow: Mastering LLM Agent Workflows via Score-Based Preference Optimization", "year": 2025, "context": ""}], "color": "#96CEB4"}, {"id": "Compressive Memory", "category": "Memory Optimization", "how": "Compress long context into retrievable gist representations", "what": "Enables long-context understanding without full storage", "frequency": 2, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2402.09727", "title": "A Human-Inspired Reading Agent with Gist Memory of Very Long Contexts", "year": 2024, "context": ""}, {"arxiv_id": "2402.11975", "title": "Compress to Impress: Unleashing the Potential of Compressive Memory in Real-World Long-Term Conversations", "year": 2024, "context": ""}], "color": "#96CEB4"}, {"id": "Tool Creation", "category": "Tool Optimization", "how": "Agent writes code to create new tools when existing ones insufficient", "what": "Expands capability by generating reusable tool functions", "frequency": 2, "years": [2023], "yearRange": "2023-2023", "papers": [{"arxiv_id": "2305.14318", "title": "CREATOR : Tool creation for disentangling abstract and concrete reasoning of large language model", "year": 2023, "context": ""}, {"arxiv_id": "2312.10908", "title": "CLOVA: A Closed-Loop Visual Assistant with Tool Usage and Update", "year": 2023, "context": ""}], "color": "#DDA0DD"}, {"id": "Self-Evolving Biomedical Agents", "category": "Domain: Medical Diagnosis", "how": "Agent autonomously improves medical reasoning through meta-planning", "what": "Self-improving agents for healthcare research", "frequency": 2, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2508.02621", "title": "HealthFlow: A Self-Evolving AI Agent with Meta Planning for Autonomous Healthcare Research", "year": 2025, "context": ""}, {"arxiv_id": "2507.02004", "title": "STELLA: Self-Evolving LLM Agent for Biomedical Research", "year": 2025, "context": ""}], "color": "#FF6B6B"}, {"id": "Drug Discovery Agents", "category": "Domain: Molecular Discovery", "how": "Multi-agent collaboration for drug design and analysis", "what": "Automates drug discovery pipeline stages", "frequency": 2, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2502.13959", "title": "LIDDIA: Language-based Intelligent Drug Discovery Agent", "year": 2025, "context": ""}, {"arxiv_id": "2507.21035", "title": "GenoMAS: A Multi-Agent Framework for Scientific Discovery via Code-Driven Gene Expression Analysis <br>", "year": 2025, "context": ""}], "color": "#FF8C94"}, {"id": "Self-Debug", "category": "Domain: Code Debugging", "how": "Execute code -> Read error messages -> Fix bugs iteratively", "what": "Uses execution feedback to identify and correct code errors", "frequency": 2, "years": [2023, 2025], "yearRange": "2023-2025", "papers": [{"arxiv_id": "2304.05128", "title": "Teaching Large Language Models to Self-Debug", "year": 2023, "context": ""}, {"arxiv_id": "2502.02928", "title": "Large Language Model Guided Self-Debugging Code Generation", "year": 2025, "context": ""}], "color": "#5F9EA0"}, {"id": "Legal Reasoning Agents", "category": "Domain: Legal", "how": "Chain of legal thought with multi-agent consultation", "what": "Structured legal reasoning through agent collaboration", "frequency": 2, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2407.16252", "title": "LawLuo: A Multi-Agent Collaborative Framework for Multi-Round Chinese Legal Consultation", "year": 2024, "context": ""}, {"arxiv_id": null, "title": "AgentCourt: Simulating Court with Adversarial Evolvable Lawyer Agents", "year": 0, "context": ""}], "color": "#E17055"}, {"id": "Supervised Fine-Tuning", "category": "LLM Behaviour Optimisation", "how": "Train model on curated (input, output) pairs to learn desired behavior", "what": "Updates model weights to follow instructions and produce better outputs", "frequency": 1, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2410.12952", "title": "Facilitating Multi-turn Function Calling for LLMs via Compositional Instruction Tuning", "year": 2024, "context": ""}], "color": "#4ECDC4"}, {"id": "Reinforcement Learning from Feedback", "category": "LLM Behaviour Optimisation", "how": "Train reward model on preferences, then optimize policy via RL (PPO/DPO)", "what": "Aligns model outputs with human preferences through reward signal", "frequency": 1, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2401.10020", "title": "Self-Rewarding Language Models", "year": 2024, "context": ""}], "color": "#4ECDC4"}, {"id": "Feedback-Based Refinement", "category": "LLM Behaviour Optimisation", "how": "Generate -> Receive feedback -> Refine until quality threshold met", "what": "LLM critiques its own output and produces improved version", "frequency": 1, "years": [2023], "yearRange": "2023-2023", "papers": [{"arxiv_id": "2303.17651", "title": "Self-Refine: Iterative Refinement with Self-Feedback", "year": 2023, "context": ""}], "color": "#4ECDC4"}, {"id": "Self-Consistency Decoding", "category": "LLM Behaviour Optimisation", "how": "Sample multiple solutions, aggregate via voting or ranking", "what": "Reduces variance by selecting most consistent answer across samples", "frequency": 1, "years": [2022], "yearRange": "2022-2022", "papers": [{"arxiv_id": "2203.11171", "title": "Self-consistency improves chain of thought reasoning in language models", "year": 2022, "context": ""}], "color": "#4ECDC4"}, {"id": "Monte Carlo Tree Search", "category": "LLM Behaviour Optimisation", "how": "Random rollouts -> Backpropagate values -> Guide exploration", "what": "Balances exploration and exploitation in reasoning", "frequency": 1, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2502.12468", "title": "MCTS-Judge: Test-Time Scaling in LLM-as-a-Judge for Code Correctness Evaluation", "year": 2025, "context": ""}], "color": "#4ECDC4"}, {"id": "Automatic MAS Construction", "category": "Multi-Agent Optimisation", "how": "Automatically construct multi-agent systems based on task requirements", "what": "Designs agent teams without manual architecture specification", "frequency": 1, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2408.08435", "title": "Automated Design of Agentic Systems", "year": 2024, "context": ""}], "color": "#98D8C8"}, {"id": "Multi-Agent Debate", "category": "Multi-Agent Optimisation", "how": "Agents argue opposing positions -> Refine through rounds -> Converge on answer", "what": "Adversarial discussion surfaces errors and improves reasoning", "frequency": 1, "years": [2024], "yearRange": "2024-2024", "papers": [{"arxiv_id": "2405.20267", "title": "Auto-Arena: Automating LLM Evaluations with Agent Peer Debate and Committee Voting", "year": 2024, "context": ""}], "color": "#98D8C8"}, {"id": "Fault-Aware Code Editing", "category": "Domain: Code Debugging", "how": "Identify fault locations -> Apply targeted minimal edits", "what": "Locates specific errors and makes minimal corrections", "frequency": 1, "years": [2023], "yearRange": "2023-2023", "papers": [{"arxiv_id": "2305.04087", "title": "Self-Edit: Fault-Aware Code Editor for Code Generation", "year": 2023, "context": ""}], "color": "#5F9EA0"}, {"id": "Financial Decision Agents", "category": "Domain: Finance", "how": "Multi-agent systems with conceptual verbal reinforcement", "what": "Optimizes trading and financial analysis decisions", "frequency": 1, "years": [2025], "yearRange": "2025-2025", "papers": [{"arxiv_id": "2505.15155", "title": "R&D-Agent-Quant: A Multi-Agent Framework for Data-Centric Factors and Model Joint Optimization", "year": 2025, "context": ""}], "color": "#FD79A8"}],
+            links: [{"source": "LLM-as-a-Judge", "target": "Monte Carlo Tree Search", "strength": 0.3333333333333333}, {"source": "LLM-as-a-Judge", "target": "Multi-Agent Debate", "strength": 0.3333333333333333}, {"source": "Workflow Optimization", "target": "Agent Workflow Memory", "strength": 0.25}, {"source": "Workflow Optimization", "target": "Legal Reasoning Agents", "strength": 0.25}, {"source": "Multi-Agent Code Generation", "target": "Legal Reasoning Agents", "strength": 0.25}, {"source": "Symbolic Learning for Agents", "target": "Legal Reasoning Agents", "strength": 0.25}, {"source": "Iterative Code Refinement", "target": "Feedback-Based Refinement", "strength": 0.25}, {"source": "Workflow Optimization", "target": "Multi-Agent Code Generation", "strength": 0.2}, {"source": "Workflow Optimization", "target": "Symbolic Learning for Agents", "strength": 0.2}, {"source": "Multi-Agent Code Generation", "target": "Symbolic Learning for Agents", "strength": 0.2}, {"source": "Iterative Code Refinement", "target": "Legal Reasoning Agents", "strength": 0.2}, {"source": "Scientific Discovery Agents", "target": "Drug Discovery Agents", "strength": 0.2}, {"source": "Bootstrapping from Rationales", "target": "RL for Tool Selection", "strength": 0.2}, {"source": "Evolutionary Prompt Optimization", "target": "Generative Prompt Engineering", "strength": 0.2}, {"source": "Workflow Optimization", "target": "Iterative Code Refinement", "strength": 0.16666666666666666}, {"source": "Multi-Agent Code Generation", "target": "Medical Multi-Agent Systems", "strength": 0.16666666666666666}, {"source": "Multi-Agent Code Generation", "target": "Iterative Code Refinement", "strength": 0.16666666666666666}, {"source": "Symbolic Learning for Agents", "target": "Iterative Code Refinement", "strength": 0.16666666666666666}, {"source": "Tool Instruction Fine-Tuning", "target": "RL for Tool Selection", "strength": 0.14285714285714285}]
+        };
+        const years = [2022, 2023, 2024, 2025];
+        let isPlaying = false;
+        let playInterval = null;
+        let currentYearIdx = -1;
+
+        const svg = d3.select("#graph");
+        const width = svg.node().parentNode.clientWidth;
+        const height = svg.node().parentNode.clientHeight;
+        svg.attr("viewBox", [0, 0, width, height]);
+
+        const g = svg.append("g");
+        const zoom = d3.zoom().scaleExtent([0.2, 5]).on("zoom", e => g.attr("transform", e.transform));
+        svg.call(zoom);
+
+        // Dispersed force simulation
+        const simulation = d3.forceSimulation(data.nodes)
+            .force("link", d3.forceLink(data.links).id(d => d.id).distance(130).strength(0.25))
+            .force("charge", d3.forceManyBody().strength(-400))
+            .force("center", d3.forceCenter(width/2, height/2))
+            .force("collision", d3.forceCollide().radius(d => Math.sqrt(d.frequency)*3 + 30))
+            .force("x", d3.forceX(width/2).strength(0.025))
+            .force("y", d3.forceY(height/2).strength(0.025));
+
+        const link = g.append("g").selectAll("line").data(data.links).join("line")
+            .attr("class", "link").attr("stroke-opacity", d => 0.1 + d.strength*0.2);
+
+        const node = g.append("g").selectAll("g").data(data.nodes).join("g").attr("class", "node")
+            .call(d3.drag()
+                .on("start", (e,d) => { if(!e.active) simulation.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+                .on("drag", (e,d) => { d.fx=e.x; d.fy=e.y; })
+                .on("end", (e,d) => { if(!e.active) simulation.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+        node.append("circle")
+            .attr("r", d => Math.sqrt(d.frequency)*3 + 6)
+            .attr("fill", d => d.color)
+            .attr("stroke", d => d.color);
+
+        node.append("text")
+            .text(d => d.id)
+            .attr("x", d => Math.sqrt(d.frequency)*3 + 10)
+            .attr("y", 3);
+
+        const tooltip = d3.select("#tooltip");
+
+        node.on("mouseover", (e, d) => {
+            tooltip.classed("visible", true)
+                .html(`<h5>${d.id}</h5><div class="cat">${d.category}</div><p class="how">${d.how}</p><p>Papers: ${d.frequency} | Years: ${d.yearRange}</p>`)
+                .style("left", (e.pageX+15)+"px").style("top", (e.pageY-10)+"px");
+            link.classed("highlighted", l => l.source.id===d.id || l.target.id===d.id);
+        }).on("mouseout", () => {
+            tooltip.classed("visible", false);
+            link.classed("highlighted", false);
+        }).on("click", (e, d) => {
+            node.classed("selected", false);
+            d3.select(e.currentTarget).classed("selected", true);
+            showDetail(d);
+        });
+
+        function showDetail(d) {
+            const panel = document.getElementById("detailPanel");
+            const papers = d.papers.map(p => `
+                <div class="paper-item">
+                    <div class="paper-title">${p.title || 'Untitled'}</div>
+                    <div class="paper-year">${p.year||'?'} - arXiv:${p.arxiv_id}</div>
+                </div>`).join('');
+
+            panel.innerHTML = `
+                <div class="method-card">
+                    <div class="method-name">${d.id}</div>
+                    <div class="method-category">${d.category}</div>
+                    <div class="info-box how">
+                        <h4>How It Works</h4>
+                        <p>${d.how}</p>
+                    </div>
+                    <div class="info-box what">
+                        <h4>What It Does</h4>
+                        <p>${d.what}</p>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat-box"><div class="num">${d.frequency}</div><div class="lbl">Papers</div></div>
+                        <div class="stat-box"><div class="num">${d.yearRange}</div><div class="lbl">Years</div></div>
+                    </div>
+                    <div class="papers-title">Papers Using This Method</div>
+                    ${papers}
+                </div>`;
+        }
+
+        simulation.on("tick", () => {
+            link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y).attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
+            node.attr("transform", d=>`translate(${d.x},${d.y})`);
+        });
+
+        function resetZoom() { svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity); }
+
+        // Year animation
+        const playBtn = document.getElementById("playBtn");
+        const yearDisplay = document.getElementById("yearDisplay");
+
+        function highlightYear(year) {
+            if (year === null) {
+                yearDisplay.textContent = "ALL";
+                node.classed("dimmed", false).classed("highlighted", false);
+                link.classed("dimmed", false);
+            } else {
+                yearDisplay.textContent = year;
+                node.classed("dimmed", d => !d.years.includes(year));
+                node.classed("highlighted", d => d.years.includes(year));
+                link.classed("dimmed", l => {
+                    const s = data.nodes.find(n => n.id === (l.source.id || l.source));
+                    const t = data.nodes.find(n => n.id === (l.target.id || l.target));
+                    return !s.years.includes(year) || !t.years.includes(year);
+                });
+            }
+        }
+
+        playBtn.addEventListener("click", () => {
+            if (isPlaying) {
+                clearInterval(playInterval);
+                isPlaying = false;
+                playBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                highlightYear(null);
+                currentYearIdx = -1;
+            } else {
+                isPlaying = true;
+                playBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>';
+                currentYearIdx = 0;
+                highlightYear(years[currentYearIdx]);
+                playInterval = setInterval(() => {
+                    currentYearIdx++;
+                    if (currentYearIdx >= years.length) {
+                        clearInterval(playInterval);
+                        isPlaying = false;
+                        playBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+                        setTimeout(() => highlightYear(null), 1500);
+                        currentYearIdx = -1;
+                    } else {
+                        highlightYear(years[currentYearIdx]);
+                    }
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
