@@ -218,3 +218,9 @@ Progress:  papers read (%)
 1 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
 2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+
+
+2026-01-26
+1 | Full-page layouts with multiple carousels in video streaming platforms | 0
+2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+3 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
