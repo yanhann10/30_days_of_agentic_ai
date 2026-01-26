@@ -1,41 +1,7 @@
 # 30 Days of Agentic AI
 
-Knowledge synthesis meets hands-on implementation. This repository documents an exploration of self-improving AI agents through both reading notes and projects.
+Resources on self-improving AI agents, contain surveys and hands-on projects.
 
----
-
-## Projects
-
-<table>
-<tr>
-<td width="55%">
-
-### Knowledge Graph
-
-**Evolution methods** extracted from 200+ papers, visualized as an interactive force-directed graph.
-
-[Launch Interactive Graph](https://selfevolvekg.vercel.app/)
-
-<img src="08_self_evolving_agents_knowledge_graph/reference/v3.png" width="100%">
-
-</td>
-<td width="45%">
-
-**Multi-Agent Debate System** — Agents debate evaluation strategies, synthesizing insights no single perspective would reach alone.
-
----
-
-**Personalized Paper Recommender** — Daily curated picks from your reading list. Learns from email feedback to refine recommendations.
-
----
-
-**Agentic Evaluation Synthesis** — Deep-dive covering LLM-as-judge, reward modeling, multi-turn credit assignment, and production patterns.
-
-</td>
-</tr>
-</table>
-
----
 
 ## Directory
 
