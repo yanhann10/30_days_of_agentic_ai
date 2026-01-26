@@ -6,3 +6,16 @@
 
 # DeepAgents skills
 .deepagents/skills/collect_feedback/
+plan.md
+
+# Environment and feedback
+.env
+feedback.md
+**/feedback.md
+**/.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
