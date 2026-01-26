@@ -1,17 +1,51 @@
-## Overview
+# 30 Days of Agentic AI
 
-This repository documents an exploration of agent research on self-improvement, world modeling, safety-aware design, and metacognitive capabilities, along with personal exploratory project.
+Knowledge synthesis meets hands-on implementation. This repository documents an exploration of self-improving AI agents through both reading notes and projects.
 
-## Research Foundation
+---
 
-**[Self-Evolving Agents](01_self_evolving_agents_primer.md)**
-Survey of meta-agent programming (ADAS), automated research (AI-Scientist-v2), and evolutionary multi-agent optimization (AgentBreeder). Key insight: multi-objective optimization with safety constraints outperforms pure capability maximization.
+## Projects
 
-**[World Models](02_making_sense_of_world_model.md)**
-Analysis of latent world models (DreamerV3/V4) and neurosymbolic augmentation (WALL-E 2.0). Focuses on RSSM architectures, posterior/prior state separation, and symbolic knowledge extraction for causal reasoning.
+<table>
+<tr>
+<td width="55%">
 
-**[Risk Mitigation](04_risk_mitigation.md)**
-Examination of safety failure modes: in-context scheming, prompt injection, reward misalignment, and context-free advice. Mitigation strategies include injection isolation (DRIFT), architectural constraints (LawZero), and MCTS-guided context acquisition.
+### Knowledge Graph
 
-**[Cognition for Agents](05_cognition_for_agents.md)**
-Application of psychological frameworks to agent design. Theory of Mind for social reasoning (MetaMind), metacognition for introspection and strategy adaptation, and the distinction between reflection (backward) vs metacognition (forward).
+**Evolution methods** extracted from 200+ papers, visualized as an interactive force-directed graph.
+
+[Launch Interactive Graph](https://selfevolvekg.vercel.app/)
+
+<img src="08_self_evolving_agents_knowledge_graph/reference/v3.png" width="100%">
+
+</td>
+<td width="45%">
+
+**Multi-Agent Debate System** — Agents debate evaluation strategies, synthesizing insights no single perspective would reach alone.
+
+---
+
+**Personalized Paper Recommender** — Daily curated picks from your reading list. Learns from email feedback to refine recommendations.
+
+---
+
+**Agentic Evaluation Synthesis** — Deep-dive covering LLM-as-judge, reward modeling, multi-turn credit assignment, and production patterns.
+
+</td>
+</tr>
+</table>
+
+---
+
+## Directory
+
+| #   | Topic                                                            | Type      | Description                                                                                     |
+| --- | ---------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------- |
+| 01  | [Self-Evolving Agents Primer](01_self_evolving_agents_primer.md) | Synthesis | Meta-agent programming, ADAS, evolutionary multi-agent optimization                             |
+| 02  | [World Models](02_making_sense_of_world_model.md)                | Synthesis | Latent world models (DreamerV3/V4), state space model architectures, neurosymbolic augmentation |
+| 03  | [Mini Info Diet](03_mini_info_diet/)                             | Project   | Personalized paper recommendation pipeline with preference feedback                             |
+| 04  | [Risk Mitigation](04_risk_mitigation.md)                         | Synthesis | Safety failure modes, prompt injection isolation, architectural constraints                     |
+| 05  | [Cognition for Agents](05_cognition_for_agents.md)               | Synthesis | Theory of Mind, metacognition, reflection vs forward-looking introspection                      |
+| 06  | [Agentic Evaluation](06_agentic_eval/)                           | Synthesis | LLM-as-judge, reward modeling, multi-turn credit assignment, production patterns                |
+| 07  | [Multi-Agent Debates](07_multi_agent_debates/)                   | Project   | Debate framework for research validation with Academia/Industry agent perspectives              |
+| 08  | [Evolution Methods](08_self_evolving_agents_knowledge_graph/)    | Project   | Paper parsing, concept extraction, D3.js force-directed visualization                           |
