@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Extract evolution methods by METHOD TYPE (not domain).
-Categories: RL-Based, Feedback-Based, Search-Based, Evolutionary Prompt, etc.
+Categories: RL-Based, Feedback-Based, Search-Based, Graph-Based, etc.
 Specific methods as subnodes of broader categories.
 """
 
@@ -28,13 +28,13 @@ FINEGRAINED_METHODS = {
         "how": "Constrained policy updates based on reward signal",
         "what": "Stable RL training that prevents catastrophic policy changes"
     },
-    "DPO Training": {
+    "Direct Preference Optimization": {
         "keywords": ["dpo", "direct preference optimization", "preference learning"],
         "category": "RL-Based",
         "how": "Directly optimize on preference pairs without reward model",
         "what": "Simpler alternative to RLHF that skips reward modeling"
     },
-    "RLHF": {
+    "Human Feedback RL": {
         "keywords": ["rlhf", "reinforcement learning from human feedback", "human feedback"],
         "category": "RL-Based",
         "how": "Train reward model on preferences, then optimize policy",
@@ -57,6 +57,12 @@ FINEGRAINED_METHODS = {
         "category": "RL-Based",
         "how": "Agent plays both sides, learns from game outcomes",
         "what": "Competitive self-interaction drives improvement"
+    },
+    "In-Context Learning": {
+        "keywords": ["in-context learning", "icl", "few-shot", "in context"],
+        "category": "RL-Based",
+        "how": "Learn from examples in prompt without weight updates",
+        "what": "Adapts to new tasks via demonstration examples"
     },
 
     # -------------------------------------------------------------------------
@@ -108,7 +114,7 @@ FINEGRAINED_METHODS = {
         "how": "Branch into paths -> Evaluate -> Prune bad branches",
         "what": "Explores reasoning as tree with backtracking"
     },
-    "MCTS Reasoning": {
+    "Monte Carlo Search": {
         "keywords": ["mcts", "monte carlo tree search", "monte carlo"],
         "category": "Search-Based",
         "how": "Random rollouts -> Backpropagate values -> Guide search",
@@ -138,41 +144,81 @@ FINEGRAINED_METHODS = {
         "how": "Reasoning as graph with arbitrary connections",
         "what": "More flexible than tree structure"
     },
+    "Chain-of-Thought": {
+        "keywords": ["chain of thought", "chain-of-thought", "cot", "step-by-step reasoning"],
+        "category": "Search-Based",
+        "how": "Decompose problem into sequential reasoning steps",
+        "what": "Explicit reasoning chain improves complex task performance"
+    },
+
+    # -------------------------------------------------------------------------
+    # GRAPH-BASED METHODS
+    # -------------------------------------------------------------------------
+    "Graph Reader": {
+        "keywords": ["graphreader", "graph reader", "graph-based agent", "graph based agent"],
+        "category": "Graph-Based",
+        "how": "Build a graph from long context and reason over it",
+        "what": "Improves long-context understanding via structured graph memory"
+    },
+    "Graph Planner": {
+        "keywords": ["graph planner", "graph planning", "planning graph"],
+        "category": "Graph-Based",
+        "how": "Plan actions on a graph of states and transitions",
+        "what": "Improves multi-step planning with explicit structure"
+    },
+    "Graph Agents": {
+        "keywords": ["graph agent", "graph-based agents", "graph based agents"],
+        "category": "Graph-Based",
+        "how": "Agents coordinate through a shared graph representation",
+        "what": "Enables structured collaboration and routing"
+    },
+    "Knowledge Graph Reasoning": {
+        "keywords": ["knowledge graph", "kg reasoning", "graph reasoning"],
+        "category": "Graph-Based",
+        "how": "Use explicit entity-relation graphs for inference",
+        "what": "Enables multi-hop reasoning and structured retrieval"
+    },
+    "Graph-Structured Memory": {
+        "keywords": ["graph memory", "memory graph", "graph-structured memory"],
+        "category": "Graph-Based",
+        "how": "Store memories as a graph of entities and links",
+        "what": "Supports relational recall and compositional updates"
+    },
 
     # -------------------------------------------------------------------------
     # EVOLUTIONARY PROMPT OPTIMIZATION
     # -------------------------------------------------------------------------
-    "Promptbreeder": {
+    "Prompt Breeder": {
         "keywords": ["promptbreeder", "prompt breeder"],
         "category": "Evolutionary Prompt",
         "how": "Self-referential mutation of prompts and mutation operators",
         "what": "Meta-evolution of both prompts and evolution strategies"
     },
-    "EvoPrompt": {
+    "Evo Prompt": {
         "keywords": ["evoprompt", "evo prompt", "evolutionary prompt"],
         "category": "Evolutionary Prompt",
         "how": "Population of prompts -> Mutation/Crossover -> Selection",
         "what": "Genetic algorithm operators for prompt optimization"
     },
-    "GPS Prompt": {
+    "Genetic Prompt Search": {
         "keywords": ["gps", "genetic prompt search"],
         "category": "Evolutionary Prompt",
         "how": "Genetic search over discrete prompt space",
         "what": "Few-shot learning via evolved prompts"
     },
-    "OPRO": {
+    "Prompt Optimization via LLM": {
         "keywords": ["opro", "optimization by prompting", "llm as optimizer"],
         "category": "Evolutionary Prompt",
         "how": "LLM generates and evaluates prompt candidates",
         "what": "Uses LLM itself to optimize prompts"
     },
-    "APE": {
+    "Auto Prompt Engineer": {
         "keywords": ["ape", "automatic prompt engineer"],
         "category": "Evolutionary Prompt",
         "how": "Generate prompt candidates -> Evaluate -> Select best",
         "what": "Automated prompt engineering without humans"
     },
-    "GrIPS": {
+    "Edit-Based Prompt Search": {
         "keywords": ["grips", "gradient-free", "edit-based instruction"],
         "category": "Evolutionary Prompt",
         "how": "Iterative edits based on task feedback",
@@ -182,7 +228,7 @@ FINEGRAINED_METHODS = {
     # -------------------------------------------------------------------------
     # GRADIENT-BASED PROMPT (Text Gradients)
     # -------------------------------------------------------------------------
-    "TextGrad": {
+    "Text Gradients": {
         "keywords": ["textgrad", "text gradient", "textual gradient"],
         "category": "Text Gradient",
         "how": "Natural language feedback as gradient signal",
@@ -194,7 +240,7 @@ FINEGRAINED_METHODS = {
         "how": "Propagate semantic feedback through computation graph",
         "what": "Gradient descent analog for language systems"
     },
-    "GRAD-SUM": {
+    "Gradient Summaries": {
         "keywords": ["grad-sum", "gradient summarization"],
         "category": "Text Gradient",
         "how": "Summarize gradients from multiple examples",
@@ -204,11 +250,23 @@ FINEGRAINED_METHODS = {
     # -------------------------------------------------------------------------
     # BOOTSTRAPPING / SELF-TRAINING
     # -------------------------------------------------------------------------
-    "STaR": {
+    "Self-Taught Reasoner": {
         "keywords": ["star", "self-taught reasoner", "bootstrapping reasoning"],
         "category": "Bootstrapping",
         "how": "Generate rationales -> Filter correct -> Fine-tune on them",
         "what": "Uses own correct solutions as training data"
+    },
+    "Curriculum Learning": {
+        "keywords": ["curriculum learning", "curriculum", "progressive training"],
+        "category": "Bootstrapping",
+        "how": "Order training from easy to hard tasks progressively",
+        "what": "Structured learning progression improves generalization"
+    },
+    "Knowledge Distillation": {
+        "keywords": ["distillation", "knowledge distillation", "teacher-student"],
+        "category": "Bootstrapping",
+        "how": "Train smaller model to mimic larger teacher model",
+        "what": "Transfers capabilities to more efficient models"
     },
     "Self-Instruct": {
         "keywords": ["self-instruct", "self instruct", "instruction generation"],
@@ -222,7 +280,7 @@ FINEGRAINED_METHODS = {
         "how": "LLM generates examples -> Filter -> Train on them",
         "what": "Creates training corpus without human annotation"
     },
-    "ReST": {
+    "Reward-Filtered Self-Training": {
         "keywords": ["rest", "reinforced self-training"],
         "category": "Bootstrapping",
         "how": "Generate -> Filter by reward -> Fine-tune iteratively",
@@ -244,7 +302,7 @@ FINEGRAINED_METHODS = {
         "how": "Fine-tune on tool-use demonstrations",
         "what": "Learns tool selection and invocation"
     },
-    "ToolRL": {
+    "Tool-Use RL": {
         "keywords": ["toolrl", "tool reinforcement", "retool"],
         "category": "Tool Evolution",
         "how": "Reward for successful tool use -> Learn when/how",
@@ -266,8 +324,20 @@ FINEGRAINED_METHODS = {
         "how": "Store successful action sequences -> Retrieve for similar tasks",
         "what": "Remembers proven procedures"
     },
+    "Memory Bank": {
+        "keywords": ["memory bank", "memorybank"],
+        "category": "Memory Evolution",
+        "how": "Store and retrieve long-term experiences",
+        "what": "Persistent memory for personalized agents"
+    },
+    "Vector Memory": {
+        "keywords": ["vector memory", "vector database", "embedding store"],
+        "category": "Memory Evolution",
+        "how": "Store memories as vector embeddings for similarity search",
+        "what": "Enables semantic recall at scale"
+    },
     "Episodic Memory": {
-        "keywords": ["episodic memory", "memory bank", "memorybank"],
+        "keywords": ["episodic memory"],
         "category": "Memory Evolution",
         "how": "Store episodes with outcomes -> Query and apply lessons",
         "what": "Long-term storage of experiences"
@@ -278,11 +348,41 @@ FINEGRAINED_METHODS = {
         "how": "Extract skills from successes -> Store -> Compose for new tasks",
         "what": "Accumulates modular capabilities"
     },
+    "Gist Memory": {
+        "keywords": ["gist memory", "gist"],
+        "category": "Memory Evolution",
+        "how": "Store compressed summaries of long context",
+        "what": "Keeps key facts while shrinking memory footprint"
+    },
     "Compressive Memory": {
-        "keywords": ["compressive memory", "gist memory", "compress"],
+        "keywords": ["compressive memory", "compress"],
         "category": "Memory Evolution",
         "how": "Compress long context into retrievable representations",
         "what": "Enables long-context understanding"
+    },
+    "Retrieval Memory": {
+        "keywords": ["retrieval memory", "retrieval-augmented", "rag"],
+        "category": "Memory Evolution",
+        "how": "Retrieve relevant memories on demand for each task",
+        "what": "Improves accuracy with context grounding"
+    },
+    "Long-Term Memory": {
+        "keywords": ["long-term memory", "long term memory", "ltm"],
+        "category": "Memory Evolution",
+        "how": "Persist knowledge across sessions and tasks",
+        "what": "Supports personalization and continuity"
+    },
+    "Working Memory": {
+        "keywords": ["working memory", "short-term memory", "short term memory"],
+        "category": "Memory Evolution",
+        "how": "Keep task-relevant facts in a small active buffer",
+        "what": "Improves focus and reduces context overload"
+    },
+    "Agent Memory": {
+        "keywords": ["agent memory", "memory module"],
+        "category": "Memory Evolution",
+        "how": "Dedicated memory module for agentic workflows",
+        "what": "Improves consistency across long-running tasks"
     },
 
     # -------------------------------------------------------------------------
@@ -306,7 +406,7 @@ FINEGRAINED_METHODS = {
         "how": "Evolve agent communication patterns and routing",
         "what": "Optimizes how agents coordinate"
     },
-    "MAS Architecture Search": {
+    "Multi-Agent Architecture Search": {
         "keywords": ["adas", "architecture search", "mas design"],
         "category": "Multi-Agent",
         "how": "Automatically design multi-agent system topology",
@@ -404,9 +504,17 @@ def build_connections(methods: list[FineGrainedMethod]) -> list[dict]:
     """Build connections based on co-occurrence."""
     connections = []
     for i, m1 in enumerate(methods):
-        m1_papers = {p["arxiv_id"] for p in m1.papers}
+        m1_papers = {
+            (p.get("arxiv_id") or p.get("title", "")).strip().lower()
+            for p in m1.papers
+            if (p.get("arxiv_id") or p.get("title"))
+        }
         for m2 in methods[i+1:]:
-            m2_papers = {p["arxiv_id"] for p in m2.papers}
+            m2_papers = {
+                (p.get("arxiv_id") or p.get("title", "")).strip().lower()
+                for p in m2.papers
+                if (p.get("arxiv_id") or p.get("title"))
+            }
             common = m1_papers & m2_papers
             if common:
                 union = m1_papers | m2_papers

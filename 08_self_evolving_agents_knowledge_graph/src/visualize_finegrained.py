@@ -23,10 +23,11 @@ CATEGORY_COLORS = {
     "Tool Evolution": "#E91E63",      # Pink
     "Memory Evolution": "#00BCD4",    # Cyan
     "Multi-Agent": "#FF9800",         # Amber
+    "Graph-Based": "#8E44AD",         # Deep Purple
 }
 
 
-def create_html(methods: list, connections: list) -> str:
+def create_html(methods: list, connections: list, nx_links: list) -> str:
     all_years = set()
     for m in methods:
         all_years.update(m.get("years", []))
@@ -48,9 +49,16 @@ def create_html(methods: list, connections: list) -> str:
         })
 
     links = [
-        {'source': c['method1'], 'target': c['method2'], 'strength': c['strength']}
+        {
+            'source': c['method1'],
+            'target': c['method2'],
+            'strength': c['strength'],
+            'type': c.get('type', 'co')
+        }
         for c in connections[:200]
     ]
+    if nx_links:
+        links.extend(nx_links)
 
     html = f'''<!DOCTYPE html>
 <html lang="en">
@@ -94,6 +102,11 @@ def create_html(methods: list, connections: list) -> str:
             min-width: 70px;
             text-align: center;
             font-family: 'SF Mono', Monaco, monospace;
+        }}
+        .year-display.hint {{
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.4);
         }}
         .play-btn {{
             width: 40px;
@@ -351,6 +364,14 @@ def create_html(methods: list, connections: list) -> str:
             stroke: rgba(255,255,255,0.18);
             stroke-dasharray: 2 3;
         }}
+        .link.inter-link {{
+            stroke: rgba(46, 204, 113, 0.5);
+            stroke-width: 2px;
+        }}
+        .link.cat-bridge {{
+            stroke: rgba(52, 152, 219, 0.35);
+            stroke-width: 2.5px;
+        }}
         .link.dimmed {{ opacity: 0.03; }}
         .link.highlighted {{
             stroke: rgba(52,152,219,0.4);
@@ -369,7 +390,7 @@ def create_html(methods: list, connections: list) -> str:
             <button class="play-btn" id="playBtn" title="Animate by year">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
-            <div class="year-display" id="yearDisplay">ALL</div>
+            <div class="year-display hint" id="yearDisplay">play by year</div>
         </div>
     </div>
     <div class="container">
@@ -423,9 +444,11 @@ def create_html(methods: list, connections: list) -> str:
         let currentYearIdx = -1;
         let activeCategory = null;
 
-        // Build legend
+        // Build legend (sorted alphabetically)
         const legendEl = document.getElementById("legend");
-        Object.entries(categoryColors).forEach(([cat, color]) => {{
+        const sortedCategories = Object.keys(categoryColors).sort((a, b) => a.localeCompare(b));
+        sortedCategories.forEach(cat => {{
+            const color = categoryColors[cat];
             const count = data.nodes.filter(n => n.category === cat).length;
             if (count > 0) {{
                 const item = document.createElement("div");
@@ -488,7 +511,12 @@ def create_html(methods: list, connections: list) -> str:
             .force("categoryY", d3.forceY(d => (categoryCenters[d.category]?.y ?? height/2)).strength(0.18));
 
         const link = g.append("g").selectAll("line").data(allLinks).join("line")
-            .attr("class", d => d.type === "category" ? "link category-link" : "link")
+            .attr("class", d => {{
+                if (d.type === "category") return "link category-link";
+                if (d.type === "inter") return "link inter-link";
+                if (d.type === "cat-bridge") return "link cat-bridge";
+                return "link";
+            }})
             .attr("stroke-opacity", d => 0.12 + (d.strength ?? 0.4)*0.3);
 
         const node = g.append("g").selectAll("g").data(allNodes).join("g")
@@ -570,11 +598,13 @@ def create_html(methods: list, connections: list) -> str:
 
         function highlightYear(year) {{
             if (year === null) {{
-                yearDisplay.textContent = "ALL";
+                yearDisplay.textContent = "play by year";
+                yearDisplay.classList.add("hint");
                 node.classed("dimmed", false).classed("highlighted", false);
                 link.classed("dimmed", false);
             }} else {{
                 yearDisplay.textContent = year;
+                yearDisplay.classList.remove("hint");
                 node.classed("dimmed", d => !d.isCategory && !d.years.includes(year));
                 node.classed("highlighted", d => !d.isCategory && d.years.includes(year));
                 link.classed("dimmed", l => {{
@@ -636,10 +666,18 @@ def main():
     with open(connections_path) as f:
         connections = json.load(f)
 
+    nx_links_path = PROCESSED_DIR / "networkx_links.json"
+    nx_links = []
+    if nx_links_path.exists():
+        with open(nx_links_path) as f:
+            nx_links = json.load(f)
+
     print(f"Loaded {len(methods)} methods, {len(connections)} connections")
+    if nx_links:
+        print(f"Loaded {len(nx_links)} networkx inter-category links")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    html = create_html(methods, connections)
+    html = create_html(methods, connections, nx_links)
 
     output_path = OUTPUT_DIR / "index.html"
     with open(output_path, 'w') as f:
