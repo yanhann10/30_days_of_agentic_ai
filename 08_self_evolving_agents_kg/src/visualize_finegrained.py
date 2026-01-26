@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
-Visualize FINE-GRAINED evolution methods.
-- Categories from GitHub repo section subheaders
-- Domain-specific methods with actual technique subnodes
-- Dispersed layout, year-based animation
+Visualize evolution methods by METHOD TYPE.
+Categories: RL-Based, Feedback-Based, Search-Based, Evolutionary Prompt, etc.
+V3-style aesthetic: coherent clusters, sized nodes, proper legend.
 """
 
 import json
@@ -13,25 +12,17 @@ BASE_DIR = Path(__file__).parent.parent
 PROCESSED_DIR = BASE_DIR / "data" / "processed"
 OUTPUT_DIR = BASE_DIR / "viz"
 
-# Colors based on GitHub repo section structure
+# Colors by evolution method type
 CATEGORY_COLORS = {
-    # 1. Single-Agent Optimisation
-    "LLM Behaviour Optimisation": "#4ECDC4",
-    "Prompt Optimisation": "#FFEAA7",
-    "Memory Optimization": "#96CEB4",
-    "Tool Optimization": "#DDA0DD",
-    # 2. Multi-Agent Optimisation
-    "Multi-Agent Optimisation": "#98D8C8",
-    # 3. Domain-Specific
-    "Domain: Medical Diagnosis": "#FF6B6B",
-    "Domain: Molecular Discovery": "#FF8C94",
-    "Domain: Code Refinement": "#74B9FF",
-    "Domain: Code Debugging": "#5F9EA0",
-    "Domain: Scientific Research": "#A29BFE",
-    "Domain: Finance": "#FD79A8",
-    "Domain: Legal": "#E17055",
-    # 4. Evaluation
-    "Evaluation": "#45B7D1",
+    "RL-Based": "#E74C3C",           # Red
+    "Feedback-Based": "#3498DB",      # Blue
+    "Search-Based": "#9B59B6",        # Purple
+    "Evolutionary Prompt": "#2ECC71", # Green
+    "Text Gradient": "#1ABC9C",       # Teal
+    "Bootstrapping": "#F39C12",       # Orange
+    "Tool Evolution": "#E91E63",      # Pink
+    "Memory Evolution": "#00BCD4",    # Cyan
+    "Multi-Agent": "#FF9800",         # Amber
 }
 
 
@@ -52,77 +43,65 @@ def create_html(methods: list, connections: list) -> str:
             'frequency': m['frequency'],
             'years': m.get('years', []),
             'yearRange': year_range,
-            'papers': m.get('papers', [])[:8],
+            'papers': m.get('papers', [])[:10],
             'color': CATEGORY_COLORS.get(m['category'], '#95A5A6')
         })
 
     links = [
         {'source': c['method1'], 'target': c['method2'], 'strength': c['strength']}
-        for c in connections[:150]
+        for c in connections[:200]
     ]
-
-    # Group categories for legend
-    legend_groups = {
-        "Single-Agent": ["LLM Behaviour Optimisation", "Prompt Optimisation", "Memory Optimization", "Tool Optimization"],
-        "Multi-Agent": ["Multi-Agent Optimisation"],
-        "Domain-Specific": ["Domain: Medical Diagnosis", "Domain: Molecular Discovery", "Domain: Code Refinement",
-                           "Domain: Code Debugging", "Domain: Scientific Research", "Domain: Finance", "Domain: Legal"],
-        "Evaluation": ["Evaluation"]
-    }
 
     html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self-Evolving Agents - Evolution Methods Graph</title>
+    <title>Self-Evolving Agents - Evolution Methods</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             min-height: 100vh;
             color: #fff;
         }}
         .header {{
-            padding: 16px 28px;
-            background: rgba(255,255,255,0.02);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 16px 24px;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }}
         .header h1 {{
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: rgba(255,255,255,0.9);
-        }}
-        .header h1 span {{
-            background: linear-gradient(135deg, #4ECDC4, #44A08D);
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #3498DB, #2ECC71);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }}
         .header-controls {{
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }}
         .year-display {{
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #4ECDC4;
-            min-width: 80px;
+            color: #3498DB;
+            min-width: 70px;
             text-align: center;
             font-family: 'SF Mono', Monaco, monospace;
         }}
         .play-btn {{
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            background: rgba(78,205,196,0.15);
-            border: 2px solid rgba(78,205,196,0.4);
-            color: #4ECDC4;
+            background: rgba(52,152,219,0.15);
+            border: 2px solid rgba(52,152,219,0.4);
+            color: #3498DB;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -130,22 +109,20 @@ def create_html(methods: list, connections: list) -> str:
             transition: all 0.2s;
         }}
         .play-btn:hover {{
-            background: rgba(78,205,196,0.25);
-            border-color: #4ECDC4;
+            background: rgba(52,152,219,0.25);
+            border-color: #3498DB;
         }}
-        .play-btn svg {{
-            width: 20px;
-            height: 20px;
-        }}
+        .play-btn svg {{ width: 18px; height: 18px; }}
         .stats {{
             display: flex;
-            gap: 20px;
-            font-size: 0.75rem;
+            gap: 16px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
         }}
-        .stat-value {{ color: #4ECDC4; font-weight: 600; }}
+        .stat-value {{ color: #3498DB; font-weight: 600; }}
         .container {{
             display: flex;
-            height: calc(100vh - 70px);
+            height: calc(100vh - 65px);
         }}
         .graph-container {{
             flex: 1;
@@ -153,51 +130,54 @@ def create_html(methods: list, connections: list) -> str:
         }}
         #graph {{ width: 100%; height: 100%; }}
         .sidebar {{
-            width: 380px;
-            background: rgba(0,0,0,0.25);
-            border-left: 1px solid rgba(255,255,255,0.06);
+            width: 340px;
+            background: rgba(0,0,0,0.3);
+            border-left: 1px solid rgba(255,255,255,0.08);
             display: flex;
             flex-direction: column;
         }}
         .legend-section {{
-            padding: 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            max-height: 200px;
-            overflow-y: auto;
+            padding: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }}
-        .legend-group {{
-            margin-bottom: 12px;
-        }}
-        .legend-group-title {{
-            font-size: 0.6rem;
+        .legend-title {{
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: rgba(255,255,255,0.35);
-            margin-bottom: 6px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 10px;
         }}
         .legend {{
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 6px;
         }}
         .legend-item {{
             display: flex;
             align-items: center;
-            font-size: 0.65rem;
-            background: rgba(255,255,255,0.04);
-            padding: 4px 8px;
-            border-radius: 12px;
+            font-size: 0.7rem;
+            background: rgba(255,255,255,0.05);
+            padding: 5px 10px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }}
+        .legend-item:hover {{
+            background: rgba(255,255,255,0.1);
+        }}
+        .legend-item.active {{
+            background: rgba(255,255,255,0.15);
         }}
         .legend-color {{
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            margin-right: 5px;
+            margin-right: 6px;
         }}
         .detail-panel {{
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 16px;
         }}
         .detail-empty {{
             height: 100%;
@@ -205,168 +185,173 @@ def create_html(methods: list, connections: list) -> str:
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.3);
             text-align: center;
-            padding: 40px;
+            padding: 30px;
         }}
-        .method-card {{ animation: fadeIn 0.25s ease; }}
+        .detail-empty p {{ font-size: 0.85rem; }}
+        .method-card {{ animation: fadeIn 0.2s ease; }}
         @keyframes fadeIn {{
-            from {{ opacity: 0; transform: translateY(8px); }}
+            from {{ opacity: 0; transform: translateY(6px); }}
             to {{ opacity: 1; transform: translateY(0); }}
         }}
         .method-name {{
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
-            color: #4ECDC4;
+            color: #3498DB;
             margin-bottom: 4px;
         }}
         .method-category {{
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.4);
+            display: inline-block;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.9);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 16px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-bottom: 14px;
         }}
         .info-box {{
-            background: rgba(255,255,255,0.03);
-            border-radius: 10px;
-            padding: 14px;
-            margin-bottom: 12px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
         }}
         .info-box h4 {{
             font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: rgba(255,255,255,0.35);
-            margin-bottom: 6px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 5px;
         }}
         .info-box p {{
             font-size: 0.85rem;
-            line-height: 1.5;
+            line-height: 1.45;
             color: rgba(255,255,255,0.85);
         }}
-        .info-box.how p {{ color: #96CEB4; }}
-        .info-box.what p {{ color: #45B7D1; }}
+        .info-box.how {{ border-left: 3px solid #2ECC71; }}
+        .info-box.what {{ border-left: 3px solid #3498DB; }}
         .stats-row {{
             display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin-bottom: 14px;
         }}
         .stat-box {{
             flex: 1;
-            background: rgba(255,255,255,0.03);
-            border-radius: 10px;
-            padding: 12px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 8px;
+            padding: 10px;
             text-align: center;
         }}
         .stat-box .num {{
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #4ECDC4;
+            color: #3498DB;
         }}
         .stat-box .lbl {{
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             color: rgba(255,255,255,0.4);
             text-transform: uppercase;
         }}
         .papers-title {{
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: rgba(255,255,255,0.35);
-            margin: 16px 0 10px;
+            color: rgba(255,255,255,0.4);
+            margin: 14px 0 8px;
         }}
         .paper-item {{
-            background: rgba(255,255,255,0.02);
-            border-left: 2px solid #4ECDC4;
-            padding: 10px 12px;
-            margin-bottom: 8px;
+            background: rgba(255,255,255,0.03);
+            border-left: 2px solid #3498DB;
+            padding: 8px 10px;
+            margin-bottom: 6px;
             border-radius: 0 6px 6px 0;
         }}
         .paper-title {{
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: rgba(255,255,255,0.85);
-            line-height: 1.4;
+            line-height: 1.35;
         }}
         .paper-year {{
-            font-size: 0.65rem;
-            color: #4ECDC4;
-            margin-top: 4px;
+            font-size: 0.62rem;
+            color: #3498DB;
+            margin-top: 3px;
         }}
         .tooltip {{
             position: absolute;
-            background: rgba(0,0,0,0.95);
-            border: 1px solid rgba(78,205,196,0.3);
-            border-radius: 10px;
-            padding: 14px;
-            font-size: 0.8rem;
+            background: rgba(10,10,20,0.95);
+            border: 1px solid rgba(52,152,219,0.4);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 0.78rem;
             pointer-events: none;
             opacity: 0;
-            max-width: 300px;
+            max-width: 280px;
             z-index: 1000;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.5);
         }}
         .tooltip.visible {{ opacity: 1; }}
-        .tooltip h5 {{ color: #4ECDC4; margin-bottom: 6px; font-size: 0.9rem; }}
-        .tooltip .cat {{ color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-bottom: 6px; }}
-        .tooltip p {{ color: rgba(255,255,255,0.7); margin-bottom: 4px; font-size: 0.75rem; }}
-        .tooltip .how {{ color: #96CEB4; font-style: italic; }}
+        .tooltip h5 {{ color: #3498DB; margin-bottom: 4px; font-size: 0.88rem; }}
+        .tooltip .cat {{ color: rgba(255,255,255,0.5); font-size: 0.65rem; margin-bottom: 5px; }}
+        .tooltip .how {{ color: #2ECC71; font-style: italic; font-size: 0.72rem; }}
+        .tooltip .freq {{ color: rgba(255,255,255,0.6); font-size: 0.68rem; margin-top: 4px; }}
         .controls {{
             position: absolute;
-            bottom: 16px;
-            left: 16px;
+            bottom: 14px;
+            left: 14px;
         }}
         .controls button {{
-            padding: 8px 14px;
-            background: rgba(78,205,196,0.1);
-            border: 1px solid rgba(78,205,196,0.3);
-            border-radius: 6px;
-            color: #4ECDC4;
+            padding: 7px 12px;
+            background: rgba(52,152,219,0.12);
+            border: 1px solid rgba(52,152,219,0.3);
+            border-radius: 5px;
+            color: #3498DB;
             cursor: pointer;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
         }}
         .node {{ cursor: pointer; }}
         .node circle {{
-            stroke-width: 1.5px;
-            transition: all 0.3s;
+            stroke-width: 2px;
+            transition: all 0.25s;
         }}
-        .node.dimmed circle {{ opacity: 0.15; }}
-        .node.dimmed text {{ opacity: 0.15; }}
+        .node.dimmed circle {{ opacity: 0.12; }}
+        .node.dimmed text {{ opacity: 0.12; }}
         .node:hover circle, .node.selected circle {{
             stroke: #fff;
-            stroke-width: 2.5px;
-            filter: drop-shadow(0 0 10px rgba(78,205,196,0.5));
+            stroke-width: 3px;
+            filter: drop-shadow(0 0 12px rgba(52,152,219,0.6));
         }}
         .node.highlighted circle {{
             stroke: #fff;
             stroke-width: 3px;
-            filter: drop-shadow(0 0 15px rgba(78,205,196,0.7));
+            filter: drop-shadow(0 0 16px rgba(52,152,219,0.8));
         }}
         .node text {{
-            font-size: 8px;
-            fill: rgba(255,255,255,0.75);
+            font-size: 9px;
+            fill: rgba(255,255,255,0.8);
             pointer-events: none;
+            font-weight: 500;
         }}
         .link {{
-            stroke: rgba(255,255,255,0.06);
+            stroke: rgba(255,255,255,0.08);
             stroke-width: 1px;
         }}
-        .link.dimmed {{ opacity: 0.05; }}
+        .link.dimmed {{ opacity: 0.03; }}
         .link.highlighted {{
-            stroke: rgba(78,205,196,0.35);
-            stroke-width: 1.5px;
+            stroke: rgba(52,152,219,0.4);
+            stroke-width: 2px;
         }}
     </style>
 </head>
 <body>
     <div class="header">
-        <h1><span>Evolution Methods</span> for Self-Evolving Agents</h1>
+        <h1>Self-Evolving Agent Methods</h1>
         <div class="header-controls">
             <div class="stats">
                 <span><span class="stat-value">{len(nodes)}</span> methods</span>
                 <span><span class="stat-value">{len(links)}</span> connections</span>
             </div>
-            <button class="play-btn" id="playBtn" title="Play timeline">
+            <button class="play-btn" id="playBtn" title="Animate by year">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </button>
             <div class="year-display" id="yearDisplay">ALL</div>
@@ -382,43 +367,12 @@ def create_html(methods: list, connections: list) -> str:
         </div>
         <div class="sidebar">
             <div class="legend-section">
-                <div class="legend-group">
-                    <div class="legend-group-title">Single-Agent Optimisation</div>
-                    <div class="legend">
-                        <div class="legend-item"><div class="legend-color" style="background:#4ECDC4"></div>LLM Behaviour</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#FFEAA7"></div>Prompt</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#96CEB4"></div>Memory</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#DDA0DD"></div>Tool</div>
-                    </div>
-                </div>
-                <div class="legend-group">
-                    <div class="legend-group-title">Multi-Agent</div>
-                    <div class="legend">
-                        <div class="legend-item"><div class="legend-color" style="background:#98D8C8"></div>MAS Optimisation</div>
-                    </div>
-                </div>
-                <div class="legend-group">
-                    <div class="legend-group-title">Domain-Specific</div>
-                    <div class="legend">
-                        <div class="legend-item"><div class="legend-color" style="background:#FF6B6B"></div>Medical</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#FF8C94"></div>Molecular</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#74B9FF"></div>Code Refine</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#5F9EA0"></div>Debugging</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#A29BFE"></div>Science</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#FD79A8"></div>Finance</div>
-                        <div class="legend-item"><div class="legend-color" style="background:#E17055"></div>Legal</div>
-                    </div>
-                </div>
-                <div class="legend-group">
-                    <div class="legend-group-title">Evaluation</div>
-                    <div class="legend">
-                        <div class="legend-item"><div class="legend-color" style="background:#45B7D1"></div>Benchmarks</div>
-                    </div>
-                </div>
+                <div class="legend-title">Evolution Method Types</div>
+                <div class="legend" id="legend"></div>
             </div>
             <div class="detail-panel" id="detailPanel">
                 <div class="detail-empty">
-                    <p>Click a method to see<br>HOW it enables evolution</p>
+                    <p>Click a method node to see<br>how it enables agent evolution</p>
                 </div>
             </div>
         </div>
@@ -429,9 +383,44 @@ def create_html(methods: list, connections: list) -> str:
             links: {json.dumps(links)}
         }};
         const years = {json.dumps(all_years)};
+        const categoryColors = {json.dumps(CATEGORY_COLORS)};
+
         let isPlaying = false;
         let playInterval = null;
         let currentYearIdx = -1;
+        let activeCategory = null;
+
+        // Build legend
+        const legendEl = document.getElementById("legend");
+        Object.entries(categoryColors).forEach(([cat, color]) => {{
+            const count = data.nodes.filter(n => n.category === cat).length;
+            if (count > 0) {{
+                const item = document.createElement("div");
+                item.className = "legend-item";
+                item.innerHTML = `<div class="legend-color" style="background:${{color}}"></div>${{cat}} (${{count}})`;
+                item.onclick = () => filterByCategory(cat, item);
+                legendEl.appendChild(item);
+            }}
+        }});
+
+        function filterByCategory(cat, el) {{
+            if (activeCategory === cat) {{
+                activeCategory = null;
+                document.querySelectorAll('.legend-item').forEach(e => e.classList.remove('active'));
+                node.classed("dimmed", false);
+                link.classed("dimmed", false);
+            }} else {{
+                activeCategory = cat;
+                document.querySelectorAll('.legend-item').forEach(e => e.classList.remove('active'));
+                el.classList.add('active');
+                node.classed("dimmed", d => d.category !== cat);
+                link.classed("dimmed", l => {{
+                    const s = data.nodes.find(n => n.id === (l.source.id || l.source));
+                    const t = data.nodes.find(n => n.id === (l.target.id || l.target));
+                    return s.category !== cat && t.category !== cat;
+                }});
+            }}
+        }}
 
         const svg = d3.select("#graph");
         const width = svg.node().parentNode.clientWidth;
@@ -439,20 +428,20 @@ def create_html(methods: list, connections: list) -> str:
         svg.attr("viewBox", [0, 0, width, height]);
 
         const g = svg.append("g");
-        const zoom = d3.zoom().scaleExtent([0.2, 5]).on("zoom", e => g.attr("transform", e.transform));
+        const zoom = d3.zoom().scaleExtent([0.3, 4]).on("zoom", e => g.attr("transform", e.transform));
         svg.call(zoom);
 
-        // Dispersed force simulation
+        // V3-style force simulation: coherent clusters
         const simulation = d3.forceSimulation(data.nodes)
-            .force("link", d3.forceLink(data.links).id(d => d.id).distance(130).strength(0.25))
-            .force("charge", d3.forceManyBody().strength(-400))
+            .force("link", d3.forceLink(data.links).id(d => d.id).distance(80).strength(0.5))
+            .force("charge", d3.forceManyBody().strength(-200))
             .force("center", d3.forceCenter(width/2, height/2))
-            .force("collision", d3.forceCollide().radius(d => Math.sqrt(d.frequency)*3 + 30))
-            .force("x", d3.forceX(width/2).strength(0.025))
-            .force("y", d3.forceY(height/2).strength(0.025));
+            .force("collision", d3.forceCollide().radius(d => Math.sqrt(d.frequency)*4 + 15))
+            .force("x", d3.forceX(width/2).strength(0.05))
+            .force("y", d3.forceY(height/2).strength(0.05));
 
         const link = g.append("g").selectAll("line").data(data.links).join("line")
-            .attr("class", "link").attr("stroke-opacity", d => 0.1 + d.strength*0.2);
+            .attr("class", "link").attr("stroke-opacity", d => 0.15 + d.strength*0.3);
 
         const node = g.append("g").selectAll("g").data(data.nodes).join("g").attr("class", "node")
             .call(d3.drag()
@@ -460,22 +449,23 @@ def create_html(methods: list, connections: list) -> str:
                 .on("drag", (e,d) => {{ d.fx=e.x; d.fy=e.y; }})
                 .on("end", (e,d) => {{ if(!e.active) simulation.alphaTarget(0); d.fx=null; d.fy=null; }}));
 
+        // Sized nodes based on frequency
         node.append("circle")
-            .attr("r", d => Math.sqrt(d.frequency)*3 + 6)
+            .attr("r", d => Math.sqrt(d.frequency)*4 + 5)
             .attr("fill", d => d.color)
             .attr("stroke", d => d.color);
 
         node.append("text")
             .text(d => d.id)
-            .attr("x", d => Math.sqrt(d.frequency)*3 + 10)
+            .attr("x", d => Math.sqrt(d.frequency)*4 + 8)
             .attr("y", 3);
 
         const tooltip = d3.select("#tooltip");
 
         node.on("mouseover", (e, d) => {{
             tooltip.classed("visible", true)
-                .html(`<h5>${{d.id}}</h5><div class="cat">${{d.category}}</div><p class="how">${{d.how}}</p><p>Papers: ${{d.frequency}} | Years: ${{d.yearRange}}</p>`)
-                .style("left", (e.pageX+15)+"px").style("top", (e.pageY-10)+"px");
+                .html(`<h5>${{d.id}}</h5><div class="cat">${{d.category}}</div><div class="how">${{d.how}}</div><div class="freq">${{d.frequency}} papers | ${{d.yearRange}}</div>`)
+                .style("left", (e.pageX+12)+"px").style("top", (e.pageY-8)+"px");
             link.classed("highlighted", l => l.source.id===d.id || l.target.id===d.id);
         }}).on("mouseout", () => {{
             tooltip.classed("visible", false);
@@ -497,7 +487,7 @@ def create_html(methods: list, connections: list) -> str:
             panel.innerHTML = `
                 <div class="method-card">
                     <div class="method-name">${{d.id}}</div>
-                    <div class="method-category">${{d.category}}</div>
+                    <div class="method-category" style="background:${{d.color}}">${{d.category}}</div>
                     <div class="info-box how">
                         <h4>How It Works</h4>
                         <p>${{d.how}}</p>
@@ -520,7 +510,7 @@ def create_html(methods: list, connections: list) -> str:
             node.attr("transform", d=>`translate(${{d.x}},${{d.y}})`);
         }});
 
-        function resetZoom() {{ svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity); }}
+        function resetZoom() {{ svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity); }}
 
         // Year animation
         const playBtn = document.getElementById("playBtn");
@@ -561,12 +551,12 @@ def create_html(methods: list, connections: list) -> str:
                         clearInterval(playInterval);
                         isPlaying = false;
                         playBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-                        setTimeout(() => highlightYear(null), 1500);
+                        setTimeout(() => highlightYear(null), 1200);
                         currentYearIdx = -1;
                     }} else {{
                         highlightYear(years[currentYearIdx]);
                     }}
-                }}, 2000);
+                }}, 1800);
             }}
         }});
     </script>
@@ -577,8 +567,7 @@ def create_html(methods: list, connections: list) -> str:
 
 def main():
     print("=" * 60)
-    print("Generating fine-grained visualization")
-    print("(Categories from GitHub repo section subheaders)")
+    print("Generating visualization (V3-style)")
     print("=" * 60)
 
     methods_path = PROCESSED_DIR / "finegrained_methods.json"

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Extract FINE-GRAINED evolution methods with specific details.
-Categories based on GitHub repo section subheaders.
-Domain-Specific methods include actual technique subnodes.
+Extract evolution methods by METHOD TYPE (not domain).
+Categories: RL-Based, Feedback-Based, Search-Based, Evolutionary Prompt, etc.
+Specific methods as subnodes of broader categories.
 """
 
 import json
@@ -15,281 +15,308 @@ BASE_DIR = Path(__file__).parent.parent
 PROCESSED_DIR = BASE_DIR / "data" / "processed"
 
 # =============================================================================
-# Categories from GitHub repo section subheaders
+# Categories by EVOLUTION METHOD TYPE
 # =============================================================================
 
 FINEGRAINED_METHODS = {
     # -------------------------------------------------------------------------
-    # 1.1 LLM BEHAVIOUR OPTIMISATION
+    # RL-BASED EVOLUTION
     # -------------------------------------------------------------------------
-    # 1.1.1 Training-Based
-    "Supervised Fine-Tuning": {
-        "keywords": ["supervised fine-tuning", "sft", "fine-tune on", "instruction tuning"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Train model on curated (input, output) pairs to learn desired behavior",
-        "what": "Updates model weights to follow instructions and produce better outputs"
+    "PPO Fine-Tuning": {
+        "keywords": ["ppo", "proximal policy optimization", "policy gradient"],
+        "category": "RL-Based",
+        "how": "Constrained policy updates based on reward signal",
+        "what": "Stable RL training that prevents catastrophic policy changes"
     },
-    "Reinforcement Learning from Feedback": {
-        "keywords": ["rlhf", "reinforcement learning from human feedback", "ppo", "dpo", "self-rewarding"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Train reward model on preferences, then optimize policy via RL (PPO/DPO)",
-        "what": "Aligns model outputs with human preferences through reward signal"
+    "DPO Training": {
+        "keywords": ["dpo", "direct preference optimization", "preference learning"],
+        "category": "RL-Based",
+        "how": "Directly optimize on preference pairs without reward model",
+        "what": "Simpler alternative to RLHF that skips reward modeling"
     },
-    "Self-Play Learning": {
-        "keywords": ["self-play", "self play", "playing against itself", "competitive self"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Agent plays both sides of interaction, learns from game outcomes",
-        "what": "Improves through competitive self-interaction without external data"
+    "RLHF": {
+        "keywords": ["rlhf", "reinforcement learning from human feedback", "human feedback"],
+        "category": "RL-Based",
+        "how": "Train reward model on preferences, then optimize policy",
+        "what": "Aligns model with human preferences through feedback"
     },
-    "Bootstrapping from Rationales": {
-        "keywords": ["star", "bootstrapping reasoning", "bootstrap from rationale", "self-taught reasoner"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Generate rationales -> Filter correct ones -> Fine-tune on them",
-        "what": "STaR: Uses correctly-solved examples as training data for next iteration"
+    "Self-Rewarding": {
+        "keywords": ["self-rewarding", "self reward", "self-reward"],
+        "category": "RL-Based",
+        "how": "Model generates its own reward signal for training",
+        "what": "Eliminates need for external reward model"
     },
-    # 1.1.2 Test-Time
-    "Feedback-Based Refinement": {
-        "keywords": ["feedback-based", "self-refine", "iterative refinement", "critique"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Generate -> Receive feedback -> Refine until quality threshold met",
-        "what": "LLM critiques its own output and produces improved version"
+    "Process Reward Model": {
+        "keywords": ["process reward", "prm", "step reward", "math-shepherd"],
+        "category": "RL-Based",
+        "how": "Reward each reasoning step, not just final answer",
+        "what": "Dense feedback for better credit assignment"
     },
-    "Tree-of-Thought Search": {
-        "keywords": ["tree of thought", "tot", "thought tree", "deliberate problem"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Branch into multiple reasoning paths -> Evaluate -> Prune bad branches",
-        "what": "Explores reasoning space as a tree with backtracking"
+    "Self-Play RL": {
+        "keywords": ["self-play", "self play", "playing against itself"],
+        "category": "RL-Based",
+        "how": "Agent plays both sides, learns from game outcomes",
+        "what": "Competitive self-interaction drives improvement"
     },
-    "Self-Consistency Decoding": {
-        "keywords": ["self-consistency", "self consistency", "multiple reasoning paths", "majority voting"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Sample multiple solutions, aggregate via voting or ranking",
-        "what": "Reduces variance by selecting most consistent answer across samples"
+
+    # -------------------------------------------------------------------------
+    # FEEDBACK-BASED EVOLUTION
+    # -------------------------------------------------------------------------
+    "Self-Refine": {
+        "keywords": ["self-refine", "self refine", "iterative refinement"],
+        "category": "Feedback-Based",
+        "how": "Generate -> Critique -> Refine loop until quality met",
+        "what": "LLM improves its own output through self-critique"
     },
-    "Monte Carlo Tree Search": {
-        "keywords": ["mcts", "monte carlo tree", "monte carlo search"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Random rollouts -> Backpropagate values -> Guide exploration",
+    "Self-Correction": {
+        "keywords": ["self-correction", "self correct", "self-correcting"],
+        "category": "Feedback-Based",
+        "how": "Internal verifier detects errors, triggers fixes",
+        "what": "Agent recognizes and fixes its own mistakes"
+    },
+    "Self-Debug": {
+        "keywords": ["self-debug", "self debug", "debugging itself"],
+        "category": "Feedback-Based",
+        "how": "Execute code -> Read errors -> Fix bugs iteratively",
+        "what": "Uses execution feedback to correct code"
+    },
+    "Self-Edit": {
+        "keywords": ["self-edit", "self edit", "fault-aware"],
+        "category": "Feedback-Based",
+        "how": "Identify fault locations -> Apply targeted edits",
+        "what": "Locates errors and makes minimal corrections"
+    },
+    "Reflexion": {
+        "keywords": ["reflexion", "self-reflection", "reflect on failure"],
+        "category": "Feedback-Based",
+        "how": "Analyze failures -> Store lessons -> Apply next time",
+        "what": "Explicit reflection extracts insights from failures"
+    },
+    "Critique-Revise": {
+        "keywords": ["critique", "constitutional", "revise"],
+        "category": "Feedback-Based",
+        "how": "Generate critique of output -> Revise based on critique",
+        "what": "Structured feedback loop for quality improvement"
+    },
+
+    # -------------------------------------------------------------------------
+    # SEARCH-BASED EVOLUTION
+    # -------------------------------------------------------------------------
+    "Tree-of-Thought": {
+        "keywords": ["tree of thought", "tot", "thought tree"],
+        "category": "Search-Based",
+        "how": "Branch into paths -> Evaluate -> Prune bad branches",
+        "what": "Explores reasoning as tree with backtracking"
+    },
+    "MCTS Reasoning": {
+        "keywords": ["mcts", "monte carlo tree search", "monte carlo"],
+        "category": "Search-Based",
+        "how": "Random rollouts -> Backpropagate values -> Guide search",
         "what": "Balances exploration and exploitation in reasoning"
     },
-    "Process Reward Models": {
-        "keywords": ["process reward", "step-by-step reward", "prm", "math-shepherd"],
-        "category": "LLM Behaviour Optimisation",
-        "how": "Reward each reasoning step, not just final answer",
-        "what": "Provides dense feedback for better credit assignment"
+    "Beam Search": {
+        "keywords": ["beam search", "beam decoding"],
+        "category": "Search-Based",
+        "how": "Maintain top-k candidates at each step -> Expand best",
+        "what": "Higher quality than greedy decoding"
+    },
+    "Best-of-N Sampling": {
+        "keywords": ["best-of-n", "best of n", "sample and select"],
+        "category": "Search-Based",
+        "how": "Generate N candidates -> Score all -> Return best",
+        "what": "Simple quality improvement via overgeneration"
+    },
+    "Self-Consistency": {
+        "keywords": ["self-consistency", "self consistency", "majority voting"],
+        "category": "Search-Based",
+        "how": "Sample multiple solutions -> Aggregate via voting",
+        "what": "Reduces variance by selecting most consistent answer"
+    },
+    "Graph-of-Thought": {
+        "keywords": ["graph of thought", "got", "graph reasoning"],
+        "category": "Search-Based",
+        "how": "Reasoning as graph with arbitrary connections",
+        "what": "More flexible than tree structure"
     },
 
     # -------------------------------------------------------------------------
-    # 1.2 PROMPT OPTIMISATION
+    # EVOLUTIONARY PROMPT OPTIMIZATION
     # -------------------------------------------------------------------------
-    "Edit-Based Prompt Search": {
-        "keywords": ["gps prompt", "grips", "edit-based instruction", "tempera"],
-        "category": "Prompt Optimisation",
-        "how": "Iteratively edit prompts based on task performance feedback",
-        "what": "Optimizes prompts via discrete edits without gradient access"
+    "Promptbreeder": {
+        "keywords": ["promptbreeder", "prompt breeder"],
+        "category": "Evolutionary Prompt",
+        "how": "Self-referential mutation of prompts and mutation operators",
+        "what": "Meta-evolution of both prompts and evolution strategies"
     },
-    "Evolutionary Prompt Optimization": {
-        "keywords": ["evoprompt", "promptbreeder", "genetic prompt", "evolutionary prompt"],
-        "category": "Prompt Optimisation",
-        "how": "Population of prompts -> Mutation/Crossover -> Selection by fitness",
-        "what": "Evolves prompts using genetic algorithm operators"
+    "EvoPrompt": {
+        "keywords": ["evoprompt", "evo prompt", "evolutionary prompt"],
+        "category": "Evolutionary Prompt",
+        "how": "Population of prompts -> Mutation/Crossover -> Selection",
+        "what": "Genetic algorithm operators for prompt optimization"
     },
-    "Generative Prompt Engineering": {
-        "keywords": ["automatic prompt engineer", "ape", "promptagent", "opro", "large language models as optimizers"],
-        "category": "Prompt Optimisation",
-        "how": "LLM proposes prompt candidates, evaluates on examples, selects best",
-        "what": "Removes human from prompt engineering loop"
+    "GPS Prompt": {
+        "keywords": ["gps", "genetic prompt search"],
+        "category": "Evolutionary Prompt",
+        "how": "Genetic search over discrete prompt space",
+        "what": "Few-shot learning via evolved prompts"
     },
-    "Text Gradient Optimization": {
-        "keywords": ["textgrad", "text gradient", "semantic backprop", "grad-sum"],
-        "category": "Prompt Optimisation",
-        "how": "Natural language feedback serves as gradient signal for updates",
-        "what": "Propagates textual critiques backward to improve prompts"
+    "OPRO": {
+        "keywords": ["opro", "optimization by prompting", "llm as optimizer"],
+        "category": "Evolutionary Prompt",
+        "how": "LLM generates and evaluates prompt candidates",
+        "what": "Uses LLM itself to optimize prompts"
+    },
+    "APE": {
+        "keywords": ["ape", "automatic prompt engineer"],
+        "category": "Evolutionary Prompt",
+        "how": "Generate prompt candidates -> Evaluate -> Select best",
+        "what": "Automated prompt engineering without humans"
+    },
+    "GrIPS": {
+        "keywords": ["grips", "gradient-free", "edit-based instruction"],
+        "category": "Evolutionary Prompt",
+        "how": "Iterative edits based on task feedback",
+        "what": "Gradient-free prompt optimization via edits"
     },
 
     # -------------------------------------------------------------------------
-    # 1.3 MEMORY OPTIMIZATION
+    # GRADIENT-BASED PROMPT (Text Gradients)
     # -------------------------------------------------------------------------
-    "Agent Workflow Memory": {
-        "keywords": ["workflow memory", "agent workflow", "action sequence memory"],
-        "category": "Memory Optimization",
+    "TextGrad": {
+        "keywords": ["textgrad", "text gradient", "textual gradient"],
+        "category": "Text Gradient",
+        "how": "Natural language feedback as gradient signal",
+        "what": "Backpropagates textual critiques to improve prompts"
+    },
+    "Semantic Backprop": {
+        "keywords": ["semantic backprop", "semantic backpropagation"],
+        "category": "Text Gradient",
+        "how": "Propagate semantic feedback through computation graph",
+        "what": "Gradient descent analog for language systems"
+    },
+    "GRAD-SUM": {
+        "keywords": ["grad-sum", "gradient summarization"],
+        "category": "Text Gradient",
+        "how": "Summarize gradients from multiple examples",
+        "what": "Efficient prompt optimization via gradient aggregation"
+    },
+
+    # -------------------------------------------------------------------------
+    # BOOTSTRAPPING / SELF-TRAINING
+    # -------------------------------------------------------------------------
+    "STaR": {
+        "keywords": ["star", "self-taught reasoner", "bootstrapping reasoning"],
+        "category": "Bootstrapping",
+        "how": "Generate rationales -> Filter correct -> Fine-tune on them",
+        "what": "Uses own correct solutions as training data"
+    },
+    "Self-Instruct": {
+        "keywords": ["self-instruct", "self instruct", "instruction generation"],
+        "category": "Bootstrapping",
+        "how": "Bootstrap from seeds -> Generate instructions -> Train",
+        "what": "Creates instruction data from minimal examples"
+    },
+    "Synthetic Data Gen": {
+        "keywords": ["synthetic data", "self-generated data"],
+        "category": "Bootstrapping",
+        "how": "LLM generates examples -> Filter -> Train on them",
+        "what": "Creates training corpus without human annotation"
+    },
+    "ReST": {
+        "keywords": ["rest", "reinforced self-training"],
+        "category": "Bootstrapping",
+        "how": "Generate -> Filter by reward -> Fine-tune iteratively",
+        "what": "Combines self-training with reward filtering"
+    },
+
+    # -------------------------------------------------------------------------
+    # TOOL EVOLUTION
+    # -------------------------------------------------------------------------
+    "Tool Creation": {
+        "keywords": ["tool creation", "create tool", "creator"],
+        "category": "Tool Evolution",
+        "how": "Agent writes code to create new tools",
+        "what": "Expands capability by generating tool functions"
+    },
+    "Tool Learning": {
+        "keywords": ["tool learning", "gpt4tools", "toolllm"],
+        "category": "Tool Evolution",
+        "how": "Fine-tune on tool-use demonstrations",
+        "what": "Learns tool selection and invocation"
+    },
+    "ToolRL": {
+        "keywords": ["toolrl", "tool reinforcement", "retool"],
+        "category": "Tool Evolution",
+        "how": "Reward for successful tool use -> Learn when/how",
+        "what": "RL-based tool selection optimization"
+    },
+    "Tool Discovery": {
+        "keywords": ["tool discovery", "toolchain", "tool-planner"],
+        "category": "Tool Evolution",
+        "how": "Search available tools -> Plan sequence -> Execute",
+        "what": "Dynamically finds and chains tools"
+    },
+
+    # -------------------------------------------------------------------------
+    # MEMORY EVOLUTION
+    # -------------------------------------------------------------------------
+    "Workflow Memory": {
+        "keywords": ["workflow memory", "agent workflow", "awm"],
+        "category": "Memory Evolution",
         "how": "Store successful action sequences -> Retrieve for similar tasks",
-        "what": "Remembers proven procedures for task types"
+        "what": "Remembers proven procedures"
     },
-    "Long-Term Memory Systems": {
-        "keywords": ["memorybank", "long-term memory", "episodic memory", "memory bank"],
-        "category": "Memory Optimization",
-        "how": "Store task episodes with outcomes -> Query relevant episodes -> Apply lessons",
-        "what": "Persistent storage of experiences for future reference"
-    },
-    "Compressive Memory": {
-        "keywords": ["compress to impress", "compressive memory", "gist memory"],
-        "category": "Memory Optimization",
-        "how": "Compress long context into retrievable gist representations",
-        "what": "Enables long-context understanding without full storage"
+    "Episodic Memory": {
+        "keywords": ["episodic memory", "memory bank", "memorybank"],
+        "category": "Memory Evolution",
+        "how": "Store episodes with outcomes -> Query and apply lessons",
+        "what": "Long-term storage of experiences"
     },
     "Skill Library": {
-        "keywords": ["skill library", "skill repository", "learned skills"],
-        "category": "Memory Optimization",
-        "how": "Extract reusable skills from successes -> Store in library -> Compose for new tasks",
-        "what": "Accumulates modular capabilities over time"
+        "keywords": ["skill library", "skill repository", "voyager"],
+        "category": "Memory Evolution",
+        "how": "Extract skills from successes -> Store -> Compose for new tasks",
+        "what": "Accumulates modular capabilities"
+    },
+    "Compressive Memory": {
+        "keywords": ["compressive memory", "gist memory", "compress"],
+        "category": "Memory Evolution",
+        "how": "Compress long context into retrievable representations",
+        "what": "Enables long-context understanding"
     },
 
     # -------------------------------------------------------------------------
-    # 1.4 TOOL OPTIMIZATION
+    # MULTI-AGENT EVOLUTION
     # -------------------------------------------------------------------------
-    # Training-Based Tool
-    "Tool Instruction Fine-Tuning": {
-        "keywords": ["gpt4tools", "toolllm", "tool learning", "toolbench"],
-        "category": "Tool Optimization",
-        "how": "Fine-tune on tool-use demonstrations -> Generalize to new tools",
-        "what": "Learns tool selection and invocation from examples"
-    },
-    "RL for Tool Selection": {
-        "keywords": ["toolrl", "retool", "tool reinforcement", "tool-star"],
-        "category": "Tool Optimization",
-        "how": "Reward signal for successful tool use -> Policy learns when/how to use tools",
-        "what": "Optimizes tool selection through trial and error"
-    },
-    # Inference-Time Tool
-    "Tool Discovery and Retrieval": {
-        "keywords": ["toolchain", "tool-planner", "mcp-zero", "tool discovery"],
-        "category": "Tool Optimization",
-        "how": "Search available tools -> Plan sequence -> Execute and verify",
-        "what": "Dynamically finds and chains tools for complex tasks"
-    },
-    # Tool Creation
-    "Tool Creation": {
-        "keywords": ["creator", "tool creation", "create tool", "generate tool", "clova"],
-        "category": "Tool Optimization",
-        "how": "Agent writes code to create new tools when existing ones insufficient",
-        "what": "Expands capability by generating reusable tool functions"
-    },
-
-    # -------------------------------------------------------------------------
-    # 2. MULTI-AGENT OPTIMISATION
-    # -------------------------------------------------------------------------
-    "Automatic MAS Construction": {
-        "keywords": ["metaagent", "adas", "automated design", "automatic construction"],
-        "category": "Multi-Agent Optimisation",
-        "how": "Automatically construct multi-agent systems based on task requirements",
-        "what": "Designs agent teams without manual architecture specification"
-    },
-    "Workflow Optimization": {
-        "keywords": ["aflow", "workflowllm", "metagpt", "autogen", "scoreflow"],
-        "category": "Multi-Agent Optimisation",
-        "how": "Search/evolve agent communication patterns and task routing",
-        "what": "Optimizes how agents coordinate and share information"
-    },
     "Multi-Agent Debate": {
         "keywords": ["debate", "multi-agent debate", "agents debate"],
-        "category": "Multi-Agent Optimisation",
-        "how": "Agents argue opposing positions -> Refine through rounds -> Converge on answer",
-        "what": "Adversarial discussion surfaces errors and improves reasoning"
+        "category": "Multi-Agent",
+        "how": "Agents argue positions -> Refine -> Converge",
+        "what": "Adversarial discussion improves reasoning"
     },
-    "Symbolic Learning for Agents": {
-        "keywords": ["symbolic learning", "self-evolving agents", "agentverse"],
-        "category": "Multi-Agent Optimisation",
-        "how": "Agents learn symbolic rules from interactions, update behavior",
-        "what": "Enables agents to evolve beyond training distribution"
+    "Agent Collaboration": {
+        "keywords": ["collaboration", "collaborative agents", "agentverse"],
+        "category": "Multi-Agent",
+        "how": "Specialized agents handle subtasks -> Combine outputs",
+        "what": "Division of labor for complex tasks"
     },
-
-    # -------------------------------------------------------------------------
-    # 3. DOMAIN-SPECIFIC OPTIMISATION
-    # -------------------------------------------------------------------------
-    # 3.1 Biomedicine - Medical Diagnosis
-    "Medical Multi-Agent Systems": {
-        "keywords": ["mdagents", "medagentsim", "mdteamgpt", "mmedagent"],
-        "category": "Domain: Medical Diagnosis",
-        "how": "Multiple specialized medical agents collaborate on diagnosis",
-        "what": "Adaptive agent teams for complex medical decision-making"
+    "Workflow Optimization": {
+        "keywords": ["aflow", "metagpt", "autogen", "workflow"],
+        "category": "Multi-Agent",
+        "how": "Evolve agent communication patterns and routing",
+        "what": "Optimizes how agents coordinate"
     },
-    "Self-Evolving Biomedical Agents": {
-        "keywords": ["stella", "healthflow", "medagent-pro"],
-        "category": "Domain: Medical Diagnosis",
-        "how": "Agent autonomously improves medical reasoning through meta-planning",
-        "what": "Self-improving agents for healthcare research"
+    "MAS Architecture Search": {
+        "keywords": ["adas", "architecture search", "mas design"],
+        "category": "Multi-Agent",
+        "how": "Automatically design multi-agent system topology",
+        "what": "Learns optimal agent configurations"
     },
-    # 3.1 Biomedicine - Molecular Discovery
-    "Chemistry Tool Agents": {
-        "keywords": ["chemcrow", "cactus", "chemagent"],
-        "category": "Domain: Molecular Discovery",
-        "how": "Augment LLM with chemistry-specific tools for molecule manipulation",
-        "what": "Enables molecular reasoning through specialized tool use"
-    },
-    "Drug Discovery Agents": {
-        "keywords": ["drugagent", "liddia", "genomas"],
-        "category": "Domain: Molecular Discovery",
-        "how": "Multi-agent collaboration for drug design and analysis",
-        "what": "Automates drug discovery pipeline stages"
-    },
-    # 3.2 Programming - Code Refinement
-    "Iterative Code Refinement": {
-        "keywords": ["self-refine", "agentcoder", "codecor", "code review"],
-        "category": "Domain: Code Refinement",
-        "how": "Generate code -> Test -> Refine based on results",
-        "what": "Iterative improvement of code through self-feedback"
-    },
-    "Multi-Agent Code Generation": {
-        "keywords": ["openhands", "self-evolving multi-agent", "alphaevolve"],
-        "category": "Domain: Code Refinement",
-        "how": "Specialized agents for writing, reviewing, testing code",
-        "what": "Division of labor for complex software development"
-    },
-    # 3.2 Programming - Code Debugging
-    "Self-Debug": {
-        "keywords": ["self-debug", "self debug", "teaching llm to self-debug"],
-        "category": "Domain: Code Debugging",
-        "how": "Execute code -> Read error messages -> Fix bugs iteratively",
-        "what": "Uses execution feedback to identify and correct code errors"
-    },
-    "Fault-Aware Code Editing": {
-        "keywords": ["self-edit", "fault-aware", "rgd debugger"],
-        "category": "Domain: Code Debugging",
-        "how": "Identify fault locations -> Apply targeted minimal edits",
-        "what": "Locates specific errors and makes minimal corrections"
-    },
-    # 3.3 Scientific Research
-    "Scientific Discovery Agents": {
-        "keywords": ["piflow", "earthlink", "scientific discovery", "research agent"],
-        "category": "Domain: Scientific Research",
-        "how": "Multi-agent collaboration guided by scientific principles",
-        "what": "Automates hypothesis generation and experimental design"
-    },
-    # 3.4 Finance/Legal
-    "Financial Decision Agents": {
-        "keywords": ["finrobot", "fincon", "r&d-agent-quant"],
-        "category": "Domain: Finance",
-        "how": "Multi-agent systems with conceptual verbal reinforcement",
-        "what": "Optimizes trading and financial analysis decisions"
-    },
-    "Legal Reasoning Agents": {
-        "keywords": ["lawluo", "legalgpt", "agentcourt"],
-        "category": "Domain: Legal",
-        "how": "Chain of legal thought with multi-agent consultation",
-        "what": "Structured legal reasoning through agent collaboration"
-    },
-
-    # -------------------------------------------------------------------------
-    # 4. EVALUATION METHODS
-    # -------------------------------------------------------------------------
-    "Benchmark-Based Evaluation": {
-        "keywords": ["swe-bench", "agentbench", "webarena", "osworld"],
-        "category": "Evaluation",
-        "how": "Standardized benchmarks measure agent capabilities",
-        "what": "Quantitative assessment of agent performance on real tasks"
-    },
-    "LLM-as-a-Judge": {
-        "keywords": ["llm-as-a-judge", "llm judge", "auto-arena"],
-        "category": "Evaluation",
-        "how": "LLM evaluates agent outputs for quality/correctness",
-        "what": "Scalable evaluation without human annotation"
-    },
-    "Agent Safety Benchmarks": {
-        "keywords": ["agentharm", "redcode", "mobilesafetybench", "safelawbench"],
-        "category": "Evaluation",
-        "how": "Test agents for harmful behaviors and safety violations",
-        "what": "Measures alignment and robustness of self-evolving agents"
+    "Symbolic Learning": {
+        "keywords": ["symbolic learning", "symbolic rules"],
+        "category": "Multi-Agent",
+        "how": "Agents learn symbolic rules from interactions",
+        "what": "Enables evolution beyond training distribution"
     },
 }
 
@@ -318,9 +345,7 @@ def extract_year(arxiv_id: str) -> int:
 
 def extract_context(text: str, keywords: list) -> str:
     """Extract a sentence showing how the method is used."""
-    text_lower = text.lower()
     sentences = re.split(r'[.!?]+', text)
-
     for kw in keywords:
         for sent in sentences:
             if kw.lower() in sent.lower() and len(sent) > 40:
@@ -330,24 +355,22 @@ def extract_context(text: str, keywords: list) -> str:
 
 def extract_methods(papers: list) -> list[FineGrainedMethod]:
     """Extract fine-grained methods from papers."""
-
     method_data = {name: {"papers": [], "years": []} for name in FINEGRAINED_METHODS}
 
     for paper in papers:
         arxiv_id = paper.get("arxiv_id", "")
         title = paper.get("title", "").lower()
-        text = (paper.get("parsed_text", "") or paper.get("abstract", "")).lower()
+        text = (paper.get("parsed_text", "") or paper.get("abstract", "") or "").lower()
         year = extract_year(arxiv_id)
 
         for method_name, info in FINEGRAINED_METHODS.items():
             keywords = info["keywords"]
-
             for kw in keywords:
                 if kw.lower() in title or kw.lower() in text:
-                    count = text.count(kw.lower())
-                    if count >= 2 or kw.lower() in title:
+                    count = text.count(kw.lower()) + title.count(kw.lower())
+                    if count >= 1:  # Lower threshold for title matches
                         context = extract_context(
-                            paper.get("parsed_text", "") or paper.get("abstract", ""),
+                            paper.get("parsed_text", "") or paper.get("abstract", "") or title,
                             keywords
                         )
                         method_data[method_name]["papers"].append({
@@ -380,7 +403,6 @@ def extract_methods(papers: list) -> list[FineGrainedMethod]:
 def build_connections(methods: list[FineGrainedMethod]) -> list[dict]:
     """Build connections based on co-occurrence."""
     connections = []
-
     for i, m1 in enumerate(methods):
         m1_papers = {p["arxiv_id"] for p in m1.papers}
         for m2 in methods[i+1:]:
@@ -396,15 +418,14 @@ def build_connections(methods: list[FineGrainedMethod]) -> list[dict]:
                     "papers": list(common),
                     "strength": strength
                 })
-
     connections.sort(key=lambda c: c["strength"], reverse=True)
     return connections
 
 
 def main():
     print("=" * 60)
-    print("Extracting FINE-GRAINED evolution methods")
-    print("(Categories from GitHub repo section subheaders)")
+    print("Extracting evolution methods by METHOD TYPE")
+    print("(RL-Based, Feedback-Based, Search-Based, Evolutionary Prompt, etc.)")
     print("=" * 60)
 
     # Try parsed_papers.json first, fall back to papers.json
@@ -417,12 +438,12 @@ def main():
             papers = json.load(f)
 
     if not papers and fallback_path.exists():
-        print("No parsed papers, using papers.json metadata (title-based matching)")
+        print("No parsed papers, using papers.json metadata")
         with open(fallback_path) as f:
             papers = json.load(f)
 
     if not papers:
-        print("No papers found. Run parse_awesome_readme.py first.")
+        print("No papers found.")
         return
 
     print(f"Papers loaded: {len(papers)}")
@@ -430,7 +451,7 @@ def main():
     methods = extract_methods(papers)
     connections = build_connections(methods)
 
-    print(f"\nFound {len(methods)} fine-grained methods")
+    print(f"\nFound {len(methods)} methods")
     print(f"Found {len(connections)} connections")
 
     methods_path = PROCESSED_DIR / "finegrained_methods.json"
@@ -453,10 +474,9 @@ def main():
 
     for cat in sorted(by_cat.keys()):
         print(f"\n{cat}:")
-        for m in by_cat[cat]:
+        for m in sorted(by_cat[cat], key=lambda x: x.frequency, reverse=True):
             years = f"({min(m.years)}-{max(m.years)})" if m.years else ""
             print(f"  - {m.name}: {m.frequency} papers {years}")
-            print(f"    HOW: {m.how[:60]}...")
 
     return methods, connections
 
