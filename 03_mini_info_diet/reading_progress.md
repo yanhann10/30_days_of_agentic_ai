@@ -224,3 +224,9 @@ Progress:  papers read (%)
 1 | Full-page layouts with multiple carousels in video streaming platforms | 0
 2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 3 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
+
+
+2026-01-27
+1 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+2 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
+3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
