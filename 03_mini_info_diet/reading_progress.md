@@ -230,3 +230,9 @@ Progress:  papers read (%)
 1 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
 2 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
 3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+
+
+2026-01-28
+1 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
+2 | Tight analyses of first-order methods with error feedback | 0
+3 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
