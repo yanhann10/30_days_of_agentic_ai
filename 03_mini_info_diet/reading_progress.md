@@ -236,3 +236,9 @@ Progress:  papers read (%)
 1 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
 2 | Tight analyses of first-order methods with error feedback | 0
 3 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+
+
+2026-01-29
+1 | Discrete Codebook World Models for Continuous Control | 0
+2 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
+3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
