@@ -242,3 +242,9 @@ Progress:  papers read (%)
 1 | Discrete Codebook World Models for Continuous Control | 0
 2 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
 3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+
+
+2026-01-30
+1 | Full-page layouts with multiple carousels in video streaming platforms | 0
+2 | Real-DRL: Teach and Learn in Reality | 0
+3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
