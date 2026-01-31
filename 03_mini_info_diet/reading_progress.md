@@ -248,3 +248,9 @@ Progress:  papers read (%)
 1 | Full-page layouts with multiple carousels in video streaming platforms | 0
 2 | Real-DRL: Teach and Learn in Reality | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-01-31
+1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+2 | Real-DRL: Teach and Learn in Reality | 0
+3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
