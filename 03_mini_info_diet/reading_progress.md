@@ -254,3 +254,9 @@ Progress:  papers read (%)
 1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 2 | Real-DRL: Teach and Learn in Reality | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-02-01
+1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+2 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
+3 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
