@@ -260,3 +260,9 @@ Progress:  papers read (%)
 1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 2 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
 3 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
+
+
+2026-02-02
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | Zero-shot World Models via Search in Memory | 0
+3 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
