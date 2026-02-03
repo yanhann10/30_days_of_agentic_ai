@@ -266,3 +266,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | Zero-shot World Models via Search in Memory | 0
 3 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+
+
+2026-02-03
+1 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+2 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
+3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
