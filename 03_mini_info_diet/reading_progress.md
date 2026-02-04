@@ -272,3 +272,9 @@ Progress:  papers read (%)
 1 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
 2 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
 3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+
+
+2026-02-04
+1 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+2 | Full-page layouts with multiple carousels in video streaming platforms | 0
+3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
