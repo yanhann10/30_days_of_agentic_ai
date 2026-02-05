@@ -278,3 +278,9 @@ Progress:  papers read (%)
 1 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
 2 | Full-page layouts with multiple carousels in video streaming platforms | 0
 3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+
+
+2026-02-05
+1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
