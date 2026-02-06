@@ -284,3 +284,9 @@ Progress:  papers read (%)
 1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+
+
+2026-02-06
+1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+2 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+3 | Open-Universe Assistance Games | 0
