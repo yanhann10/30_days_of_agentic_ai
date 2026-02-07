@@ -290,3 +290,9 @@ Progress:  papers read (%)
 1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
 2 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 3 | Open-Universe Assistance Games | 0
+
+
+2026-02-07
+1 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+3 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
