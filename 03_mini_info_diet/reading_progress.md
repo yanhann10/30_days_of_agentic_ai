@@ -308,3 +308,9 @@ Progress:  papers read (%)
 1 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
 2 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
 3 | Learning to Incentivize Other Learning Agents | 0
+
+
+2026-02-10
+1 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
+2 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+3 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
