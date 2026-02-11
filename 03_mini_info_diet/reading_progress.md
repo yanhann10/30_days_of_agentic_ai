@@ -314,3 +314,9 @@ Progress:  papers read (%)
 1 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
 2 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 3 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+
+
+2026-02-11
+1 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+2 | Instance-Optimality for Private KL Distribution Estimation | 0
+3 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
