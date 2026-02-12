@@ -320,3 +320,9 @@ Progress:  papers read (%)
 1 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 2 | Instance-Optimality for Private KL Distribution Estimation | 0
 3 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
+
+
+2026-02-12
+1 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+2 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+3 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
