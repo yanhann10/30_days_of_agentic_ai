@@ -332,3 +332,9 @@ Progress:  papers read (%)
 1 | 1000 Layer Networks for Self-Supervised RL | 0
 2 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 3 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+
+
+2026-02-14
+1 | Discrete Codebook World Models for Continuous Control | 0
+2 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
+3 | 1000 Layer Networks for Self-Supervised RL | 0
