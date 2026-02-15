@@ -338,3 +338,9 @@ Progress:  papers read (%)
 1 | Discrete Codebook World Models for Continuous Control | 0
 2 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
 3 | 1000 Layer Networks for Self-Supervised RL | 0
+
+
+2026-02-15
+1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+2 | 1000 Layer Networks for Self-Supervised RL | 0
+3 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
