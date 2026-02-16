@@ -344,3 +344,9 @@ Progress:  papers read (%)
 1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
 2 | 1000 Layer Networks for Self-Supervised RL | 0
 3 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+
+
+2026-02-16
+1 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
