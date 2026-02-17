@@ -350,3 +350,9 @@ Progress:  papers read (%)
 1 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
 2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+
+
+2026-02-17
+1 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
+2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+3 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
