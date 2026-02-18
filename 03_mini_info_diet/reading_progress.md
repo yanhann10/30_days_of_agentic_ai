@@ -356,3 +356,9 @@ Progress:  papers read (%)
 1 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
 2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 3 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+
+
+2026-02-18
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
+3 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
