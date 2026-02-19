@@ -362,3 +362,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
 3 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+
+
+2026-02-19
+1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+2 | Learning to Incentivize Other Learning Agents | 0
+3 | Memory-Enhanced Neural Solvers for Routing Problems | 0
