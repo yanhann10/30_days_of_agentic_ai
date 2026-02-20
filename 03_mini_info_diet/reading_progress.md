@@ -368,3 +368,9 @@ Progress:  papers read (%)
 1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
 2 | Learning to Incentivize Other Learning Agents | 0
 3 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+
+
+2026-02-20
+1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
+2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+3 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
