@@ -374,3 +374,9 @@ Progress:  papers read (%)
 1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
 2 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 3 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+
+
+2026-02-21
+1 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+3 | Tight analyses of first-order methods with error feedback | 0
