@@ -380,3 +380,9 @@ Progress:  papers read (%)
 1 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
 2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 3 | Tight analyses of first-order methods with error feedback | 0
+
+
+2026-02-22
+1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+2 | Learning to Incentivize Other Learning Agents | 0
+3 | Tiled Flash Linear Attention (TFLA) | 0
