@@ -386,3 +386,9 @@ Progress:  papers read (%)
 1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 2 | Learning to Incentivize Other Learning Agents | 0
 3 | Tiled Flash Linear Attention (TFLA) | 0
+
+
+2026-02-23
+1 | Open-Universe Assistance Games | 0
+2 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+3 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
