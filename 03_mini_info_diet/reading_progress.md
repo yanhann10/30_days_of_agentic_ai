@@ -392,3 +392,9 @@ Progress:  papers read (%)
 1 | Open-Universe Assistance Games | 0
 2 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 3 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
+
+
+2026-02-24
+1 | Open-Universe Assistance Games | 0
+2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
