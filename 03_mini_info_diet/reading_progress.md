@@ -398,3 +398,9 @@ Progress:  papers read (%)
 1 | Open-Universe Assistance Games | 0
 2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-02-25
+1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+2 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+3 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
