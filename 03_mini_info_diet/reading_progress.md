@@ -410,3 +410,9 @@ Progress:  papers read (%)
 1 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
 2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 3 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+
+
+2026-02-27
+1 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
