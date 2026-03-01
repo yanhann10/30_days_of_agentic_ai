@@ -422,3 +422,9 @@ Progress:  papers read (%)
 1 | Instance-Optimality for Private KL Distribution Estimation | 0
 2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
 3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+
+
+2026-03-01
+1 | 1000 Layer Networks for Self-Supervised RL | 0
+2 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+3 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
