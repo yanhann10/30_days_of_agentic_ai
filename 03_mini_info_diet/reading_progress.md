@@ -428,3 +428,9 @@ Progress:  papers read (%)
 1 | 1000 Layer Networks for Self-Supervised RL | 0
 2 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
 3 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+
+
+2026-03-02
+1 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
+2 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
