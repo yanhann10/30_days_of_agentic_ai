@@ -434,3 +434,9 @@ Progress:  papers read (%)
 1 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
 2 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
 3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+
+
+2026-03-03
+1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+2 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
+3 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
