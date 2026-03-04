@@ -440,3 +440,9 @@ Progress:  papers read (%)
 1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 2 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
 3 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+
+
+2026-03-04
+1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+2 | Zero-shot World Models via Search in Memory | 0
+3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
