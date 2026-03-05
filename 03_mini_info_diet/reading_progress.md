@@ -446,3 +446,9 @@ Progress:  papers read (%)
 1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 2 | Zero-shot World Models via Search in Memory | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-03-05
+1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
+2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+3 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
