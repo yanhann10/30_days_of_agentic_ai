@@ -452,3 +452,9 @@ Progress:  papers read (%)
 1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
 2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 3 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+
+
+2026-03-06
+1 | Real-DRL: Teach and Learn in Reality | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
