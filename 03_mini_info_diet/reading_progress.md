@@ -464,3 +464,9 @@ Progress:  papers read (%)
 1 | Bayesian Concept Bottleneck Models with LLM Priors | 0
 2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
 3 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+
+
+2026-03-08
+1 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
+2 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
