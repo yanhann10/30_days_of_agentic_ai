@@ -488,3 +488,9 @@ Progress:  papers read (%)
 1 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
 2 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
 3 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
+
+
+2026-03-12
+1 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+2 | Instance-Optimality for Private KL Distribution Estimation | 0
+3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
