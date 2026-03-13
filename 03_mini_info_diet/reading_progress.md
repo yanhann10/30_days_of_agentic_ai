@@ -494,3 +494,9 @@ Progress:  papers read (%)
 1 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
 2 | Instance-Optimality for Private KL Distribution Estimation | 0
 3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+
+
+2026-03-13
+1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+2 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
+3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
