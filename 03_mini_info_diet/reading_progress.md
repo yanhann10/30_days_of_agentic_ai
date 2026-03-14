@@ -500,3 +500,9 @@ Progress:  papers read (%)
 1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
 2 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
 3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+
+
+2026-03-14
+1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
