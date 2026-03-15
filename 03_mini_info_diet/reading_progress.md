@@ -506,3 +506,9 @@ Progress:  papers read (%)
 1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
 3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+
+
+2026-03-15
+1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+2 | Bayesian Concept Bottleneck Models with LLM Priors | 0
+3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
