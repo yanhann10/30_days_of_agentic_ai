@@ -512,3 +512,9 @@ Progress:  papers read (%)
 1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 2 | Bayesian Concept Bottleneck Models with LLM Priors | 0
 3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+
+
+2026-03-16
+1 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
+2 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
