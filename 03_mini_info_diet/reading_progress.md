@@ -518,3 +518,9 @@ Progress:  papers read (%)
 1 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
 2 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
 3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+
+
+2026-03-17
+1 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+2 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+3 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
