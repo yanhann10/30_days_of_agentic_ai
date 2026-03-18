@@ -524,3 +524,9 @@ Progress:  papers read (%)
 1 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
 2 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
 3 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+
+
+2026-03-18
+1 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
+2 | Full-page layouts with multiple carousels in video streaming platforms | 0
+3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
