@@ -530,3 +530,9 @@ Progress:  papers read (%)
 1 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
 2 | Full-page layouts with multiple carousels in video streaming platforms | 0
 3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+
+
+2026-03-19
+1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
