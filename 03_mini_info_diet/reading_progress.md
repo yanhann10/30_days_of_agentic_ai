@@ -536,3 +536,9 @@ Progress:  papers read (%)
 1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
 3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+
+
+2026-03-20
+1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+3 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
