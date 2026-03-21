@@ -542,3 +542,9 @@ Progress:  papers read (%)
 1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
 2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 3 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+
+
+2026-03-21
+1 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
+2 | RESA Language Model-Based Playlist Generation Recommender System | 0
+3 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
