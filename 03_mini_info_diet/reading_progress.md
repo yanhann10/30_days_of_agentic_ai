@@ -548,3 +548,9 @@ Progress:  papers read (%)
 1 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
 2 | RESA Language Model-Based Playlist Generation Recommender System | 0
 3 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+
+
+2026-03-22
+1 | Learning to Incentivize Other Learning Agents | 0
+2 | 1000 Layer Networks for Self-Supervised RL | 0
+3 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
