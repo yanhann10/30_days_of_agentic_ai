@@ -554,3 +554,9 @@ Progress:  papers read (%)
 1 | Learning to Incentivize Other Learning Agents | 0
 2 | 1000 Layer Networks for Self-Supervised RL | 0
 3 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
+
+
+2026-03-23
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+3 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
