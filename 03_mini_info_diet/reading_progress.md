@@ -560,3 +560,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 3 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+
+
+2026-03-24
+1 | Tiled Flash Linear Attention (TFLA) | 0
+2 | Open-Universe Assistance Games | 0
+3 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
