@@ -566,3 +566,9 @@ Progress:  papers read (%)
 1 | Tiled Flash Linear Attention (TFLA) | 0
 2 | Open-Universe Assistance Games | 0
 3 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+
+
+2026-03-25
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+3 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
