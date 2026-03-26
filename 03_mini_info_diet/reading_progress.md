@@ -572,3 +572,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 3 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
+
+
+2026-03-26
+1 | Open-Universe Assistance Games | 0
+2 | 1000 Layer Networks for Self-Supervised RL | 0
+3 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
