@@ -578,3 +578,9 @@ Progress:  papers read (%)
 1 | Open-Universe Assistance Games | 0
 2 | 1000 Layer Networks for Self-Supervised RL | 0
 3 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+
+
+2026-03-27
+1 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+2 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
+3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
