@@ -590,3 +590,9 @@ Progress:  papers read (%)
 1 | Full-page layouts with multiple carousels in video streaming platforms | 0
 2 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
 3 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+
+
+2026-03-29
+1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+2 | Discrete Codebook World Models for Continuous Control | 0
+3 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
