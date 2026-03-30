@@ -596,3 +596,9 @@ Progress:  papers read (%)
 1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 2 | Discrete Codebook World Models for Continuous Control | 0
 3 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
+
+
+2026-03-30
+1 | Learning to Incentivize Other Learning Agents | 0
+2 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+3 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
