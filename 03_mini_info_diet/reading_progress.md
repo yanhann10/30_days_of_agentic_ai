@@ -602,3 +602,9 @@ Progress:  papers read (%)
 1 | Learning to Incentivize Other Learning Agents | 0
 2 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 3 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+
+
+2026-03-31
+1 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+2 | Generative Causal Explanations of Black-box Classifiers | 0
+3 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
