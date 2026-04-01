@@ -608,3 +608,9 @@ Progress:  papers read (%)
 1 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
 2 | Generative Causal Explanations of Black-box Classifiers | 0
 3 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
+
+
+2026-04-01
+1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+3 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
