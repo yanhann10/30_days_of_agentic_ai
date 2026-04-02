@@ -614,3 +614,9 @@ Progress:  papers read (%)
 1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 3 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
+
+
+2026-04-02
+1 | RESA Language Model-Based Playlist Generation Recommender System | 0
+2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
