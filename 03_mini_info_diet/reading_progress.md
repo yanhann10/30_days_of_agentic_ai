@@ -620,3 +620,9 @@ Progress:  papers read (%)
 1 | RESA Language Model-Based Playlist Generation Recommender System | 0
 2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
 3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+
+
+2026-04-03
+1 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+3 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
