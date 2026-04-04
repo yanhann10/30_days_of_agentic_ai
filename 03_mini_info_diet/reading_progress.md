@@ -626,3 +626,9 @@ Progress:  papers read (%)
 1 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
 2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
 3 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
+
+
+2026-04-04
+1 | Full-page layouts with multiple carousels in video streaming platforms | 0
+2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+3 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
