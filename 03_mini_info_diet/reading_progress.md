@@ -638,3 +638,9 @@ Progress:  papers read (%)
 1 | Dynamic Feature Space Regularization for Generalization in RL | 0
 2 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
 3 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+
+
+2026-04-06
+1 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
+2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
+3 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
