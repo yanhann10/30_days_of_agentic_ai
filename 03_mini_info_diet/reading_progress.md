@@ -644,3 +644,9 @@ Progress:  papers read (%)
 1 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
 2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
 3 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
+
+
+2026-04-07
+1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+2 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
+3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
