@@ -650,3 +650,9 @@ Progress:  papers read (%)
 1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
 2 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
 3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
+
+
+2026-04-08
+1 | Tight analyses of first-order methods with error feedback | 0
+2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+3 | Full-page layouts with multiple carousels in video streaming platforms | 0
