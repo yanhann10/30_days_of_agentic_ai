@@ -656,3 +656,9 @@ Progress:  papers read (%)
 1 | Tight analyses of first-order methods with error feedback | 0
 2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
 3 | Full-page layouts with multiple carousels in video streaming platforms | 0
+
+
+2026-04-09
+1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+2 | No-Regret Learning Under Adversarial Resource Constraints | 0
+3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
