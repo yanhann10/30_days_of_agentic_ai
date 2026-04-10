@@ -662,3 +662,9 @@ Progress:  papers read (%)
 1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 2 | No-Regret Learning Under Adversarial Resource Constraints | 0
 3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+
+
+2026-04-10
+1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+2 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+3 | Instance-Optimality for Private KL Distribution Estimation | 0
