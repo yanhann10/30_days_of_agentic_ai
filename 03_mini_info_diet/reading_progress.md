@@ -668,3 +668,9 @@ Progress:  papers read (%)
 1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 2 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
 3 | Instance-Optimality for Private KL Distribution Estimation | 0
+
+
+2026-04-11
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
+3 | Discrete Codebook World Models for Continuous Control | 0
