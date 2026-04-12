@@ -674,3 +674,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
 3 | Discrete Codebook World Models for Continuous Control | 0
+
+
+2026-04-12
+1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
+2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+3 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
