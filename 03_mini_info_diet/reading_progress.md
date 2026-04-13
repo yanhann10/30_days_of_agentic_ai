@@ -680,3 +680,9 @@ Progress:  papers read (%)
 1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
 2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 3 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+
+
+2026-04-13
+1 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+2 | ToolRL: Reward is All Tool Learning Needs | 0
+3 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
