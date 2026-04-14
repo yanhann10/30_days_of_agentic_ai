@@ -686,3 +686,9 @@ Progress:  papers read (%)
 1 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
 2 | ToolRL: Reward is All Tool Learning Needs | 0
 3 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+
+
+2026-04-14
+1 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
+2 | Generative Causal Explanations of Black-box Classifiers | 0
+3 | Full-page layouts with multiple carousels in video streaming platforms | 0
