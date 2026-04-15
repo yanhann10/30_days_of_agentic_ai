@@ -692,3 +692,9 @@ Progress:  papers read (%)
 1 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
 2 | Generative Causal Explanations of Black-box Classifiers | 0
 3 | Full-page layouts with multiple carousels in video streaming platforms | 0
+
+
+2026-04-15
+1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
+2 | Tiled Flash Linear Attention (TFLA) | 0
+3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
