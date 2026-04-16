@@ -698,3 +698,9 @@ Progress:  papers read (%)
 1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
 2 | Tiled Flash Linear Attention (TFLA) | 0
 3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
+
+
+2026-04-16
+1 | Full-page layouts with multiple carousels in video streaming platforms | 0
+2 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+3 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
