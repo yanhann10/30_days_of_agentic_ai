@@ -704,3 +704,9 @@ Progress:  papers read (%)
 1 | Full-page layouts with multiple carousels in video streaming platforms | 0
 2 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
 3 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
+
+
+2026-04-17
+1 | Dynamic Feature Space Regularization for Generalization in RL | 0
+2 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
+3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
