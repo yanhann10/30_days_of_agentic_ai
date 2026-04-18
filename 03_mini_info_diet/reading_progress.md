@@ -710,3 +710,9 @@ Progress:  papers read (%)
 1 | Dynamic Feature Space Regularization for Generalization in RL | 0
 2 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
 3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+
+
+2026-04-18
+1 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+2 | RESA Language Model-Based Playlist Generation Recommender System | 0
+3 | Discrete Codebook World Models for Continuous Control | 0
