@@ -722,3 +722,9 @@ Progress:  papers read (%)
 1 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 2 | Dynamic Feature Space Regularization for Generalization in RL | 0
 3 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
+
+
+2026-04-20
+1 | LLaDA: Large Language Diffusion Models | 0
+2 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
+3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
