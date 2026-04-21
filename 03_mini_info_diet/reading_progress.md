@@ -728,3 +728,9 @@ Progress:  papers read (%)
 1 | LLaDA: Large Language Diffusion Models | 0
 2 | RL Tango: Reinforcing Generator and Verifier Together for Language Reasoning | 0
 3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+
+
+2026-04-21
+1 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+2 | Discrete Codebook World Models for Continuous Control | 0
+3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
