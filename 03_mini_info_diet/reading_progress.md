@@ -734,3 +734,9 @@ Progress:  papers read (%)
 1 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
 2 | Discrete Codebook World Models for Continuous Control | 0
 3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+
+
+2026-04-22
+1 | Generative Causal Explanations of Black-box Classifiers | 0
+2 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
