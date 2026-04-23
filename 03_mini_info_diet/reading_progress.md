@@ -740,3 +740,9 @@ Progress:  papers read (%)
 1 | Generative Causal Explanations of Black-box Classifiers | 0
 2 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
+
+
+2026-04-23
+1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+3 | Generative Causal Explanations of Black-box Classifiers | 0
