@@ -746,3 +746,9 @@ Progress:  papers read (%)
 1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 3 | Generative Causal Explanations of Black-box Classifiers | 0
+
+
+2026-04-24
+1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
+2 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
