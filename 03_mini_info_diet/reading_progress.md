@@ -752,3 +752,9 @@ Progress:  papers read (%)
 1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
 2 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
 3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+
+
+2026-04-25
+1 | Dynamic Feature Space Regularization for Generalization in RL | 0
+2 | Full-page layouts with multiple carousels in video streaming platforms | 0
+3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
