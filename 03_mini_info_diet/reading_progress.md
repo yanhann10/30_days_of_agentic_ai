@@ -758,3 +758,9 @@ Progress:  papers read (%)
 1 | Dynamic Feature Space Regularization for Generalization in RL | 0
 2 | Full-page layouts with multiple carousels in video streaming platforms | 0
 3 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+
+
+2026-04-26
+1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+2 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
