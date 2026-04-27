@@ -764,3 +764,9 @@ Progress:  papers read (%)
 1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
 2 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
 3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+
+
+2026-04-27
+1 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+3 | Instance-Optimality for Private KL Distribution Estimation | 0
