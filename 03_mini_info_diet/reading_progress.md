@@ -770,3 +770,9 @@ Progress:  papers read (%)
 1 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
 2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
 3 | Instance-Optimality for Private KL Distribution Estimation | 0
+
+
+2026-04-28
+1 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+3 | Full-page layouts with multiple carousels in video streaming platforms | 0
