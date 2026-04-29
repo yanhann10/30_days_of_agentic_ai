@@ -776,3 +776,9 @@ Progress:  papers read (%)
 1 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
 2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 3 | Full-page layouts with multiple carousels in video streaming platforms | 0
+
+
+2026-04-29
+1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+2 | Full-page layouts with multiple carousels in video streaming platforms | 0
+3 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
