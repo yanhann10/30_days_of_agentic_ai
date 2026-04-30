@@ -782,3 +782,9 @@ Progress:  papers read (%)
 1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 2 | Full-page layouts with multiple carousels in video streaming platforms | 0
 3 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
+
+
+2026-04-30
+1 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+2 | Generative Causal Explanations of Black-box Classifiers | 0
+3 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
