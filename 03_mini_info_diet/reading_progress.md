@@ -788,3 +788,9 @@ Progress:  papers read (%)
 1 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
 2 | Generative Causal Explanations of Black-box Classifiers | 0
 3 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+
+
+2026-05-01
+1 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+2 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
+3 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
