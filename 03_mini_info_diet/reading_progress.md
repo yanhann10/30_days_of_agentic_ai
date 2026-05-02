@@ -794,3 +794,9 @@ Progress:  papers read (%)
 1 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 2 | Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge | 0
 3 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+
+
+2026-05-02
+1 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
+2 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+3 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
