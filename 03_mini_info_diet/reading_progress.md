@@ -800,3 +800,9 @@ Progress:  papers read (%)
 1 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
 2 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
 3 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+
+
+2026-05-03
+1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+2 | Open-Universe Assistance Games | 0
+3 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
