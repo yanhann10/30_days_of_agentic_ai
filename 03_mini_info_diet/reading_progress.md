@@ -806,3 +806,9 @@ Progress:  papers read (%)
 1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 2 | Open-Universe Assistance Games | 0
 3 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+
+
+2026-05-04
+1 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+2 | Tight analyses of first-order methods with error feedback | 0
+3 | 1000 Layer Networks for Self-Supervised RL | 0
