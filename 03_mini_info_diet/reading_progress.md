@@ -812,3 +812,9 @@ Progress:  papers read (%)
 1 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
 2 | Tight analyses of first-order methods with error feedback | 0
 3 | 1000 Layer Networks for Self-Supervised RL | 0
+
+
+2026-05-05
+1 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+2 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
+3 | Zero-shot World Models via Search in Memory | 0
