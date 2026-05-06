@@ -818,3 +818,9 @@ Progress:  papers read (%)
 1 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
 2 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
 3 | Zero-shot World Models via Search in Memory | 0
+
+
+2026-05-06
+1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+2 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
