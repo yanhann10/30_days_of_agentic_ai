@@ -824,3 +824,9 @@ Progress:  papers read (%)
 1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 2 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
 3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+
+
+2026-05-07
+1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+3 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
