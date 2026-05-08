@@ -830,3 +830,9 @@ Progress:  papers read (%)
 1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 3 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+
+
+2026-05-08
+1 | RESA Language Model-Based Playlist Generation Recommender System | 0
+2 | Dynamic Feature Space Regularization for Generalization in RL | 0
+3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
