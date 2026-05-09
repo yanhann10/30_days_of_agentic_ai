@@ -836,3 +836,9 @@ Progress:  papers read (%)
 1 | RESA Language Model-Based Playlist Generation Recommender System | 0
 2 | Dynamic Feature Space Regularization for Generalization in RL | 0
 3 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+
+
+2026-05-09
+1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+2 | Learning to Incentivize Other Learning Agents | 0
+3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
