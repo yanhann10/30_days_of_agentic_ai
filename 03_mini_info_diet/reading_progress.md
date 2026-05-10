@@ -842,3 +842,9 @@ Progress:  papers read (%)
 1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 2 | Learning to Incentivize Other Learning Agents | 0
 3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
+
+
+2026-05-10
+1 | Tiled Flash Linear Attention (TFLA) | 0
+2 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
