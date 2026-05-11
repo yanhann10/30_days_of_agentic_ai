@@ -848,3 +848,9 @@ Progress:  papers read (%)
 1 | Tiled Flash Linear Attention (TFLA) | 0
 2 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
 3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+
+
+2026-05-11
+1 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+2 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+3 | Discrete Codebook World Models for Continuous Control | 0
