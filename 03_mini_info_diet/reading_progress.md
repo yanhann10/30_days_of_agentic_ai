@@ -854,3 +854,9 @@ Progress:  papers read (%)
 1 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
 2 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
 3 | Discrete Codebook World Models for Continuous Control | 0
+
+
+2026-05-12
+1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+2 | Tiled Flash Linear Attention (TFLA) | 0
+3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
