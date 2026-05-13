@@ -860,3 +860,9 @@ Progress:  papers read (%)
 1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 2 | Tiled Flash Linear Attention (TFLA) | 0
 3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+
+
+2026-05-13
+1 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+2 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
+3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
