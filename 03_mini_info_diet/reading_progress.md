@@ -872,3 +872,9 @@ Progress:  papers read (%)
 1 | Generative Causal Explanations of Black-box Classifiers | 0
 2 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 3 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+
+
+2026-05-15
+1 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+3 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
