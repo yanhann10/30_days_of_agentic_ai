@@ -884,3 +884,9 @@ Progress:  papers read (%)
 1 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
 2 | Learning to Incentivize Other Learning Agents | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-05-17
+1 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+3 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
