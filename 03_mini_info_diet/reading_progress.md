@@ -890,3 +890,9 @@ Progress:  papers read (%)
 1 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
 3 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+
+
+2026-05-18
+1 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
