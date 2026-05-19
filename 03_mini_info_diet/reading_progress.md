@@ -896,3 +896,9 @@ Progress:  papers read (%)
 1 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 3 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+
+
+2026-05-19
+1 | RESA Language Model-Based Playlist Generation Recommender System | 0
+2 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+3 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
