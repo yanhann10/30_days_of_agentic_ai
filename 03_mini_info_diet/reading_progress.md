@@ -902,3 +902,9 @@ Progress:  papers read (%)
 1 | RESA Language Model-Based Playlist Generation Recommender System | 0
 2 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
 3 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
+
+
+2026-05-20
+1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+2 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
+3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
