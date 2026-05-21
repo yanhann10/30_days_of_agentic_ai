@@ -908,3 +908,9 @@ Progress:  papers read (%)
 1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
 2 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
 3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+
+
+2026-05-21
+1 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+2 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+3 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
