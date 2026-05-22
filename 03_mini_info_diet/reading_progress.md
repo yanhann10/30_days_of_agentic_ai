@@ -914,3 +914,9 @@ Progress:  papers read (%)
 1 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
 2 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
 3 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+
+
+2026-05-22
+1 | RESA Language Model-Based Playlist Generation Recommender System | 0
+2 | 1000 Layer Networks for Self-Supervised RL | 0
+3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
