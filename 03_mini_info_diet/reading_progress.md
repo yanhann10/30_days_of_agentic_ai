@@ -920,3 +920,9 @@ Progress:  papers read (%)
 1 | RESA Language Model-Based Playlist Generation Recommender System | 0
 2 | 1000 Layer Networks for Self-Supervised RL | 0
 3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+
+
+2026-05-23
+1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+2 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
