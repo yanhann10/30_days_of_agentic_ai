@@ -926,3 +926,9 @@ Progress:  papers read (%)
 1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 2 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+
+
+2026-05-24
+1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+3 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
