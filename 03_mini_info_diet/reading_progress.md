@@ -932,3 +932,9 @@ Progress:  papers read (%)
 1 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
 2 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 3 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
+
+
+2026-05-25
+1 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+2 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+3 | Learning to Incentivize Other Learning Agents | 0
