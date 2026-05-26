@@ -938,3 +938,9 @@ Progress:  papers read (%)
 1 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
 2 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
 3 | Learning to Incentivize Other Learning Agents | 0
+
+
+2026-05-26
+1 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
+2 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
+3 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
