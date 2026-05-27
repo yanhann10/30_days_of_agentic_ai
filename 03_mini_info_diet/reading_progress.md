@@ -944,3 +944,9 @@ Progress:  papers read (%)
 1 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
 2 | GAM-Agent: Game-Theoretic and Uncertainty-Aware Collaboration | 0
 3 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+
+
+2026-05-27
+1 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
+2 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
+3 | Memory-Enhanced Neural Solvers for Routing Problems | 0
