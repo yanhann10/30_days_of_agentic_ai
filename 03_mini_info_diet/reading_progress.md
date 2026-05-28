@@ -950,3 +950,9 @@ Progress:  papers read (%)
 1 | Simultaneous Preference and Metric Learning from Paired Comparisons | 0
 2 | Stable Gradients for Stable Learning at Scale in Deep Reinforcement Learning | 0
 3 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+
+
+2026-05-28
+1 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+2 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
+3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
