@@ -956,3 +956,9 @@ Progress:  papers read (%)
 1 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
 2 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
 3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+
+
+2026-05-29
+1 | Addressing Multi-stakeholder Fairness Concerns in Recommender Systems | 0
+2 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
+3 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
