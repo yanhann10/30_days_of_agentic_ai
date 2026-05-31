@@ -968,3 +968,9 @@ Progress:  papers read (%)
 1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 3 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
+
+
+2026-05-31
+1 | No-Regret Learning Under Adversarial Resource Constraints | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
