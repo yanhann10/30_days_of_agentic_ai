@@ -974,3 +974,9 @@ Progress:  papers read (%)
 1 | No-Regret Learning Under Adversarial Resource Constraints | 0
 2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 3 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
+
+
+2026-06-01
+1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
+3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
