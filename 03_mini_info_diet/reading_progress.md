@@ -980,3 +980,9 @@ Progress:  papers read (%)
 1 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
 2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
 3 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
+
+
+2026-06-02
+1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
+2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
+3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
