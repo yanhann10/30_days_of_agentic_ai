@@ -986,3 +986,9 @@ Progress:  papers read (%)
 1 | Memory-Enhanced Neural Solvers for Routing Problems | 0
 2 | FlowKV: Enhancing Multi-Turn Conversational Coherence in LLMs via Isolated Key-Value Cache Management | 0
 3 | DISCOVER: Automated Curricula for Sparse-Reward RL | 0
+
+
+2026-06-03
+1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+2 | Bayesian Concept Bottleneck Models with LLM Priors | 0
+3 | Zero-shot World Models via Search in Memory | 0
