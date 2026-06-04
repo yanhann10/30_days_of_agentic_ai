@@ -992,3 +992,9 @@ Progress:  papers read (%)
 1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
 2 | Bayesian Concept Bottleneck Models with LLM Priors | 0
 3 | Zero-shot World Models via Search in Memory | 0
+
+
+2026-06-04
+1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+2 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+3 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
