@@ -998,3 +998,9 @@ Progress:  papers read (%)
 1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 2 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 3 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+
+
+2026-06-05
+1 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+2 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+3 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
