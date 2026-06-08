@@ -1016,3 +1016,9 @@ Progress:  papers read (%)
 1 | Dynamic Risk Assessments for Offensive Cybersecurity Agents | 0
 2 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
 3 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+
+
+2026-06-08
+1 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+3 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
