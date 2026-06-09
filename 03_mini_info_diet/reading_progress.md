@@ -1022,3 +1022,9 @@ Progress:  papers read (%)
 1 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
 2 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
 3 | Brain-Informed Fine-Tuning for Improved Multilingual Understanding in Language Models | 0
+
+
+2026-06-09
+1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+2 | Benefiting from Negative yet Informative Feedback by Contrasting Opposing Sequential Patterns | 0
+3 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
