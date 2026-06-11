@@ -1034,3 +1034,9 @@ Progress:  papers read (%)
 1 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
 2 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
 3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+
+
+2026-06-11
+1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+3 | LLaDA: Large Language Diffusion Models | 0
