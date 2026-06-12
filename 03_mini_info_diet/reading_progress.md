@@ -1040,3 +1040,9 @@ Progress:  papers read (%)
 1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 3 | LLaDA: Large Language Diffusion Models | 0
+
+
+2026-06-12
+1 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
+2 | Learning to Incentivize Other Learning Agents | 0
+3 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
