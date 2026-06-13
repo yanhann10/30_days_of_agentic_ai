@@ -1046,3 +1046,9 @@ Progress:  papers read (%)
 1 | Modeling and Analyzing Interventional Causal Effects under Network Interference | 0
 2 | Learning to Incentivize Other Learning Agents | 0
 3 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+
+
+2026-06-13
+1 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+2 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+3 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
