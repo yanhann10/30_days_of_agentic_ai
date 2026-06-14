@@ -1052,3 +1052,9 @@ Progress:  papers read (%)
 1 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
 2 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 3 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+
+
+2026-06-14
+1 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+2 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
+3 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
