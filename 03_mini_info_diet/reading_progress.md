@@ -1058,3 +1058,9 @@ Progress:  papers read (%)
 1 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 2 | Bilevel ZOFO: Efficient LLM Fine-Tuning and Meta-Training | 0
 3 | DelTA: An Online Document-Level Translation Agent Based on Multi-Level Memory | 0
+
+
+2026-06-15
+1 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+3 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
