@@ -1064,3 +1064,9 @@ Progress:  papers read (%)
 1 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
 2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
 3 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
+
+
+2026-06-16
+1 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
+2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
