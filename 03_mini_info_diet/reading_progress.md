@@ -1070,3 +1070,9 @@ Progress:  papers read (%)
 1 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
 2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
 3 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+
+
+2026-06-17
+1 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
+3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
