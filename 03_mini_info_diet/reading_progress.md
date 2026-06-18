@@ -1076,3 +1076,9 @@ Progress:  papers read (%)
 1 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 2 | Noise Injection Reveals Hidden Capabilities of Sandbagging LLMs | 0
 3 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
+
+
+2026-06-18
+1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
+2 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
+3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
