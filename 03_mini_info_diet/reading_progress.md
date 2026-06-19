@@ -1082,3 +1082,9 @@ Progress:  papers read (%)
 1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
 2 | Dynamics-Aligned Latent Imagination in Contextual World Models for Zero-Shot Generalization | 0
 3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+
+
+2026-06-19
+1 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
+2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+3 | Full-page layouts with multiple carousels in video streaming platforms | 0
