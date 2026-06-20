@@ -1088,3 +1088,9 @@ Progress:  papers read (%)
 1 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
 2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
 3 | Full-page layouts with multiple carousels in video streaming platforms | 0
+
+
+2026-06-20
+1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+3 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
