@@ -1094,3 +1094,9 @@ Progress:  papers read (%)
 1 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
 2 | RAG4GFM: Graph Retrieval Augmented Generation | 0
 3 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
+
+
+2026-06-21
+1 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
+2 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+3 | ToolRL: Reward is All Tool Learning Needs | 0
