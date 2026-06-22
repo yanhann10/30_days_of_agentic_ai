@@ -1100,3 +1100,9 @@ Progress:  papers read (%)
 1 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
 2 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
 3 | ToolRL: Reward is All Tool Learning Needs | 0
+
+
+2026-06-22
+1 | Zero-shot World Models via Search in Memory | 0
+2 | RESA Language Model-Based Playlist Generation Recommender System | 0
+3 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
