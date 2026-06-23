@@ -1106,3 +1106,9 @@ Progress:  papers read (%)
 1 | Zero-shot World Models via Search in Memory | 0
 2 | RESA Language Model-Based Playlist Generation Recommender System | 0
 3 | MoBA: Mixture of Block Attention for Long-Context LLMs | 0
+
+
+2026-06-23
+1 | Tight analyses of first-order methods with error feedback | 0
+2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
+3 | 1000 Layer Networks for Self-Supervised RL | 0
