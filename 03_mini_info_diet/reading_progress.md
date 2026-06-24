@@ -1112,3 +1112,9 @@ Progress:  papers read (%)
 1 | Tight analyses of first-order methods with error feedback | 0
 2 | MLR-Bench: Evaluating AI Agents on Open-Ended Machine Learning Research | 0
 3 | 1000 Layer Networks for Self-Supervised RL | 0
+
+
+2026-06-24
+1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+2 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
