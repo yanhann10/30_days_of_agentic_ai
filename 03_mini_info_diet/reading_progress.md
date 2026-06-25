@@ -1118,3 +1118,9 @@ Progress:  papers read (%)
 1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 2 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
 3 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+
+
+2026-06-25
+1 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
+2 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
+3 | Learning to Incentivize Other Learning Agents | 0
