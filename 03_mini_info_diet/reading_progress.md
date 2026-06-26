@@ -1124,3 +1124,9 @@ Progress:  papers read (%)
 1 | "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon" | 0
 2 | Uni-RL: Unifying Online and Offline RL via Implicit Value Regularization | 0
 3 | Learning to Incentivize Other Learning Agents | 0
+
+
+2026-06-26
+1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
+2 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
+3 | Zero-shot World Models via Search in Memory | 0
