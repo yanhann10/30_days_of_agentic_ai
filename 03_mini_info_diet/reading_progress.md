@@ -1136,3 +1136,9 @@ Progress:  papers read (%)
 1 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
 2 | Discrete Codebook World Models for Continuous Control | 0
 3 | AgentRecBench: Benchmarking LLM Agent-based Personalized RecSys | 0
+
+
+2026-06-28
+1 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
+2 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
+3 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
