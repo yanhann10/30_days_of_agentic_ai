@@ -1142,3 +1142,9 @@ Progress:  papers read (%)
 1 | Counterfactual Reasoning for Steerable Pluralistic Value Alignment of Large Language Models | 0
 2 | Info-Theoretic Reward Decomposition for Generalizable RLHF | 0
 3 | Non-Parametric Choice Model That Learns How Users Choose Between Recommended Options | 0
+
+
+2026-06-29
+1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
+2 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
+3 | Open-Universe Assistance Games | 0
