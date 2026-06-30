@@ -1148,3 +1148,9 @@ Progress:  papers read (%)
 1 | "CoCo, an optimization algorithm that bridges the gap between pure prediction and causal inference" | 0
 2 | Self-Guided Hierarchical Exploration for Generalist Foundation Model Web Agents | 0
 3 | Open-Universe Assistance Games | 0
+
+
+2026-06-30
+1 | Dynamic Feature Space Regularization for Generalization in RL | 0
+2 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
+3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
