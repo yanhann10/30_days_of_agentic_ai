@@ -1154,3 +1154,9 @@ Progress:  papers read (%)
 1 | Dynamic Feature Space Regularization for Generalization in RL | 0
 2 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
 3 | NeSyPr: Neurosymbolic Proceduralization For Efficient Embodied Reasoning | 0
+
+
+2026-07-01
+1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+2 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
+3 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
