@@ -1160,3 +1160,9 @@ Progress:  papers read (%)
 1 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 2 | HyperMARL: Adaptive Hypernetworks for Multi-Agent RL | 0
 3 | Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via RL | 0
+
+
+2026-07-02
+1 | MAT-Agent: Adaptive Multi-Agent Training Optimization | 0
+2 | Instance-Optimality for Private KL Distribution Estimation | 0
+3 | RESA Language Model-Based Playlist Generation Recommender System | 0
