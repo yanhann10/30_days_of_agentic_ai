@@ -1172,3 +1172,9 @@ Progress:  papers read (%)
 1 | Open-Universe Assistance Games | 0
 2 | RESA Language Model-Based Playlist Generation Recommender System | 0
 3 | "Learning ""Partner-Aware"" Collaborators in Multi-Party Collaboration" | 0
+
+
+2026-07-04
+1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+3 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
