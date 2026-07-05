@@ -1178,3 +1178,9 @@ Progress:  papers read (%)
 1 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
 2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
 3 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+
+
+2026-07-05
+1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | Learning to Incentivize Other Learning Agents | 0
