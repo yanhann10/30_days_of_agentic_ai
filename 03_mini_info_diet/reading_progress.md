@@ -1184,3 +1184,9 @@ Progress:  papers read (%)
 1 | CORE: Measuring Multi-Agent LLM Interaction Quality under Game-Theoretic Pressures | 0
 2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 3 | Learning to Incentivize Other Learning Agents | 0
+
+
+2026-07-06
+1 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+2 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
+3 | Bayesian Concept Bottleneck Models with LLM Priors | 0
