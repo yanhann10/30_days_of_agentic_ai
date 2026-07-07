@@ -1190,3 +1190,9 @@ Progress:  papers read (%)
 1 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
 2 | Thinking vs. Doing: Agents that Reason by Scaling Test-Time Interaction | 0
 3 | Bayesian Concept Bottleneck Models with LLM Priors | 0
+
+
+2026-07-07
+1 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
+2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
+3 | RESA Language Model-Based Playlist Generation Recommender System | 0
