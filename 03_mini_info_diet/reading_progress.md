@@ -1196,3 +1196,9 @@ Progress:  papers read (%)
 1 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
 2 | Lessons Learned: A Multi-Agent Framework for Code LLMs to Learn and Improve | 0
 3 | RESA Language Model-Based Playlist Generation Recommender System | 0
+
+
+2026-07-08
+1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
+2 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
+3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
