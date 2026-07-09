@@ -1202,3 +1202,9 @@ Progress:  papers read (%)
 1 | Generator-Mediated Bandits: Thompson Sampling for GenAI-Powered Interventions | 0
 2 | A Dual-Key Attention Framework for Sequential Recommendation with Side Information | 0
 3 | RAG4GFM: Graph Retrieval Augmented Generation | 0
+
+
+2026-07-09
+1 | Tight analyses of first-order methods with error feedback | 0
+2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+3 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
