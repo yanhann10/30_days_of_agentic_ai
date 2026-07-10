@@ -1208,3 +1208,9 @@ Progress:  papers read (%)
 1 | Tight analyses of first-order methods with error feedback | 0
 2 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 3 | CTRL-ALT-DECEIT Sabotage Evaluations for Automated AI R&D | 0
+
+
+2026-07-10
+1 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
+2 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
+3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
