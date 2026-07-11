@@ -1214,3 +1214,9 @@ Progress:  papers read (%)
 1 | Beyond Next Token Prediction: Patch-Level Training for Large Language Models | 0
 2 | Dyn-O: Building Structured World Models with Object-Centric Representations | 0
 3 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+
+
+2026-07-11
+1 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
+2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
+3 | Dynamic Feature Space Regularization for Generalization in RL | 0
