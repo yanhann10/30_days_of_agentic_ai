@@ -1220,3 +1220,9 @@ Progress:  papers read (%)
 1 | PrefixKV: Optimizing KV Cache Allocation for Large Language Models | 0
 2 | From an LLM Swarm to a PDDL-empowered Hive: Planning Self-Executed Instructions | 0
 3 | Dynamic Feature Space Regularization for Generalization in RL | 0
+
+
+2026-07-12
+1 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
+2 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
+3 | Generative Causal Explanations of Black-box Classifiers | 0
