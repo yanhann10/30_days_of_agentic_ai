@@ -1226,3 +1226,9 @@ Progress:  papers read (%)
 1 | PREAMBLE: Private and Efficient Aggregation via Block Sparse Vectors | 0
 2 | Provably Efficient Multi-Task Meta Bandit Learning via Shared Representations | 0
 3 | Generative Causal Explanations of Black-box Classifiers | 0
+
+
+2026-07-13
+1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+2 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+3 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
