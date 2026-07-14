@@ -1232,3 +1232,9 @@ Progress:  papers read (%)
 1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
 2 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 3 | VASA-3D: Lifelike Audio-Driven Gaussian Head Avatars from a Single Image | 0
+
+
+2026-07-14
+1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
+2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
+3 | Tiled Flash Linear Attention (TFLA) | 0
