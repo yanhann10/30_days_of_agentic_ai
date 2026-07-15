@@ -1238,3 +1238,9 @@ Progress:  papers read (%)
 1 | Efficient LLM Adaptation Using a Single Gradient Step on 100 Samples | 0
 2 | Evolutionary Graph Optimization for Prompting (EGO-Prompt) | 0
 3 | Tiled Flash Linear Attention (TFLA) | 0
+
+
+2026-07-15
+1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
+2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
+3 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
