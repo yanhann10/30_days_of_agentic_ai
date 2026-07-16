@@ -1244,3 +1244,9 @@ Progress:  papers read (%)
 1 | From Euler to AI: Unifying Formulas for Mathematical Constants | 0
 2 | DeLLMphi: A Multi-Turn Method for Multi-Agent Forecasting | 0
 3 | DistillRecDial: A Knowledge-Distilled Dataset for Conversational RecSys | 0
+
+
+2026-07-16
+1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
+2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
+3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
