@@ -1250,3 +1250,9 @@ Progress:  papers read (%)
 1 | Accelerating Block Coordinate Descent for LLM Finetuning via Landscape Expansion | 0
 2 | LLMs as Reliable Evaluators for Serendipity Evaluation in RecSys | 0
 3 | Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design | 0
+
+
+2026-07-17
+1 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
+2 | No-Regret Learning Under Adversarial Resource Constraints | 0
+3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
