@@ -1256,3 +1256,9 @@ Progress:  papers read (%)
 1 | MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents | 0
 2 | No-Regret Learning Under Adversarial Resource Constraints | 0
 3 | Neural Evolution Strategy for Black-box Pareto Set Learning | 0
+
+
+2026-07-18
+1 | Real-DRL: Teach and Learn in Reality | 0
+2 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
+3 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
