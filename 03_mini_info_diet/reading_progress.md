@@ -1262,3 +1262,9 @@ Progress:  papers read (%)
 1 | Real-DRL: Teach and Learn in Reality | 0
 2 | HCRMP: An LLM-Hinted Contextual RL Framework for Autonomous Driving | 0
 3 | MindForge: Empowering Embodied Agents with Theory of Mind for Lifelong Cultural Learning | 0
+
+
+2026-07-19
+1 | Blindfolded Experts Generalize Better: Insights from Robotic Manipulation | 0
+2 | Agnostic Active Learning Is Always Better Than Passive Learning | 0
+3 | Bayesian Concept Bottleneck Models with LLM Priors | 0
