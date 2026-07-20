@@ -1,15 +1,17 @@
-name: Daily paper picks
+name: Daily AI agent research radar
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # Run daily at 12:00 UTC
+    # 8:00 AM Pacific: the script selects the DST-correct UTC trigger.
+    - cron: '0 15 * * *'
+    - cron: '0 16 * * *'
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 jobs:
-  pick_and_mail:
+  research_and_mail:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,9 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r 03_mini_info_diet/requirements.txt
 
-      - name: Run daily picker
+      - name: Build and send research radar
         env:
-          OLMO_API_KEY: ${{ secrets.OLMO_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SERPER_API_KEY: ${{ secrets.SERPER_API_KEY }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
@@ -36,15 +39,18 @@ jobs:
           EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
           EMAILJS_USER_ID: ${{ secrets.EMAILJS_USER_ID }}
           EMAILJS_PRIVATE_KEY: ${{ secrets.EMAILJS_PRIVATE_KEY }}
+          SEND_EMAIL: 'true'
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          SCHEDULE_EXPRESSION: ${{ github.event.schedule }}
         working-directory: 03_mini_info_diet
         run: |
-          python ./scripts/daily_picks.py
+          python ./scripts/daily_agent_directions.py
 
-      - name: Commit picks
+      - name: Commit digest history
         working-directory: 03_mini_info_diet
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reading_progress.md picks_history.json || true
-          git commit -m "Daily picks: add today's selection" || echo "No changes to commit"
-          git push origin HEAD || true
+          git add agent_directions_history.json
+          git commit -m "Daily agent research radar: record digest" || echo "No changes to commit"
+          git push origin HEAD

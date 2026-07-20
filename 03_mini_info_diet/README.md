@@ -8,6 +8,8 @@ Mini Info Diet helps you stay on top of research papers by:
 
 - **Curating daily picks**: Automatically selects the top 3 most relevant papers from your reading list
 - **Learning from feedback**: Processes your email replies to understand preferences and adjust future recommendations
+- **AI-agent research radar**: At 8:00 AM Pacific, scans recent arXiv, news, blogs, Reddit, and publicly indexed X results and emails three ranked, evidence-linked research directions
+- **Daily novelty**: Stores the last 365 digests and excludes recently used directions and source URLs during ranking
 
 ## Architecture
 

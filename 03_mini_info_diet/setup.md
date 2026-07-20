@@ -1,5 +1,7 @@
 MVP: GitHub Action daily picks email
 
+The active `daily_picks.yml` workflow sends the AI-agent research radar at 8:00 AM Pacific (automatically following PST/PDT). It requires `GEMINI_API_KEY`, `SERPER_API_KEY`, `EMAIL_TO`, `EMAIL_FROM`, and either the SendGrid or EmailJS secrets listed below.
+
 Setup steps for user:
 
 1. Create GitHub Secrets in the repo settings:
